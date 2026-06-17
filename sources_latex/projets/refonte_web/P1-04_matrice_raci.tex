@@ -1,0 +1,108 @@
+% ============================================================
+%  MATRICE RACI — Phase 1 : Démarrage
+%  Time'Eats — Cellule PMO
+%  Projet : Refonte Web
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../../style/consulting}
+\usepackage{pdflscape}
+\hypersetup{pdftitle={Matrice RACI — Refonte Web — Time'Eats PMO}}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\begin{tikzpicture}[remember picture,overlay]
+  \draw[cnNavy,line width=0.5pt](0,0)--(\textwidth,0);
+\end{tikzpicture}\vspace{2pt}\timeeatslogo\hspace{4pt}\small\textcolor{cnSlate}{Time'Eats \textbf{·} Matrice RACI --- \textit{Refonte Web}}}
+\fancyhead[R]{\small\textcolor{cnSlate}{\thepage}}
+\fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel --- Cellule PMO --- CESI MAALSI 2026}}
+\begin{document}\small
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Matrice RACI}\\[4pt]
+\textcolor{cnOrange}{\rule{10cm}{1pt}}\\[4pt]
+{\large\color{cnSlate} Phase 1 — Démarrage \quad|\quad Projet : \textbf{Refonte Web}}
+\end{center}
+
+\vspace{6pt}
+
+\begin{finding}
+\textbf{Légende RACI :}
+\textbf{R} = Responsable (réalise) \quad
+\textbf{A} = Accountable (valide, rend compte) \quad
+\textbf{C} = Consulté (sollicité avant décision) \quad
+\textbf{I} = Informé (tenu au courant)\\
+\textit{Règle : une seule personne \textbf{A} par activité. Au moins un \textbf{R} par activité.}
+\end{finding}
+
+\vspace{6pt}
+
+\begin{landscape}
+\scriptsize
+\renewcommand{\arraystretch}{0.95}
+\begin{tabularx}{\linewidth}{L{5.2cm} C{1.55cm} C{1.55cm} C{1.55cm} C{1.55cm} C{1.55cm} C{1.55cm} C{1.55cm} C{1.55cm}}
+\toprule
+\rowcolor{cnNavy}
+\th{Activité / Livrable} & \th{CP} & \th{DSI} & \th{DG} & \th{PMO} & \th{ESN} & \th{MOA} & \th{RSSI} & \th{Tech Lead} \\
+\midrule
+\multicolumn{9}{l}{\cellcolor{cnNavy!15}\textbf{\textcolor{cnNavy}{Phase 1 — Démarrage}}} \\
+\midrule
+Rédiger la note de cadrage        & R & A & C & I & --  & C & --  & C \\
+\rowcolor{cnIce}
+Rédiger la charte projet          & R & A & I & I & I   & C & --  & C \\
+Constituer l'équipe projet        & R & A & I & C & C   & I & C   & I \\
+\rowcolor{cnIce}
+Organiser le kick-off             & R & A & I & I & C   & C & --  & C \\
+\midrule
+\multicolumn{9}{l}{\cellcolor{cnNavy!15}\textbf{\textcolor{cnNavy}{Phase 2 — Planification}}} \\
+\midrule
+Rédiger le PMP                    & R & A & I & C & C   & C & C   & C \\
+\rowcolor{cnIce}
+Construire le WBS \& PBS          & R & A & --& C & C   & C & --  & R \\
+Élaborer le planning Gantt        & R & A & --& C & C   & I & --  & C \\
+\rowcolor{cnIce}
+Chiffrer le budget                & R & A & A & C & C   & --& --  & C \\
+Cartographier les risques         & R & C & --& A & C   & C & C   & C \\
+\rowcolor{cnIce}
+Rédiger le plan de communication  & R & A & I & C & I   & C & --  & I \\
+Plan de conduite du changement    & R & A & I & C & --  & C & --  & I \\
+\midrule
+\multicolumn{9}{l}{\cellcolor{cnNavy!15}\textbf{\textcolor{cnNavy}{Phase 3 — Exécution (Sprints front/back, design, intégration)}}} \\
+\midrule
+Animer les sprints (Scrum)        & R & I & --& I & R   & C & --  & C \\
+\rowcolor{cnIce}
+Réaliser maquettes UX/UI          & R & I & --& I & R   & A & --  & I \\
+Développer le front (Next.js)     & C & I & --& I & R   & --& --  & A \\
+\rowcolor{cnIce}
+Développer le back / API REST     & C & I & --& I & R   & --& C   & A \\
+Implémenter le CMS contributeur   & R & I & --& I & R   & C & --  & A \\
+\rowcolor{cnIce}
+Piloter Sopra Steria (forfait)    & R & A & --& C & R   & --& --  & C \\
+CR hebdomadaires + démos sprints  & R & I & --& I & C   & I & I   & C \\
+\rowcolor{cnIce}
+Gérer les demandes de changement  & R & A & I & C & C   & C & C   & C \\
+\midrule
+\multicolumn{9}{l}{\cellcolor{cnNavy!15}\textbf{\textcolor{cnNavy}{Phase 4 — Maîtrise (Qualité, sécurité, performance)}}} \\
+\midrule
+Audit RGAA 4.1                    & R & C & --& I & R   & C & A   & C \\
+\rowcolor{cnIce}
+Audit sécurité OWASP ASVS         & C & A & --& I & R   & --& R   & C \\
+Tests perf (Lighthouse / charge)  & R & C & --& I & R   & --& C   & A \\
+\rowcolor{cnIce}
+Produire le tableau de bord projet & R & A & I & C & --  & I & --  & I \\
+Animer le COPIL mensuel           & R & A & I & C & I   & C & I   & I \\
+\rowcolor{cnIce}
+Rapport d'écarts (si écart)       & R & A & I & C & C   & I & --  & C \\
+\midrule
+\multicolumn{9}{l}{\cellcolor{cnNavy!15}\textbf{\textcolor{cnNavy}{Phase 5 — Clôture}}} \\
+\midrule
+Organiser la recette fonctionnelle & R & C & --& I & R   & A & C   & C \\
+\rowcolor{cnIce}
+Signer le PV de recette technique & R & A & --& I & R   & I & C   & C \\
+Bascule production / Go-Live      & R & A & I & I & R   & I & C   & A \\
+\rowcolor{cnIce}
+Transfert exploitation            & R & A & I & I & C   & I & C   & C \\
+Rédiger la fiche REX              & R & A & --& A & C   & C & I   & C \\
+\bottomrule
+\end{tabularx}
+\end{landscape}
+
+\end{document}

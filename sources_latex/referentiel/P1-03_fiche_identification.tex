@@ -1,0 +1,105 @@
+% ============================================================
+%  FICHE D'IDENTIFICATION — Phase 1 : Démarrage
+%  Time'Eats — Cellule PMO  (format 1 page)
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../style/consulting}
+\hypersetup{pdftitle={Fiche d'Identification — Time'Eats PMO}}
+\pagestyle{empty}
+\begin{document}\small
+
+\noindent\hfill\timeeatslogo
+
+\vspace{-10pt}
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Fiche d'Identification Projet}\\[4pt]
+\textcolor{cnOrange}{\rule{14cm}{1pt}}\\[4pt]
+{\normalsize\color{cnSlate} Document de synthèse portefeuille — 1 page}
+\end{center}
+
+\vspace{8pt}
+
+% Bloc identité
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{L{4cm} Y L{4cm} Y}
+\toprule
+\rowcolor{cnNavy}
+\multicolumn{4}{l}{\th{Identité du projet}} \\
+\midrule
+Nom du projet    & \textit{[Nom]}        & Code           & \textit{[CODE-XX]} \\
+\rowcolor{cnIce}
+Chef de projet   & \textit{[Prénom NOM]} & Sponsor        & \textit{[Prénom NOM]} \\
+Date de début    & \textit{[JJ/MM/AAAA]} & Date de fin    & \textit{[JJ/MM/AAAA]} \\
+\rowcolor{cnIce}
+Budget total     & \textit{[XXX K€]}     & Mode d'exécution & $\square$ Waterfall \quad $\square$ Agile \\
+\bottomrule
+\end{tabularx}
+
+\vspace{6pt}
+
+% Bloc statut
+\begin{tabularx}{\textwidth}{L{4cm} Y L{3cm} Y}
+\toprule
+\rowcolor{cnNavy}
+\multicolumn{4}{l}{\th{Statut \& Priorisation}} \\
+\midrule
+Statut RAG       & \textit{$\square$ Vert \quad $\square$ Ambre \quad $\square$ Rouge} &
+Score priorité   & \textit{[X.XX / 5.00]} \\
+\rowcolor{cnIce}
+\% avancement    & \textit{[XX\%]}       & Phase actuelle & \textit{[Démarrage / Planif. / Exec. / Maîtrise / Clôture]} \\
+\bottomrule
+\end{tabularx}
+
+\vspace{6pt}
+
+% Bloc résumé
+\begin{tabularx}{\textwidth}{Y}
+\toprule
+\rowcolor{cnNavy}\th{Résumé en une phrase} \\
+\midrule
+\textit{[Décrire l'objectif principal du projet en une phrase : quoi, pour qui, d'ici quand.]} \\[4pt]
+\bottomrule
+\end{tabularx}
+
+\vspace{6pt}
+
+% Dépendances + risques majeurs côte à côte
+\begin{tabularx}{\textwidth}{Y Y}
+\toprule
+\rowcolor{cnNavy}\th{Dépendances critiques} & \th{Risques majeurs} \\
+\midrule
+\textit{[Projet amont \#1]} & \textit{[Risque \#1 — niveau]} \\
+\textit{[Projet amont \#2]} & \textit{[Risque \#2 — niveau]} \\
+\textit{[Aucune / préciser]} & \textit{[Risque \#3 — niveau]} \\
+\bottomrule
+\end{tabularx}
+
+\vspace{6pt}
+
+% Jalons
+\begin{tabularx}{\textwidth}{C{1cm} L{5cm} C{2.5cm} C{3cm}}
+\toprule
+\rowcolor{cnNavy}\th{\#} & \th{Jalon} & \th{Date cible} & \th{Statut} \\
+\midrule
+J0 & Démarrage & \textit{[date]} & \textit{[$\checkmark$ / En cours / À venir]} \\
+\rowcolor{cnIce}
+J1 & \textit{[Jalon clé 1]} & \textit{[date]} & \textit{[$\checkmark$ / En cours / À venir]} \\
+J2 & \textit{[Jalon clé 2]} & \textit{[date]} & \textit{[$\checkmark$ / En cours / À venir]} \\
+\rowcolor{cnIce}
+Jn & Clôture & \textit{[date]} & \textit{[$\checkmark$ / En cours / À venir]} \\
+\bottomrule
+\end{tabularx}
+
+\vspace{6pt}
+
+% Dernière mise à jour + signature PMO
+\begin{tabularx}{\textwidth}{Y Y}
+\toprule
+\rowcolor{cnNavy}\th{Dernière mise à jour} & \th{Validé par le PMO} \\
+\midrule
+\textit{[JJ/MM/AAAA]} & \textit{[Prénom NOM — Cellule PMO]} \\
+\bottomrule
+\end{tabularx}
+
+\end{document}

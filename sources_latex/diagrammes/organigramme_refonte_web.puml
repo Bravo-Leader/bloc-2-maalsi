@@ -1,0 +1,90 @@
+@startuml
+skinparam dpi 200
+skinparam defaultFontName Arial
+skinparam defaultFontSize 11
+skinparam shadowing false
+skinparam ArrowColor #1A3A6A
+skinparam ArrowThickness 1.4
+
+skinparam rectangle {
+  BackgroundColor<<copil>>     #1A3A6A
+  FontColor<<copil>>           #FFFFFF
+  BorderColor<<copil>>         #1A3A6A
+  FontStyle<<copil>>           bold
+
+  BackgroundColor<<sponsor>>   #3A5A8A
+  FontColor<<sponsor>>         #FFFFFF
+  BorderColor<<sponsor>>       #1A3A6A
+  FontStyle<<sponsor>>         bold
+
+  BackgroundColor<<cp>>        #E65100
+  FontColor<<cp>>              #FFFFFF
+  BorderColor<<E65100>>        #BF360C
+  FontStyle<<cp>>              bold
+
+  BackgroundColor<<interne>>   #E8F0FA
+  FontColor<<interne>>         #1A3A6A
+  BorderColor<<interne>>       #3A5A8A
+
+  BackgroundColor<<esn>>       #FFF3E0
+  FontColor<<esn>>             #6B3A0F
+  BorderColor<<esn>>           #B47A3A
+
+  BackgroundColor<<metier>>    #E8F5E9
+  FontColor<<metier>>          #1B5E20
+  BorderColor<<metier>>        #2E7D32
+
+  BackgroundColor<<support>>   #FCE4EC
+  FontColor<<support>>         #880E4F
+  BorderColor<<support>>       #C62828
+}
+
+rectangle "COPIL Refonte Web\n(mensuel)" as COPIL <<copil>>
+rectangle "Sponsor\nMme Y (DSI)" as SP <<sponsor>>
+rectangle "Chef de projet\nM. X\n(DSI - 50%)" as CP <<cp>>
+
+package "Équipe interne DSI" {
+  rectangle "M. A\nTech Lead Front (60%)" as TLF <<interne>>
+  rectangle "M. B\nDev Back-End (60%)" as DEV <<interne>>
+  rectangle "Mme C\nUX/UI Designer (80→30%)" as UX <<interne>>
+  rectangle "M. D\nDevOps CI/CD (20%)" as OPS <<interne>>
+  rectangle "Mme E\nRSSI (10%, sécurité)" as SEC <<support>>
+}
+
+package "ESN — Sopra Steria\n(forfait 400 j/h)" {
+  rectangle "M. G\nLead tech / Archi (80 j/h)" as LBE <<esn>>
+  rectangle "2× Dev Front Sr\n(120 j/h)" as DF <<esn>>
+  rectangle "2× Dev Back\n(140 j/h)" as DB <<esn>>
+  rectangle "1× UX expert\n(40 j/h)" as UXS <<esn>>
+  rectangle "1× QA automation\n(20 j/h)" as QA <<esn>>
+}
+
+package "Référents métier" {
+  rectangle "Mme F\nResp. Marketing (15%)" as MKT <<metier>>
+  rectangle "Resp. Communication" as COM <<metier>>
+  rectangle "Resp. Commerce" as CMC <<metier>>
+}
+
+COPIL --> SP
+SP --> CP
+CP --> TLF
+CP --> DEV
+CP --> UX
+CP --> OPS
+CP -.-> SEC
+CP --> LBE
+LBE --> DF
+LBE --> DB
+LBE --> UXS
+LBE --> QA
+CP -.-> MKT
+CP -.-> COM
+CP -.-> CMC
+
+legend right
+  <b>Légende</b>
+  <color:#1A3A6A>━━</color> Lien hiérarchique
+  <color:#1A3A6A>· · ·</color> Lien fonctionnel
+endlegend
+
+@enduml

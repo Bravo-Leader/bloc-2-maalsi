@@ -1,0 +1,712 @@
+% ============================================================
+%  PLAN DE MANAGEMENT PROJET (PMP) — Conforme PMBOK 7e éd.
+%  Time'Eats — Cellule PMO
+%  Projet : Refonte Web
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../style/consulting}
+\hypersetup{pdftitle={Plan de Management Projet (PMBOK) — Refonte Web — Time'Eats PMO}}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\begin{tikzpicture}[remember picture,overlay]
+  \draw[cnNavy,line width=0.5pt](0,0)--(\textwidth,0);
+\end{tikzpicture}\vspace{2pt}\timeeatslogo\hspace{4pt}\small\textcolor{cnSlate}{Time'Eats \textbf{·} Plan de Management Projet (PMP) — \textit{Refonte Web}}}
+\fancyhead[R]{\small\textcolor{cnSlate}{\thepage}}
+\fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel — Cellule PMO — CESI MAALSI 2026 — Conforme PMBOK 7e éd.}}
+
+\newcommand{\ragV}{\cellcolor{cnGreen!20}\textbf{\textcolor{cnGreen}{Vert}}}
+\newcommand{\ragA}{\cellcolor{cnOrange!20}\textbf{\textcolor{cnOrange}{Ambre}}}
+\newcommand{\ragR}{\cellcolor{cnRed!20}\textbf{\textcolor{cnRed}{Rouge}}}
+
+\begin{document}\small
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Plan de Management Projet}\\[4pt]
+\textcolor{cnOrange}{\rule{10cm}{1pt}}\\[4pt]
+{\large\color{cnSlate} Phase 2 — Planification \quad|\quad Projet : \textbf{Refonte Web}}\\[2pt]
+{\footnotesize\color{cnSlate}\textit{Structure conforme au PMBOK 7\textsuperscript{e} édition — PMI}}
+\end{center}
+
+\vspace{4pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{L{3.5cm} Y L{3.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Champ} & \th{Valeur} & \th{Champ} & \th{Valeur} \\
+\midrule
+Nom du projet   & Refonte Web            & Version PMP    & 1.0 \\
+\rowcolor{cnIce}
+Chef de projet  & S. Martin              & Date           & 22/04/2026 \\
+Sponsor         & DSI Time'Eats          & ESN partenaire & Sopra Steria (forfait 400 j/h) \\
+\rowcolor{cnIce}
+Budget total    & 300 K€                 & Durée          & 6 mois (Avr–Sep 2026) \\
+Approche        & Hybride Agile / jalonnée & Statut       & En cours (avancement 8\%) \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{2.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Historique} & \th{} \\
+\midrule
+v0.1 — 10/04/2026  & Première trame — cadrage initial par le CP \\
+\rowcolor{cnIce}
+v0.5 — 18/04/2026  & Revue interne DSI (budget, jalons, risques) \\
+v1.0 — 22/04/2026  & Version de référence validée en COPIL d'avril 2026 \\
+\bottomrule
+\end{tabularx}
+
+% ── 0. Introduction & cycle de vie ────────────────────────
+\section*{0 — Introduction, cycle de vie et approche de développement}
+
+Le présent Plan de Management Projet (PMP) décrit la manière dont le projet
+\textbf{Refonte Web} est planifié, exécuté, contrôlé et clôturé. Il intègre les plans
+subsidiaires et les lignes de base exigés par le \textit{PMBOK Guide} 7\textsuperscript{e}
+édition (PMI, 2021), adaptés au contexte DSI de Time'Eats.
+
+\textbf{Cycle de vie :} phases PMBOK \textit{Initiation → Planification → Exécution →
+Surveillance \& Maîtrise → Clôture}.
+
+\textbf{Approche de développement :} \textit{hybride}. Un socle \textit{predictive} sécurise
+les jalons contractuels avec l'ESN (J0 à Jn) tandis qu'une exécution \textit{adaptive}
+(Scrum, sprints de 2 semaines, incrément démontrable) guide la construction produit. Des
+revues de performance mensuelles (COPIL) assurent la synchronisation entre les deux rythmes.
+
+\textbf{Destinataires du document :} DG, DSI (sponsor), chef de projet, équipe projet,
+Sopra Steria, PMO. \textbf{Cadence de mise à jour :} mensuelle ou à chaque événement majeur
+(changement de scope, dépassement d'un seuil d'alerte, révision d'une ligne de base).
+
+% ── 1. Enjeux et objectifs ────────────────────────────────
+\section*{1 — Enjeux stratégiques et objectifs SMART}
+
+\subsection*{1.1 Contexte et enjeux}
+
+Time'Eats amorce en 2026 une transformation digitale dont la \textbf{refonte web} est la
+pierre angulaire. Le site actuel est daté, peu responsive, non interfaçable avec le futur
+CRM, et ne soutient pas la croissance nationale visée. Les enjeux portés par ce projet sont
+les suivants :
+
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\textwidth}{L{3.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Enjeu} & \th{Description} \\
+\midrule
+Stratégique          & Soutenir la croissance nationale en offrant un canal digital
+moderne, socle commun avec le CRM et les applications mobiles clients / fournisseurs. \\
+\rowcolor{cnIce}
+Commercial           & Générer des leads qualifiés, améliorer le taux de conversion et
+différencier Time'Eats sur un marché concurrentiel (restauration collective / traiteurs). \\
+Expérience client    & Proposer une expérience fluide, responsive, accessible, cohérente
+avec la promesse de marque et le futur espace client. \\
+\rowcolor{cnIce}
+Opérationnel         & Industrialiser la production web (CMS pour les contributeurs métier,
+CI/CD, environnements isolés) et baisser le coût de possession (TCO). \\
+Conformité           & Mettre en conformité avec le RGPD, le RGAA 4.1 (accessibilité) et les
+standards de sécurité applicatifs (OWASP ASVS niveau 2). \\
+\rowcolor{cnIce}
+Technologique        & Constituer le socle d'interopérabilité (API-first) pour le CRM, l'App
+Mobile Clients et l'App Mobile Fournisseurs. \\
+Image \& marque      & Renforcer la notoriété en ligne et aligner l'identité digitale sur la
+nouvelle charte graphique Time'Eats. \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{1.2 Objectifs SMART}
+
+Chaque objectif est formulé selon la méthode \textbf{SMART} (\textit{Spécifique,
+Mesurable, Atteignable, Réaliste, Temporellement défini}).
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{C{0.7cm} L{2.6cm} Y C{2.1cm} C{2cm}}
+\toprule
+\rowcolor{cnNavy}\th{\#} & \th{Axe} & \th{Objectif SMART} & \th{Indicateur} & \th{Échéance} \\
+\midrule
+O1 & Délai              & Livrer la \textbf{v1 en production} conforme au périmètre contractuel                                               & Go-live réalisé       & 30/09/2026 \\
+\rowcolor{cnIce}
+O2 & Coût               & Tenir le \textbf{budget à $\pm$5\%} des 300 K€ prévus sur l'ensemble du projet                                       & CPI $\geq$ 0,95       & 30/09/2026 \\
+O3 & Qualité UX         & Obtenir un score de \textbf{satisfaction MOA $\geq$ 80/100} sur les 4 axes CDQ+F                                      & Enquête post go-live  & 15/10/2026 \\
+\rowcolor{cnIce}
+O4 & Performance        & Temps de chargement \textbf{$\leq$ 2 s} (p95) sur les pages publiques, score Lighthouse $\geq$ 90                      & Mesure APM / audit    & 20/09/2026 \\
+O5 & Accessibilité      & Atteindre la \textbf{conformité RGAA 4.1 niveau AA} ($\geq$ 95\% critères conformes)                                 & Audit accessibilité   & 15/09/2026 \\
+\rowcolor{cnIce}
+O6 & Sécurité           & Zéro vulnérabilité critique (OWASP ASVS niv.\ 2) au \textbf{pentest pré go-live}                                      & Rapport pentest       & 10/09/2026 \\
+O7 & Adoption           & \textbf{+30\% de trafic organique} et taux de rebond $\leq$ 45\% à M+3 du go-live                                     & Google Analytics      & 31/12/2026 \\
+\rowcolor{cnIce}
+O8 & Intégration        & Intégrer \textbf{100\% des API CRM} spécifiées (contrats v1) au J4                                                   & Tests de contrat verts& 31/08/2026 \\
+O9 & Conduite du changt.& \textbf{$\geq$ 95\% des contributeurs} formés au CMS avant la bascule                                                & Taux de formation     & 25/09/2026 \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{1.3 Facteurs clés de succès (FCS)}
+
+\textit{Disponibilité effective des référents métier (MOA, PO)} ;
+\textit{continuité de l'engagement de Sopra Steria et stabilité de l'équipe} ;
+\textit{synchronisation rigoureuse avec les projets CRM, Office 365 et Migration Azure} ;
+\textit{discipline Agile} (DoR/DoD respectés, backlog priorisé, revues de sprint tenues) ;
+\textit{qualité des spécifications API côté CRM} (contrats v1 figés en juin 2026) ;
+\textit{sponsoring actif} de la DSI en COPIL et au niveau DG.
+
+% ── 2. Plan de management du contenu (Scope) ──────────────
+\section*{2 — Plan de management du contenu (Scope Management Plan)}
+
+\textbf{Énoncé de contenu.} Refonte du site web Time'Eats en application moderne responsive
+exposant un \textit{portail public}, un \textit{espace client authentifié}, un \textit{espace
+fournisseur}, un \textit{CMS éditorial}, et des intégrations \textit{API CRM} et \textit{SSO
+Office 365}, avec conformité \textit{RGAA / RGPD} et pipeline \textit{CI/CD} dédié.
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{1.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{} & \th{} \\
+\midrule
+\cellcolor{cnGreen!20}\textbf{In}  & Portail public, espace client, espace fournisseur, CMS,
+API CRM (v1), SSO O365, SEO / RGAA / RGPD, pipeline CI/CD, recette fonctionnelle et technique,
+transfert en exploitation, formation contributeurs CMS. \\
+\rowcolor{cnIce}
+\cellcolor{cnRed!20}\textbf{Out} & Applications mobiles clients / fournisseurs (projets
+dédiés), déploiement du CRM, Migration Azure (projet dédié), module de paiement en ligne
+(phase 2), intégration ERP comptable (hors portefeuille 2026). \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Processus de contrôle du scope :} le backlog produit est priorisé par le PO, les
+éléments entrants sont validés en revue de sprint, et toute modification hors backlog suit
+le processus formel de demande de changement (§11). \textbf{WBS} détaillé dans P2-06
+(dictionnaire WBS versionné).
+
+\textbf{Livrables majeurs} : \textit{maquettes UX validées} (J1), \textit{socle technique +
+env.\ dev} (J2), \textit{MVP portail public + espace client} (J3), \textit{intégration CRM +
+espace fournisseur} (J4), \textit{PV de recette} (J5), \textit{go-live + PV de transfert}
+(Jn).
+
+% ── 3. Plan de management des exigences (Requirements) ────
+\section*{3 — Plan de management des exigences (Requirements Management Plan)}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{4cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Activité} & \th{Modalité} \\
+\midrule
+Collecte          & Ateliers métier, interviews MOA (marketing, commerce, fournisseurs), analyse du site existant, benchmark concurrentiel, enquêtes utilisateurs \\
+\rowcolor{cnIce}
+Formalisation     & User stories (INVEST), critères d'acceptation, DoR / DoD, épopées regroupant les sous-périmètres \\
+Priorisation      & \textbf{MoSCoW} (Must / Should / Could / Won't) pondéré par valeur métier × coût ; arbitrage PO hebdomadaire \\
+\rowcolor{cnIce}
+Traçabilité       & Matrice de traçabilité exigences $\leftrightarrow$ user stories $\leftrightarrow$ tests (outillée Jira + plugin traça.) \\
+Validation        & Revue de sprint (PO + MOA), recette fonctionnelle (PV P5-19), recette technique (PV P5-20) \\
+\rowcolor{cnIce}
+Gestion du changt.& Toute modification d'exigence impactant le baseline passe par P3-14 \\
+\bottomrule
+\end{tabularx}
+
+% ── 4. Plan de management des délais (Schedule) ───────────
+\section*{4 — Plan de management des délais (Schedule Management Plan)}
+
+\textbf{Unité de mesure :} jours ouvrés / sprints de 2 semaines. \textbf{Seuil d'alerte :}
+dérive de J+5 ouvrés sur un jalon contractuel $\Rightarrow$ rapport d'écarts (P4-17).
+\textbf{Méthode :} chemin critique sur les jalons, \textit{burndown} sprint, suivi
+hebdomadaire de la vélocité.
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{C{1cm} L{5cm} Y C{2.5cm} C{2cm}}
+\toprule
+\rowcolor{cnNavy}\th{\#} & \th{Jalon} & \th{Livrable} & \th{Date cible} & \th{Statut} \\
+\midrule
+J0 & Démarrage officiel                  & Charte signée + kick-off ESN           & 01/04/2026 & \ragV \\
+\rowcolor{cnIce}
+J1 & Cadrage UX / maquettes validées     & Maquettes UX Sprint 1 validées MOA     & 14/04/2026 & \ragV \\
+J2 & Socle technique + env.\ dev         & Env.\ dev accessible, pipeline CI/CD   & 15/05/2026 & \ragA \\
+\rowcolor{cnIce}
+J3 & MVP portail public + espace client  & Incrément démontrable                  & 15/07/2026 & \ragA \\
+J4 & Intégration CRM + esp.\ fournisseur & API CRM branchées, parcours recetté    & 31/08/2026 & \ragA \\
+\rowcolor{cnIce}
+J5 & Recette fonctionnelle \& technique  & PV recette P5-19 + P5-20 signés        & 20/09/2026 & \ragA \\
+Jn & Mise en production \& clôture       & Go-live, PV transfert, REX             & 30/09/2026 & \ragA \\
+\bottomrule
+\end{tabularx}
+
+\textit{Planning Gantt détaillé : cf.\ P2-07. La ligne de base ordonnancement (schedule
+baseline) est figée en COPIL d'avril 2026 et ne peut être modifiée que par demande de
+changement approuvée.}
+
+% ── 5. Plan de management des coûts (Cost) ────────────────
+\section*{5 — Plan de management des coûts (Cost Management Plan)}
+
+\textbf{Devise :} EUR. \textbf{Méthode d'estimation :} bottom-up sur WBS + forfait ESN +
+benchmark historique DSI. \textbf{Contrôle :} Earned Value Management (\textbf{EVM}) mensuel,
+indicateurs CPI, SPI, EAC, ETC. \textbf{Seuil d'alerte :} écart > 10\% sur consommé vs
+planifié $\Rightarrow$ rapport d'écarts (P4-17) et arbitrage COPIL.
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{5cm} C{2.2cm} C{2cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Poste} & \th{Montant (K€)} & \th{\% total} & \th{Commentaire} \\
+\midrule
+Intégration Sopra Steria (forfait)   & 165 & 55\% & Dév, intégration CRM, UX/UI — 400 j/h, jalons de paiement J2–J5 \\
+\rowcolor{cnIce}
+Licences \& outillage (CMS, APM)     &  30 & 10\% & CMS headless, licences dev, outillage QA / APM \\
+Ressources internes (PO, TL, 2 devs, MOA) &  45 & 15\% & S. Martin + Tech Lead + 2 devs internes + équipe métier (valorisation JH interne) \\
+\rowcolor{cnIce}
+Recette \& tests                     &  18 &  6\% & Recette MOA + tests sécurité / charge / pentest \\
+Formation \& conduite du changement  &  12 &  4\% & Formation contributeurs CMS + support go-live \\
+\rowcolor{cnIce}
+Réserve pour aléas (\textit{contingency}) &  30 & 10\% & Sous contrôle du CP — risques identifiés \\
+\midrule
+\rowcolor{cnNavy!10}\textbf{TOTAL (cost baseline)} & \textbf{300} & \textbf{100\%} & Consommé à date : 18 K€ (6\%) \\
+\bottomrule
+\end{tabularx}
+
+\textit{Une \textbf{réserve de management} (\textit{management reserve}, non incluse dans
+la cost baseline, arbitrée par la DSI) couvre les risques non identifiés. Son utilisation
+requiert une demande de changement formelle.}
+
+% ── 6. Plan de management de la qualité (Quality) ─────────
+\section*{6 — Plan de management de la qualité (Quality Management Plan)}
+
+\textbf{Politique qualité :} conformité PMBOK + référentiel DSI Time'Eats. \textbf{Standards
+applicables :} RGAA 4.1 niveau AA, RGPD, OWASP ASVS niveau 2, charte graphique Time'Eats,
+ISO 25010 (qualité logicielle).
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{4.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Activité qualité} & \th{Modalité} \\
+\midrule
+Assurance qualité (QA)   & Revue de code systématique (2 pairs), pipeline CI/CD bloquant sur tests, audit accessibilité en continu, \textit{quality gates} SonarQube \\
+\rowcolor{cnIce}
+Contrôle qualité (QC)    & Tests unitaires $\geq$ 80\% couverture, tests d'intégration API CRM, tests de charge (objectif p95 $\leq$ 2 s), pentest avant J5 \\
+Critères d'acceptation   & DoD partagée : tests verts, doc à jour, RGAA OK, revue UX OK, audit sécurité intermédiaire OK \\
+\rowcolor{cnIce}
+Métriques                & Vélocité, taux de défauts post-sprint, couverture tests, SLA disponibilité, Lighthouse, satisfaction MOA \\
+Non-conformités          & Journal d'anomalies P3-15, traitement prioritaire selon criticité (P1 < 24 h, P2 < 72 h, P3 < 1 sprint) \\
+\rowcolor{cnIce}
+Amélioration continue    & Rétrospective de sprint, plan d'action par sprint, REX consolidé en clôture (P5-23) \\
+\bottomrule
+\end{tabularx}
+
+% ── 7. Plan de management des ressources (Resource) ──────
+\section*{7 — Plan de management des ressources (Resource Management Plan)}
+
+\textbf{Matrice RACI détaillée : cf.\ P1-04.} L'équipe est structurée en \textit{feature
+team} Agile, avec un PO temps plein (CP), un Tech Lead, des développeurs ESN et des
+référents métier / sécurité en renfort ponctuel.
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{4cm} L{3cm} Y C{2cm}}
+\toprule
+\rowcolor{cnNavy}\th{Ressource} & \th{Rôle} & \th{Activités principales} & \th{\% affec.} \\
+\midrule
+S. Martin             & Chef de projet / PO    & Pilotage, backlog, COPIL                & 80\% \\
+\rowcolor{cnIce}
+Référent MOA métier   & Product Owner métier   & Besoin, recette, validation UX          & 40\% \\
+Tech Lead interne     & Archi \& intégration   & Archi cible, revue code, intégration    & 60\% \\
+\rowcolor{cnIce}
+\textbf{Dev interne \#1} & \textbf{Développeur full-stack} & Dév front/back en binôme avec ESN, intégration continue, contribution au \textit{design system} & \textbf{80\%} \\
+\textbf{Dev interne \#2} & \textbf{Développeur back / intégration} & Dév API, intégration CRM \& SSO O365, tests automatisés, \textit{pair programming} avec ESN & \textbf{60\%} \\
+\rowcolor{cnIce}
+QA / Recette interne  & Testeur                & Plans de tests, recette, non-régression & 40\% \\
+Sopra Steria          & Intégrateur (forfait)  & Dév front/back, UX/UI, DevOps           & 400 j/h \\
+\rowcolor{cnIce}
+Référent CI/CD        & Support DevOps         & Pipeline, environnements                & 20\% \\
+DPO                   & Conformité RGPD        & DPIA, registre des traitements          & Ponctuel \\
+\rowcolor{cnIce}
+RSSI                  & Sécurité               & Revue d'architecture sécurité, pentest  & Ponctuel \\
+Designer UX / UI (ESN)& Conception            & Maquettes, design system                & Inclus forfait \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Acquisition / développement / libération :} engagements formalisés avec les
+managers métier et la DSI ; montée en compétences via pair programming, \textit{dojos}
+techniques et ateliers ; libération planifiée à Jn selon le plan de transfert en
+exploitation (P5-22). \textbf{Gestion des conflits :} escalade CP $\rightarrow$ DSI.
+
+\textbf{Intégration des développeurs internes.} Deux développeurs internes Time'Eats
+rejoignent l'équipe dès J1 (cadrage UX terminé) en \textit{pair programming} avec
+Sopra Steria. Objectifs : (i) \textit{capitalisation} de la connaissance technique en
+interne (réversibilité), (ii) \textit{accélération} sur les intégrations sensibles (API CRM,
+SSO O365), (iii) \textit{continuité} en phase Run post go-live. Impacts : +60 j/h internes
+valorisés (intégrés au poste Ressources internes), révision de la DoD (revue croisée
+interne + ESN), onboarding technique documenté.
+
+% ── 8. Plan de management des communications ──────────────
+\section*{8 — Plan de management des communications (Communications Management Plan)}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{3.8cm} L{3cm} Y C{2cm}}
+\toprule
+\rowcolor{cnNavy}\th{Communication} & \th{Destinataires} & \th{Canal / Format} & \th{Fréquence} \\
+\midrule
+Daily stand-up        & Équipe + ESN              & Teams / 15 min                      & Quotidien \\
+\rowcolor{cnIce}
+Revue de sprint       & PO, MOA, équipe, ESN      & Teams + démo incrément              & Bi-hebdo (fin sprint) \\
+Rétrospective         & Équipe projet             & Teams / Miro                        & Bi-hebdo (fin sprint) \\
+\rowcolor{cnIce}
+Planning de sprint    & PO, équipe, ESN           & Teams + Jira                        & Bi-hebdo (début sprint) \\
+CR d'avancement       & DSI, Sponsor              & Email + SharePoint (P3-13)          & Hebdomadaire \\
+\rowcolor{cnIce}
+Tableau de bord PMO   & DSI, DG                   & Cockpit DSI / PDF (P4-16)           & Mensuel \\
+COPIL Refonte Web     & DSI, DG, ESN              & Réunion + CR (P4-18)                & Mensuel \\
+\rowcolor{cnIce}
+Rapport d'écarts      & DSI, Sponsor              & Email + SharePoint (P4-17)          & Si écart \\
+Communication go-live & Utilisateurs finaux       & Intranet, email, affichage          & Avant / après Jn \\
+\rowcolor{cnIce}
+Demande de changement & Comité changement         & SharePoint (P3-14)                  & Sur demande \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Archivage :} tous les documents projet sont versionnés sur SharePoint PMO et
+rattachés au dossier unique du projet (\textit{project folder}).
+
+% ── 9. Plan de management des risques (Risk) ──────────────
+\section*{9 — Plan de management des risques (Risk Management Plan)}
+
+\textbf{Méthode :} identification en atelier trimestriel, analyse qualitative Probabilité $\times$
+Impact (échelle 1–5), seuil de criticité $\geq$ 12 traité en COPIL, seuil $\geq$ 16 escaladé
+DG. \textbf{Registre complet : P2-09.} \textbf{Stratégies de réponse (PMBOK) :} Éviter,
+Transférer, Atténuer, Accepter (menaces) — Exploiter, Partager, Améliorer, Accepter
+(opportunités).
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{C{0.5cm} L{3.8cm} C{1.2cm} C{1.2cm} C{0.9cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{\#} & \th{Risque} & \th{P (1–5)} & \th{I (1–5)} & \th{Score} & \th{Réponse} \\
+\midrule
+R1 & Setup env.\ dev Sopra Steria retardé (VPN S14) & 4 & 4 & 16 & \textbf{Atténuer} — escalade DSI Infra, plan de rattrapage, réserve mobilisée \\
+\rowcolor{cnIce}
+R2 & Dépendance SSO Office 365 non disponible      & 3 & 4 & 12 & \textbf{Atténuer} — sync hebdo, fallback auth locale temporaire \\
+R3 & API CRM instables / specs tardives            & 4 & 5 & 20 & \textbf{Atténuer} — contrats figés juin, mocks, tests de contrat \\
+\rowcolor{cnIce}
+R4 & Hébergement Azure non prêt pour go-live       & 3 & 5 & 15 & \textbf{Transférer} — plan B on-premise + coord.\ Migration Azure \\
+R5 & Scope creep en mode Agile                     & 3 & 3 &  9 & \textbf{Atténuer} — backlog PO, revues, gates budget J3/J4 \\
+\rowcolor{cnIce}
+R6 & Non-conformité RGAA / RGPD                    & 2 & 4 &  8 & \textbf{Atténuer} — audit continu, DPIA amont \\
+R7 & Indisponibilité ressources internes (MOA)     & 2 & 3 &  6 & \textbf{Accepter} — backup MOA identifié \\
+\rowcolor{cnIce}
+R8 & Attrition d'équipe (CP, Tech Lead)            & 2 & 5 & 10 & \textbf{Atténuer} — doc continue, pair programming, backup CP \\
+R9 & Cyberattaque pré go-live                      & 2 & 5 & 10 & \textbf{Transférer} — pentest, WAF, plan de réponse incident \\
+\rowcolor{cnIce}
+O1 & \textit{Opportunité :} réutilisation du \textit{design system} pour les apps mobiles & 3 & 4 & 12 & \textbf{Exploiter} — capitalisation formelle dès J3 \\
+\bottomrule
+\end{tabularx}
+
+% ── 10. Plan de management des approvisionnements ─────────
+\section*{10 — Plan de management des approvisionnements (Procurement Management Plan)}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{4cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Objet} & \th{Modalité} \\
+\midrule
+Type de contrat ESN      & Forfait résultat Sopra Steria (\textbf{FFP} — Firm Fixed Price) — 165 K€ / 400 j/h, jalons de paiement indexés sur J2–J5 \\
+\rowcolor{cnIce}
+Procédure de sélection   & Déjà attribué (ESN cadre DSI) — revue de conformité cadre achats en début de projet \\
+Licences \& logiciels    & Achats via centrale DSI — CMS headless, outillage APM, licences dev et QA \\
+\rowcolor{cnIce}
+Clauses clés             & SLA support, pénalités de retard sur jalons contractuels, clause de réversibilité, propriété du code source Time'Eats, confidentialité, RGPD \\
+Suivi fournisseur        & Point hebdomadaire CP / chef de mission ESN, indicateurs j/h consommés vs planifiés, tableau de bord contractuel mensuel \\
+\rowcolor{cnIce}
+Critères d'acceptation   & PV recette fonctionnelle + technique signés, pentest OK, documentation remise, transfert de connaissance réalisé \\
+Clôture contrat          & PV de fin de prestation, enquête satisfaction ESN, archivage du dossier achats \\
+\bottomrule
+\end{tabularx}
+
+% ── 11. Plan de management des parties prenantes ──────────
+\section*{11 — Plan de management des parties prenantes (Stakeholder Engagement Plan)}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{3.5cm} C{2cm} C{2.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Partie prenante} & \th{Pouvoir / Intérêt} & \th{Niveau cible} & \th{Stratégie d'engagement} \\
+\midrule
+DG Time'Eats          & Fort / Fort     & Soutien            & COPIL mensuel, tableau de bord DG, escalades majeures \\
+\rowcolor{cnIce}
+DSI (sponsor)         & Fort / Fort     & Leader             & COPIL, arbitrages, CR hebdo, sponsoring visible \\
+Direction Commerciale & Moyen / Fort    & Soutien            & Démos de sprint, ateliers besoins, enquête satisfaction \\
+\rowcolor{cnIce}
+Direction Marketing   & Moyen / Fort    & Soutien            & Alignement charte, contenus, plan de lancement \\
+Utilisateurs finaux   & Faible / Fort   & Soutien            & Tests utilisateurs, formation, com go-live \\
+\rowcolor{cnIce}
+Contributeurs CMS     & Faible / Fort   & Soutien            & Ateliers CMS, documentation, support go-live \\
+Sopra Steria          & Fort / Fort     & Soutien            & Gouvernance contractuelle, point hebdo, COPIL \\
+\rowcolor{cnIce}
+DPO / RSSI            & Fort / Moyen    & Informé            & Validation DPIA, audit sécurité, pentest \\
+Chefs projet liés (CRM, O365, Azure, App Mobile) & Moyen / Fort & Collaboratif & Sync inter-projets (portefeuille), gestion des dépendances \\
+\rowcolor{cnIce}
+Fournisseurs / clients B2B & Faible / Fort & Informé         & Communication de service, FAQ, support \\
+\bottomrule
+\end{tabularx}
+
+% ── 12. Plans additionnels ────────────────────────────────
+\section*{12 — Plans additionnels : Changement, Configuration, Conduite du changement}
+
+\textbf{Conduite du changement (cf.\ P2-11) :} cartographie des impacts utilisateurs, plan
+de communication cible (intranet, email, affichage), ateliers de prise en main, formation
+des contributeurs CMS (objectif O9), support renforcé go-live + 30 jours.
+
+\textbf{Gestion de la configuration :} versionnage Git (\textit{trunk-based development}),
+tags par sprint, environnements dev / staging / prod isolés et reproductibles (IaC),
+\textit{Definition of Done} incluant mise à jour de la documentation technique et
+utilisateur, politique de sauvegarde / restauration.
+
+\textbf{Gestion des modifications (Change Control) :} toute évolution hors backlog passe
+par une \textit{Demande de Changement} (P3-14), évaluée en termes d'impact scope / coût /
+délai / qualité / risques, validée en Comité changement (CP + PO + DSI + Sponsor), tracée
+dans le registre des DC et intégrée au baseline par décision formelle.
+
+\textbf{Workflow DC :} émission $\rightarrow$ analyse d'impact $\rightarrow$ comité changement
+$\rightarrow$ décision (approuvé / refusé / différé) $\rightarrow$ mise à jour baseline /
+backlog $\rightarrow$ communication.
+
+% ── 13. Lignes de base et mesure de performance ──────────
+\section*{13 — Lignes de base (Baselines) et mesure de performance}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{4cm} Y C{3cm}}
+\toprule
+\rowcolor{cnNavy}\th{Ligne de base} & \th{Description} & \th{Figée au} \\
+\midrule
+Scope baseline       & Énoncé de contenu + WBS + dictionnaire WBS            & 22/04/2026 \\
+\rowcolor{cnIce}
+Schedule baseline    & Planning Gantt jalonné (J0–Jn) — P2-07                & 22/04/2026 \\
+Cost baseline        & 300 K€ (hors réserve de management) — P2-08           & 22/04/2026 \\
+\rowcolor{cnIce}
+Performance baseline & Intégration scope + délais + coûts (EVM mensuel)      & 22/04/2026 \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+\textbf{Indicateurs de performance (KPI) :}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{4cm} C{2.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{KPI} & \th{Cible} & \th{Source / Fréquence} \\
+\midrule
+CPI (\textit{Cost Perf.\ Index})  & $\geq$ 0,95  & EVM mensuel (P4-16) \\
+\rowcolor{cnIce}
+SPI (\textit{Schedule Perf.\ Index}) & $\geq$ 0,95  & EVM mensuel (P4-16) \\
+Vélocité (pts / sprint)           & Stable $\pm$10\% & Jira / fin de sprint \\
+\rowcolor{cnIce}
+Taux de défauts post-sprint       & $\leq$ 5\% & Journal P3-15 / sprint \\
+Satisfaction MOA (0–100)          & $\geq$ 80   & Enquête mensuelle \\
+\rowcolor{cnIce}
+Couverture tests                  & $\geq$ 80\% & CI / sprint \\
+Disponibilité env.\ (SLA)         & $\geq$ 99\% & Monitoring / mensuel \\
+\bottomrule
+\end{tabularx}
+
+% ── 13bis. Alimentation du dashboard PMO ─────────────────
+\section*{13bis — Alimentation du dashboard PMO (\textit{Cockpit DSI})}
+
+Le projet Refonte Web alimente le \textbf{Cockpit DSI} (dashboard PMO temps réel consolidé
+pour l'ensemble du portefeuille). Cette section définit \textit{quelles données remontent,
+depuis quelle source, à quelle fréquence et sous quel format}. Le Cockpit est la source
+unique de vérité pour le pilotage de portefeuille (COPIL, DG, DSI).
+
+\subsection*{13bis.1 Données remontées}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{4cm} L{3.5cm} C{2.2cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Donnée} & \th{Source} & \th{Fréquence} & \th{Utilisation dashboard} \\
+\midrule
+Avancement (\%)                    & Jira (burndown / tâches faites) & Temps réel (API) & Jauge avancement projet \\
+\rowcolor{cnIce}
+Tâches total / faites              & Jira                         & Temps réel       & Détail avancement, tendance \\
+Consommé (K€)                      & ERP achats + ressources       & Hebdomadaire (ETL) & KPI budget, EVM \\
+\rowcolor{cnIce}
+CPI / SPI                          & Calcul EVM (PMO)              & Mensuel          & Tableau de bord performance \\
+Statut RAG exécution               & CP (déclaration CR hebdo)     & Hebdomadaire     & Heatmap portefeuille \\
+\rowcolor{cnIce}
+Jalons (date cible, statut)        & Planning Gantt (P2-07)        & À chaque MAJ     & Timeline portefeuille \\
+Risques ($\geq$ 12)                & Registre P2-09                & Hebdomadaire     & Top risques agrégés \\
+\rowcolor{cnIce}
+Incidents / anomalies              & Journal P3-15 (Jira)          & Temps réel (API) & Pastille incidents ouverts \\
+Points bloquants                   & CP (CR hebdo)                 & Hebdomadaire     & Liste blocage portefeuille \\
+\rowcolor{cnIce}
+Satisfaction client (CDQ+F)        & Enquête MOA                   & Mensuelle        & Radar satisfaction \\
+Satisfaction équipe                & Rétrospective sprint          & Bi-hebdo         & Courbe tendance équipe \\
+\rowcolor{cnIce}
+Vélocité / taux défauts            & Jira + SonarQube              & Par sprint       & Qualité livrée \\
+Dépendances inter-projets          & PMP + P2-07                   & À chaque MAJ     & Graphe de dépendances \\
+\rowcolor{cnIce}
+Contacts ESN (jours depuis CR)     & CRM PMO                       & Quotidien        & Vigie relation fournisseur \\
+Notes patch / livraisons           & CI/CD (pipeline)              & Temps réel       & Fil des livraisons \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{13bis.2 Flux et responsabilités}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{3cm} L{3cm} L{3cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Canal} & \th{Émetteur} & \th{Récepteur} & \th{Mécanisme / Fréquence} \\
+\midrule
+API Jira           & Dev / PO              & Cockpit (backend) & Webhook temps réel $\rightarrow$ collection \textit{projects.tasks} \\
+\rowcolor{cnIce}
+CR hebdo (P3-13)   & Chef de projet        & PMO               & Formulaire structuré SharePoint $\rightarrow$ ETL nuit \\
+Registre risques   & Chef de projet        & PMO               & Fichier Excel versionné (SharePoint) $\rightarrow$ ingestion hebdo \\
+\rowcolor{cnIce}
+Budget ERP         & Service achats        & PMO               & Export CSV quotidien $\rightarrow$ rapprochement EVM mensuel \\
+Pipeline CI/CD     & Dev / Sopra Steria    & Cockpit           & Webhook GitLab CI $\rightarrow$ collection \textit{patches} \\
+\rowcolor{cnIce}
+Rétrospective      & Scrum Master / équipe & PMO               & Template Miro $\rightarrow$ synthèse saisie dans Cockpit \\
+Enquête satisfaction & MOA                 & PMO               & Forms mensuel $\rightarrow$ alimentation collection \textit{satisfaction\_client} \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{13bis.3 Règles de gouvernance de la donnée}
+
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item \textbf{Responsable de la donnée} : le CP est \textit{data owner} projet ; le PMO
+  est \textit{data steward} portefeuille.
+  \item \textbf{Fraîcheur} : une donnée non mise à jour au-delà de son cycle (ex.\ CR hebdo
+  > 10 j) génère une alerte automatique au CP et une pastille \textit{ambre} sur le
+  Cockpit.
+  \item \textbf{Qualité} : contrôles de cohérence automatisés (consommé $\leq$ budget,
+  avancement $\in [0,100]$, jalons datés), journal des anomalies de données.
+  \item \textbf{Confidentialité} : les données projet sont restreintes à la DSI / PMO ;
+  l'export DG est limité aux agrégats de portefeuille.
+  \item \textbf{Traçabilité} : historisation mensuelle des valeurs pour analyse de
+  tendance et rapprochement ligne de base.
+  \item \textbf{Sécurité} : authentification SSO O365 sur le Cockpit, journalisation des
+  accès, sauvegarde quotidienne.
+\end{itemize}
+
+\subsection*{13bis.4 Cycle de reporting}
+
+\textit{Quotidien} : incidents, pipeline CI/CD, tâches Jira. \quad
+\textit{Hebdomadaire} : CR d'avancement, statut RAG, risques, points bloquants. \quad
+\textit{Bi-hebdomadaire} : vélocité, satisfaction équipe, qualité de code. \quad
+\textit{Mensuel} : EVM (CPI/SPI), satisfaction client, tableau de bord COPIL (P4-16). \quad
+\textit{Sur événement} : demande de changement, rapport d'écarts (P4-17), jalon atteint ou
+dérivé.
+
+% ── 14. Gouvernance et revues ─────────────────────────────
+\section*{14 — Gouvernance et revues}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{3.8cm} L{3.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Instance} & \th{Décisions} & \th{Participants} \\
+\midrule
+COPIL mensuel     & Validation jalons, arbitrage budget / scope, risques majeurs, DC impactant baseline & DSI, DG, Sponsor, CP, ESN \\
+\rowcolor{cnIce}
+Revue de sprint   & Validation incrément, priorisation du backlog                   & PO, MOA, équipe, ESN \\
+Rétrospective     & Amélioration continue, actions correctives                      & Équipe projet \\
+\rowcolor{cnIce}
+Comité technique  & Arbitrages techniques, conformité archi cible                   & Tech Lead, Archi DSI, ESN \\
+Comité changement & Traitement des Demandes de Changement (P3-14)                   & CP, PO, DSI, Sponsor \\
+\rowcolor{cnIce}
+Revue qualité / sécurité & Audit qualité, DPIA, pentest, conformité RGAA           & QA, DPO, RSSI, CP \\
+\bottomrule
+\end{tabularx}
+
+% ── 15. Hypothèses, contraintes et dépendances ───────────
+\section*{15 — Hypothèses, contraintes et dépendances}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{3cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Catégorie} & \th{Éléments} \\
+\midrule
+Hypothèses      & Disponibilité MOA $\geq$ 40\% ; contrats API CRM figés juin 2026 ; hébergement Azure disponible avant J5 ; équipe Sopra Steria stable \\
+\rowcolor{cnIce}
+Contraintes     & Budget plafond 300 K€ ; go-live 30/09/2026 (fenêtre commerciale Q4) ; conformité RGAA / RGPD obligatoire ; respect de la charte graphique ; gel des déploiements en décembre \\
+Dépendances     & Office 365 (SSO, prérequis J3) ; CRM (API, prérequis J4) ; CI/CD (pipeline, prérequis J2) ; Migration Azure (hébergement cible, prérequis Jn) \\
+\rowcolor{cnIce}
+Exclusions      & Apps mobiles, module de paiement, ERP comptable, CRM lui-même, Migration Azure \\
+\bottomrule
+\end{tabularx}
+
+% ── 16. Critères d'acceptation et clôture ────────────────
+\section*{16 — Critères d'acceptation et stratégie de clôture}
+
+\textbf{Critères d'acceptation globaux} : PV de recette fonctionnelle (P5-19) et technique
+(P5-20) signés ; objectifs SMART O1–O6 atteints ; pentest sans vulnérabilité critique ;
+audit RGAA $\geq$ 95\% ; documentation complète remise ; équipe exploitation formée.
+
+\textbf{Stratégie de clôture} : rapport de clôture (P5-21), PV de transfert en exploitation
+(P5-22), fiche de retour d'expérience (P5-23), archivage du dossier projet,
+libération des ressources, enquête de satisfaction MOA et équipe, capitalisation des
+livrables réutilisables (\textit{design system}, composants techniques).
+
+\textbf{Post-projet} : suivi des objectifs d'adoption (O7) à M+3 ; revue des bénéfices à
+M+6 en COPIL portefeuille ; plan d'évolution phase 2 (module paiement, nouvelles
+fonctionnalités) selon retours utilisateurs.
+
+\vspace{4pt}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{3.5cm} Y C{2.5cm}}
+\toprule
+\rowcolor{cnNavy}\th{Livrable de clôture} & \th{Description} & \th{Référence} \\
+\midrule
+PV recette fonctionnelle & Validation MOA du périmètre fonctionnel livré & P5-19 \\
+\rowcolor{cnIce}
+PV recette technique     & Validation DSI de la conformité technique (perf, sécurité, archi) & P5-20 \\
+Rapport de clôture       & Bilan scope / coûts / délais / qualité ; écarts vs baselines & P5-21 \\
+\rowcolor{cnIce}
+PV transfert exploitation & Remise à l'équipe Run (runbook, astreinte, monitoring) & P5-22 \\
+Fiche REX                & Retour d'expérience consolidé (succès, difficultés, actions) & P5-23 \\
+\rowcolor{cnIce}
+Dossier projet archivé   & Archivage SharePoint PMO, conservation 10 ans & — \\
+\bottomrule
+\end{tabularx}
+
+\vspace{2pt}
+\textbf{Validation finale :} le présent PMP est approuvé en COPIL d'avril 2026. Toute
+modification substantielle (scope, budget, délais, gouvernance) entraîne une nouvelle
+version soumise à validation du Sponsor et du Comité de pilotage, et une communication aux
+parties prenantes listées au §11.
+
+\newpage
+% ── 17. Glossaire et acronymes ────────────────────────────
+\section*{17 — Glossaire et acronymes}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{3cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Terme / Acronyme} & \th{Définition} \\
+\midrule
+PMBOK              & \textit{Project Management Body of Knowledge} — corpus de bonnes pratiques en management de projet, publié par le PMI (Project Management Institute). \\
+\rowcolor{cnIce}
+PMO                & \textit{Project Management Office} — cellule de pilotage du portefeuille projets de la DSI. \\
+WBS                & \textit{Work Breakdown Structure} — décomposition hiérarchique du contenu du projet (P2-06). \\
+\rowcolor{cnIce}
+RACI               & Matrice des responsabilités : \textit{Responsible, Accountable, Consulted, Informed} (P1-04). \\
+EVM / CPI / SPI    & \textit{Earned Value Management} et ses indicateurs : \textit{Cost Performance Index} (CPI = EV/AC), \textit{Schedule Performance Index} (SPI = EV/PV). \\
+\rowcolor{cnIce}
+EAC / ETC          & \textit{Estimate At Completion} / \textit{Estimate To Complete} — prévisions budgétaires en fin de projet. \\
+SMART              & \textit{Specific, Measurable, Achievable, Realistic, Time-bound} — méthode de formulation d'objectifs. \\
+\rowcolor{cnIce}
+DoR / DoD          & \textit{Definition of Ready} / \textit{Definition of Done} — critères d'entrée et de sortie d'une user story. \\
+PO / MOA / MOE     & \textit{Product Owner} / Maîtrise d'ouvrage / Maîtrise d'œuvre. \\
+\rowcolor{cnIce}
+DC                 & Demande de Changement (P3-14). \\
+DPIA               & \textit{Data Protection Impact Assessment} — analyse d'impact RGPD. \\
+\rowcolor{cnIce}
+RGAA               & Référentiel Général d'Amélioration de l'Accessibilité (version 4.1, niveau AA visé). \\
+RGPD               & Règlement Général sur la Protection des Données (UE 2016/679). \\
+\rowcolor{cnIce}
+OWASP ASVS         & \textit{Open Web Application Security Project — Application Security Verification Standard}. \\
+SSO                & \textit{Single Sign-On} — authentification unique (ici via Office 365). \\
+\rowcolor{cnIce}
+FFP                & \textit{Firm Fixed Price} — contrat au forfait résultat. \\
+APM                & \textit{Application Performance Monitoring}. \\
+\rowcolor{cnIce}
+IaC                & \textit{Infrastructure as Code} — gestion des environnements par le code. \\
+RAG                & Code couleur de statut : \textit{Red, Amber, Green}. \\
+\rowcolor{cnIce}
+REX                & Retour d'expérience (P5-23). \\
+COPIL              & Comité de pilotage. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{6pt}
+\footnotesize\textit{Documents associés du référentiel PMO : P1-01 Charte, P1-02 Note de
+cadrage, P1-03 Fiche identification, P1-04 RACI, P2-06 WBS, P2-07 Gantt, P2-08 Budget,
+P2-09 Risques, P2-10 Communication, P2-11 Conduite du changement, P3-12 à P3-15 Exécution,
+P4-16 à P4-18 Pilotage, P5-19 à P5-23 Clôture. Structure alignée sur le PMBOK Guide
+7\textsuperscript{e} éd.\ (PMI, 2021).}
+
+\end{document}

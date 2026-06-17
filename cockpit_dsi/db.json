@@ -1,0 +1,731 @@
+{
+  "_seq": {
+    "projects": 11,
+    "incidents": 4,
+    "servers": 9,
+    "esn_contacts": 5,
+    "blocking_points": 4,
+    "patches": 3,
+    "crm_kpis": 1
+  },
+  "projects": [
+    {
+      "id": 1,
+      "name": "Refonte Web",
+      "desc": "App web moderne responsive — s'interface avec CRM, clients/fournisseurs",
+      "debut": "Avr 2026",
+      "duree_mois": 6,
+      "budget_k": 300,
+      "charges_jh": 400,
+      "strat": 5,
+      "rent": 5,
+      "risque": 2,
+      "dep": 4,
+      "regl": 1,
+      "prio_score": 3.8,
+      "prio_rag": "vert",
+      "mode": "Agile",
+      "avancement": 8,
+      "consomme_k": 18,
+      "exec_rag": "ambre",
+      "statut": "En cours",
+      "chef": "S. Martin",
+      "esn": "Sopra Steria",
+      "taches_total": 200,
+      "taches_faites": 16,
+      "dependances": [
+        "Requis pour App Mobile Clients",
+        "S'interface avec CRM",
+        "Hébergé Azure après migration"
+      ],
+      "created_at": "2026-04-21T12:32:44.136Z"
+    },
+    {
+      "id": 2,
+      "name": "CRM",
+      "desc": "Progiciel CRM — données clients, pilier croissance nationale",
+      "debut": "Jun 2026",
+      "duree_mois": 6,
+      "budget_k": 250,
+      "charges_jh": 300,
+      "strat": 5,
+      "rent": 3,
+      "risque": 4,
+      "dep": 4,
+      "regl": 1,
+      "prio_score": 3.7,
+      "prio_rag": "vert",
+      "mode": "Agile",
+      "avancement": 0,
+      "consomme_k": 0,
+      "exec_rag": "planifie",
+      "statut": "Planifié",
+      "chef": "L. Moreau",
+      "esn": "CGI",
+      "taches_total": 150,
+      "taches_faites": 0,
+      "dependances": [
+        "Nécessite Office 365",
+        "Alimenté par Refonte Web",
+        "Données vers App Clients & Fourn."
+      ],
+      "created_at": "2026-04-21T12:32:44.139Z"
+    },
+    {
+      "id": 3,
+      "name": "App Mobile Clients",
+      "desc": "Application mobile — commande et réservation, intermédiation fournisseurs",
+      "debut": "Mai 2026",
+      "duree_mois": 8,
+      "budget_k": 150,
+      "charges_jh": 200,
+      "strat": 5,
+      "rent": 5,
+      "risque": 3,
+      "dep": 1,
+      "regl": 1,
+      "prio_score": 3.7,
+      "prio_rag": "vert",
+      "mode": "Agile",
+      "avancement": 0,
+      "consomme_k": 0,
+      "exec_rag": "planifie",
+      "statut": "Planifié",
+      "chef": "M. Dupont",
+      "esn": "Capgemini",
+      "taches_total": 100,
+      "taches_faites": 0,
+      "dependances": [
+        "Nécessite Office 365",
+        "Nécessite Refonte Web"
+      ],
+      "created_at": "2026-04-21T12:32:44.140Z"
+    },
+    {
+      "id": 4,
+      "name": "Auth. Forte (MFA)",
+      "desc": "Authentification multi-facteurs — 200 employés Time'Eats",
+      "debut": "Jul 2026",
+      "duree_mois": 4,
+      "budget_k": 150,
+      "charges_jh": 120,
+      "strat": 5,
+      "rent": 3,
+      "risque": 4,
+      "dep": 3,
+      "regl": 1,
+      "prio_score": 3.6,
+      "prio_rag": "vert",
+      "mode": "Waterfall",
+      "avancement": 0,
+      "consomme_k": 0,
+      "exec_rag": "planifie",
+      "statut": "Planifié",
+      "chef": "T. Bernard",
+      "esn": "Interne",
+      "taches_total": 60,
+      "taches_faites": 0,
+      "dependances": [
+        "Sécurise Refonte Web"
+      ],
+      "created_at": "2026-04-21T12:32:44.140Z"
+    },
+    {
+      "id": 5,
+      "name": "Sauvegarde Cloud",
+      "desc": "Sauvegarde automatisée cloud — continuité de service en cas de sinistre",
+      "debut": "Oct 2026",
+      "duree_mois": 4,
+      "budget_k": 100,
+      "charges_jh": 100,
+      "strat": 5,
+      "rent": 3,
+      "risque": 5,
+      "dep": 1,
+      "regl": 1,
+      "prio_score": 3.6,
+      "prio_rag": "vert",
+      "mode": "Waterfall",
+      "avancement": 0,
+      "consomme_k": 0,
+      "exec_rag": "planifie",
+      "statut": "Planifié",
+      "chef": "A. Petit",
+      "esn": "Interne",
+      "taches_total": 50,
+      "taches_faites": 0,
+      "dependances": [],
+      "created_at": "2026-04-21T12:32:44.141Z"
+    },
+    {
+      "id": 6,
+      "name": "App Mobile Fourn.",
+      "desc": "Application mobile traiteurs & chefs — gestion commandes fournisseurs",
+      "debut": "Mai 2026",
+      "duree_mois": 8,
+      "budget_k": 200,
+      "charges_jh": 250,
+      "strat": 5,
+      "rent": 5,
+      "risque": 2,
+      "dep": 1,
+      "regl": 1,
+      "prio_score": 3.5,
+      "prio_rag": "vert",
+      "mode": "Agile",
+      "avancement": 0,
+      "consomme_k": 0,
+      "exec_rag": "planifie",
+      "statut": "Planifié",
+      "chef": "S. Martin",
+      "esn": "Capgemini",
+      "taches_total": 125,
+      "taches_faites": 0,
+      "dependances": [
+        "Nécessite Office 365",
+        "Données fournisseurs depuis CRM"
+      ],
+      "created_at": "2026-04-21T12:32:44.142Z"
+    },
+    {
+      "id": 7,
+      "name": "MAJ Outils Paie",
+      "desc": "Mise à jour réglementaire outils de paie — paiement des salariés",
+      "debut": "Sep 2026",
+      "duree_mois": 3,
+      "budget_k": 50,
+      "charges_jh": 50,
+      "strat": 5,
+      "rent": 1,
+      "risque": 4,
+      "dep": 1,
+      "regl": 5,
+      "prio_score": 3.4,
+      "prio_rag": "ambre",
+      "mode": "Waterfall",
+      "avancement": 0,
+      "consomme_k": 0,
+      "exec_rag": "planifie",
+      "statut": "Planifié",
+      "chef": "L. Moreau",
+      "esn": "Interne",
+      "taches_total": 25,
+      "taches_faites": 0,
+      "dependances": [],
+      "created_at": "2026-04-21T12:32:44.143Z"
+    },
+    {
+      "id": 8,
+      "name": "Office 365",
+      "desc": "Outils collaboration & bureautique — prérequis CRM, Refonte Web et Apps",
+      "debut": "Avr 2026",
+      "duree_mois": 3,
+      "budget_k": 100,
+      "charges_jh": 220,
+      "strat": 4,
+      "rent": 2,
+      "risque": 3,
+      "dep": 5,
+      "regl": 1,
+      "prio_score": 3,
+      "prio_rag": "ambre",
+      "mode": "Waterfall",
+      "avancement": 25,
+      "consomme_k": 22,
+      "exec_rag": "vert",
+      "statut": "En cours",
+      "chef": "M. Dupont",
+      "esn": "Econocom",
+      "taches_total": 88,
+      "taches_faites": 22,
+      "dependances": [
+        "Prérequis CRM",
+        "Prérequis App Mobile Clients",
+        "Prérequis App Mobile Fourn."
+      ],
+      "created_at": "2026-04-21T12:32:44.144Z"
+    },
+    {
+      "id": 9,
+      "name": "CI/CD",
+      "desc": "Plateforme de livraison continue — modernisation du développement",
+      "debut": "Avr 2026",
+      "duree_mois": 3,
+      "budget_k": 100,
+      "charges_jh": 300,
+      "strat": 3,
+      "rent": 3,
+      "risque": 3,
+      "dep": 5,
+      "regl": 1,
+      "prio_score": 2.9,
+      "prio_rag": "ambre",
+      "mode": "Waterfall",
+      "avancement": 20,
+      "consomme_k": 19,
+      "exec_rag": "vert",
+      "statut": "En cours",
+      "chef": "T. Bernard",
+      "esn": "Interne",
+      "taches_total": 120,
+      "taches_faites": 24,
+      "dependances": [
+        "Déploie Refonte Web",
+        "Déploie App Mobile Clients",
+        "Déploie App Mobile Fourn."
+      ],
+      "created_at": "2026-04-21T12:32:44.144Z"
+    },
+    {
+      "id": 10,
+      "name": "Stockage & Fichiers",
+      "desc": "Solution centralisée fichiers — accès différencié par population",
+      "debut": "Oct 2026",
+      "duree_mois": 3,
+      "budget_k": 100,
+      "charges_jh": 80,
+      "strat": 4,
+      "rent": 3,
+      "risque": 3,
+      "dep": 1,
+      "regl": 1,
+      "prio_score": 2.85,
+      "prio_rag": "ambre",
+      "mode": "Waterfall",
+      "avancement": 0,
+      "consomme_k": 0,
+      "exec_rag": "planifie",
+      "statut": "Planifié",
+      "chef": "A. Petit",
+      "esn": "Interne",
+      "taches_total": 40,
+      "taches_faites": 0,
+      "dependances": [],
+      "created_at": "2026-04-21T12:32:44.146Z"
+    },
+    {
+      "id": 11,
+      "name": "Migration Azure",
+      "desc": "Migration .NET 4.6.2 / Win Server 2016 → MS Azure — siège Rennes",
+      "debut": "Aoû 2026",
+      "duree_mois": 5,
+      "budget_k": 200,
+      "charges_jh": 300,
+      "strat": 3,
+      "rent": 4,
+      "risque": 1,
+      "dep": 3,
+      "regl": 1,
+      "prio_score": 2.55,
+      "prio_rag": "rouge",
+      "mode": "Waterfall",
+      "avancement": 0,
+      "consomme_k": 0,
+      "exec_rag": "rouge",
+      "statut": "Planifié",
+      "chef": "A. Petit",
+      "esn": "Sopra Steria",
+      "taches_total": 150,
+      "taches_faites": 0,
+      "dependances": [
+        "Héberge Refonte Web",
+        "Nécessite CI/CD finalisé"
+      ],
+      "created_at": "2026-04-21T12:32:44.147Z"
+    }
+  ],
+  "incidents": [
+    {
+      "id": 1,
+      "priorite": "P1",
+      "titre": "Env. dev Refonte Web inaccessible depuis poste Sopra Steria (VPN non configuré)",
+      "projet": "Refonte Web",
+      "age_heures": 72,
+      "statut": "Ouvert",
+      "created_at": "2026-04-21T12:32:44.148Z"
+    },
+    {
+      "id": 2,
+      "priorite": "P1",
+      "titre": "Pipeline CI/CD Jenkins — build agent non joignable réseau dev",
+      "projet": "CI/CD",
+      "age_heures": 24,
+      "statut": "En cours",
+      "created_at": "2026-04-21T12:32:44.149Z"
+    },
+    {
+      "id": 3,
+      "priorite": "P2",
+      "titre": "Serveur Métier 1 — latences >2s sur applis direction (congés/frais)",
+      "projet": "Infra on-premise",
+      "age_heures": 6,
+      "statut": "Ouvert",
+      "created_at": "2026-04-21T12:32:44.150Z"
+    },
+    {
+      "id": 4,
+      "priorite": "P3",
+      "titre": "Azure DevOps — compte de service non provisionné (préprod Migration Azure)",
+      "projet": "Migration Azure",
+      "age_heures": 96,
+      "statut": "Ouvert",
+      "created_at": "2026-04-21T12:32:44.151Z"
+    }
+  ],
+  "servers": [
+    {
+      "id": 1,
+      "name": "Serveur Prod (Suivi Prod.)",
+      "env": "Windows Server 2016 — Rennes",
+      "uptime": 99.7,
+      "rag": "vert",
+      "created_at": "2026-04-21T12:32:44.152Z"
+    },
+    {
+      "id": 2,
+      "name": "SQL Server (Suivi Prod.)",
+      "env": "SQL Server 2016 — Rennes",
+      "uptime": 99.5,
+      "rag": "vert",
+      "created_at": "2026-04-21T12:32:44.153Z"
+    },
+    {
+      "id": 3,
+      "name": "Serveur R&D (Recettes)",
+      "env": "Windows Server 2016 — Rennes",
+      "uptime": 99.9,
+      "rag": "vert",
+      "created_at": "2026-04-21T12:32:44.154Z"
+    },
+    {
+      "id": 4,
+      "name": "SQL Server (R&D Recettes)",
+      "env": "SQL Server 2016 — Rennes",
+      "uptime": 99.1,
+      "rag": "vert",
+      "created_at": "2026-04-21T12:32:44.155Z"
+    },
+    {
+      "id": 5,
+      "name": "Serveur Métier 1 (Apps Dir.)",
+      "env": "Windows Server 2016 — Rennes",
+      "uptime": 97.8,
+      "rag": "ambre",
+      "created_at": "2026-04-21T12:32:44.156Z"
+    },
+    {
+      "id": 6,
+      "name": "Serveur Métier 2 (Apps Dir.)",
+      "env": "Windows Server 2016 — Rennes",
+      "uptime": 99.4,
+      "rag": "vert",
+      "created_at": "2026-04-21T12:32:44.156Z"
+    },
+    {
+      "id": 7,
+      "name": "SQL Server Partagé (Métier)",
+      "env": "SQL Server 2016 — Rennes",
+      "uptime": 99.6,
+      "rag": "vert",
+      "created_at": "2026-04-21T12:32:44.157Z"
+    },
+    {
+      "id": 8,
+      "name": "NAS Fichiers Nœud 1",
+      "env": "Serveur de fichiers redondé — Rennes",
+      "uptime": 100,
+      "rag": "vert",
+      "created_at": "2026-04-21T12:32:44.158Z"
+    },
+    {
+      "id": 9,
+      "name": "NAS Fichiers Nœud 2",
+      "env": "Serveur de fichiers redondé — Rennes",
+      "uptime": 100,
+      "rag": "vert",
+      "created_at": "2026-04-21T12:32:44.159Z"
+    }
+  ],
+  "esn_contacts": [
+    {
+      "id": 1,
+      "name": "Econocom",
+      "projets": "Office 365",
+      "dernier_cr": "Kick-off déploiement O365 — plan de migration mailboxes validé",
+      "jours_depuis_contact": 3,
+      "note": 4,
+      "created_at": "2026-04-21T12:32:44.160Z"
+    },
+    {
+      "id": 2,
+      "name": "Sopra Steria",
+      "projets": "Refonte Web · Migration Azure",
+      "dernier_cr": "Réunion lancement Refonte Web S14 — setup env. dev en cours",
+      "jours_depuis_contact": 7,
+      "note": 3.5,
+      "created_at": "2026-04-21T12:32:44.160Z"
+    },
+    {
+      "id": 3,
+      "name": "Capgemini",
+      "projets": "App Mobile Clients · App Mobile Fourn.",
+      "dernier_cr": "Présentation d'offre reçue — revue technique prévue le 28 avr.",
+      "jours_depuis_contact": 12,
+      "note": null,
+      "created_at": "2026-04-21T12:32:44.161Z"
+    },
+    {
+      "id": 4,
+      "name": "CGI",
+      "projets": "CRM",
+      "dernier_cr": "RFP envoyé le 6 avril — réponse attendue avant le 30 avril",
+      "jours_depuis_contact": 14,
+      "note": null,
+      "created_at": "2026-04-21T12:32:44.162Z"
+    },
+    {
+      "id": 5,
+      "name": "Équipe interne",
+      "projets": "CI/CD · Auth. Forte · MAJ Paie · Stockage · Sauvegarde",
+      "dernier_cr": "Stand-up quotidien — montée en charge pipeline CI/CD en cours",
+      "jours_depuis_contact": 1,
+      "note": null,
+      "created_at": "2026-04-21T12:32:44.163Z"
+    }
+  ],
+  "blocking_points": [
+    {
+      "id": 1,
+      "titre": "Accès VPN Sopra Steria non configuré — bloque setup environnement Refonte Web",
+      "projet": "Refonte Web",
+      "jours": 3,
+      "responsable": "DSI Infra / Sopra Steria",
+      "statut": "Ouvert",
+      "created_at": "2026-04-21T12:32:44.164Z"
+    },
+    {
+      "id": 2,
+      "titre": "Licences Azure DevOps non provisionnées — bloque pipeline CI/CD",
+      "projet": "CI/CD",
+      "jours": 5,
+      "responsable": "T. Bernard / DSI",
+      "statut": "Ouvert",
+      "created_at": "2026-04-21T12:32:44.164Z"
+    },
+    {
+      "id": 3,
+      "titre": "Décision progiciel CRM non finalisée — arbitrage Salesforce vs HubSpot",
+      "projet": "CRM",
+      "jours": 3,
+      "responsable": "DSI + Direction Commerciale",
+      "statut": "Ouvert",
+      "created_at": "2026-04-21T12:32:44.165Z"
+    },
+    {
+      "id": 4,
+      "titre": "RFP Capgemini — réponse deadline 30 avr. (App Mobile délai en suspens)",
+      "projet": "App Mobile Clients & Fourn.",
+      "jours": 14,
+      "responsable": "L. Moreau / DSI",
+      "statut": "En cours",
+      "created_at": "2026-04-21T12:32:44.166Z"
+    }
+  ],
+  "patches": [
+    {
+      "id": 1,
+      "titre": "Office 365 — Environnement de pilote activé (50 comptes testeurs)",
+      "esn": "Econocom / Interne",
+      "date_livraison": "2026-04-18",
+      "created_at": "2026-04-21T12:32:44.167Z"
+    },
+    {
+      "id": 2,
+      "titre": "CI/CD — Premier pipeline Jenkins déployé (env. de dev Refonte Web)",
+      "esn": "Équipe interne",
+      "date_livraison": "2026-04-15",
+      "created_at": "2026-04-21T12:32:44.167Z"
+    },
+    {
+      "id": 3,
+      "titre": "Refonte Web — Maquettes UX validées par MOA (Sprint 1)",
+      "esn": "Sopra Steria",
+      "date_livraison": "2026-04-14",
+      "created_at": "2026-04-21T12:32:44.168Z"
+    }
+  ],
+  "crm_kpis": [
+    {
+      "id": 1,
+      "mois": "Avr 2026",
+      "jalons": [
+        {
+          "id": "J1",
+          "desc": "Validation note de cadrage + RACI",
+          "date_cible": "2026-06-15",
+          "statut": "À venir"
+        },
+        {
+          "id": "J2",
+          "desc": "Choix éditeur CRM — contractualisation",
+          "date_cible": "2026-06-30",
+          "statut": "À venir"
+        },
+        {
+          "id": "J3",
+          "desc": "Livraison environnement de recette",
+          "date_cible": "2026-08-31",
+          "statut": "À venir"
+        },
+        {
+          "id": "J4",
+          "desc": "Tests fonctionnels et validation métier",
+          "date_cible": "2026-10-31",
+          "statut": "À venir"
+        },
+        {
+          "id": "J5",
+          "desc": "Go-live — mise en production + formations",
+          "date_cible": "2026-11-30",
+          "statut": "À venir"
+        }
+      ],
+      "kpis": {
+        "budget_pct": null,
+        "ipc": null,
+        "reserve_pct": 100,
+        "jalons_pct": null,
+        "ipd": null,
+        "retard_j": 0,
+        "couverture_tests": null,
+        "anomalies_bloquantes": 0,
+        "satisfaction_pct": null
+      },
+      "statut_global": "vert",
+      "points_vigilance": [
+        "Décision progiciel CRM non finalisée (arbitrage DSI + Dir. Commerciale)",
+        "RFP Capgemini — réponse attendue le 30 avr.",
+        "Prérequis Office 365 à valider avant démarrage CRM"
+      ],
+      "decisions_copil": [
+        "Choisir entre Salesforce et HubSpot avant le 30 avril",
+        "Valider le budget réserve aléas (15 K€)"
+      ],
+      "risques": [
+        {
+          "risque": "Données non conformes RGPD",
+          "proba": "Élevée",
+          "impact": "Élevé",
+          "criticite": "Critique",
+          "mitigation": "Audit de données dès juin N — DPO impliqué au démarrage"
+        },
+        {
+          "risque": "Retard de l'éditeur CRM",
+          "proba": "Moyenne",
+          "impact": "Élevé",
+          "criticite": "Majeur",
+          "mitigation": "Contractualiser SLA avec pénalités — jalons intermédiaires contractuels"
+        },
+        {
+          "risque": "Résistance au changement",
+          "proba": "Moyenne",
+          "impact": "Moyen",
+          "criticite": "Majeur",
+          "mitigation": "Plan conduite du changement — Key Users impliqués dès le cadrage"
+        },
+        {
+          "risque": "Office 365 non terminé",
+          "proba": "Faible",
+          "impact": "Moyen",
+          "criticite": "Mineur",
+          "mitigation": "Planning conditionnel — CRM peut démarrer en mode dégradé"
+        },
+        {
+          "risque": "Perte de données migration",
+          "proba": "Faible",
+          "impact": "Critique",
+          "criticite": "Majeur",
+          "mitigation": "Sauvegarde avant migration — tests de non-régression"
+        },
+        {
+          "risque": "Dépassement budgétaire",
+          "proba": "Faible",
+          "impact": "Élevé",
+          "criticite": "Majeur",
+          "mitigation": "Jalons de validation budget J2/J3/J4 — réserve de 10%"
+        }
+      ],
+      "satisfaction_client": [
+        {
+          "projet": "Refonte Web",
+          "cout": 75,
+          "delai": 70,
+          "qualite": 80,
+          "fonctionnalites": 85,
+          "commentaire": "Sprint 1 validé — env. dev bloqué S14, retard setup Sopra Steria"
+        },
+        {
+          "projet": "Office 365",
+          "cout": 90,
+          "delai": 85,
+          "qualite": 90,
+          "fonctionnalites": 80,
+          "commentaire": "Migration mailboxes en bonne voie — pilote 50 comptes validé"
+        },
+        {
+          "projet": "CI/CD",
+          "cout": 85,
+          "delai": 80,
+          "qualite": 75,
+          "fonctionnalites": 70,
+          "commentaire": "Pipeline opérationnel — agent build réseau dev encore instable"
+        }
+      ],
+      "satisfaction_equipe": [
+        {
+          "sprint": "Sprint 1 — Refonte Web",
+          "date": "2026-04-14",
+          "score": 3.8,
+          "participants": 6,
+          "points_positifs": [
+            "Bonne dynamique équipe",
+            "Maquettes UX bien reçues par MOA"
+          ],
+          "points_amelioration": [
+            "Setup environnement trop long (VPN)",
+            "Manque de visibilité sur dépendances Azure"
+          ]
+        },
+        {
+          "sprint": "Sprint 1 — Office 365",
+          "date": "2026-04-18",
+          "score": 4.1,
+          "participants": 4,
+          "points_positifs": [
+            "Econocom réactif",
+            "Plan migration clair"
+          ],
+          "points_amelioration": [
+            "Accès admin tenant en attente",
+            "Documentation insuffisante"
+          ]
+        },
+        {
+          "sprint": "Sprint 1 — CI/CD",
+          "date": "2026-04-17",
+          "score": 3.5,
+          "participants": 5,
+          "points_positifs": [
+            "Pipeline fonctionnel en 3j",
+            "Bonne collaboration interne"
+          ],
+          "points_amelioration": [
+            "Licences Azure DevOps manquantes",
+            "Build agent instable réseau dev"
+          ]
+        }
+      ],
+      "created_at": "2026-04-21T12:32:44.169Z"
+    }
+  ]
+}

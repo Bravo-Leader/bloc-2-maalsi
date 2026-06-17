@@ -1,0 +1,158 @@
+% ============================================================
+%  PLANNING GANTT — Phase 2 : Planification
+%  Time'Eats — Cellule PMO
+%  Projet : Refonte Web
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../../style/consulting}
+\usepackage{pdflscape}
+\hypersetup{pdftitle={Planning Gantt — Refonte Web — Time'Eats PMO}}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\begin{tikzpicture}[remember picture,overlay]
+  \draw[cnNavy,line width=0.5pt](0,0)--(\textwidth,0);
+\end{tikzpicture}\vspace{2pt}\timeeatslogo\hspace{4pt}\small\textcolor{cnSlate}{Time'Eats \textbf{·} Planning Gantt --- \textit{Refonte Web}}}
+\fancyhead[R]{\small\textcolor{cnSlate}{\thepage}}
+\fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel --- Cellule PMO --- CESI MAALSI 2026}}
+\begin{document}\small
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Planning Gantt}\\[4pt]
+\textcolor{cnOrange}{\rule{10cm}{1pt}}\\[4pt]
+{\large\color{cnSlate} Phase 2 --- Planification \quad|\quad Projet : \textbf{Refonte Web}}
+\end{center}
+
+\vspace{4pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{L{3.5cm} Y L{3.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Champ} & \th{Valeur} & \th{Champ} & \th{Valeur} \\
+\midrule
+Date de début   & 22/04/2026             & Date de fin    & 30/09/2026 \\
+\rowcolor{cnIce}
+Version         & 1.0 baseline           & Dernière MAJ   & 19/05/2026 \\
+Durée totale    & 23 semaines (S17--S40 2026) & Sem. de référence (today) & S21 (semaine du 18/05/2026) \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+\begin{finding}
+Baseline validée en COPIL d'inception le \textbf{20/05/2026}. Le \texttt{today rule} pointé S21 reflète l'état au \textbf{19/05/2026}. Le planning détaillé hebdomadaire est tenu dans \textit{Azure DevOps Boards} (lien SharePoint).
+\end{finding}
+
+\vspace{8pt}
+
+% ── Gantt pgfgantt ────────────────────────────────────────
+\begin{landscape}
+\begin{center}
+\begin{ganttchart}[
+    hgrid,
+    vgrid,
+    x unit=0.55cm,
+    y unit chart=0.32cm,
+    y unit title=0.45cm,
+    title height=1,
+    bar height=0.55,
+    group height=0.4,
+    bar/.style={fill=cnNavy!60, rounded corners=2pt},
+    group/.style={fill=cnNavy, draw=cnNavy},
+    milestone/.style={fill=cnOrange, shape=diamond, inner sep=2pt},
+    title/.style={fill=cnNavy, draw=none, text=white, font=\small\bfseries},
+    title label font=\footnotesize,
+    bar label font=\footnotesize,
+    group label font=\footnotesize\bfseries,
+    milestone label font=\footnotesize,
+    today=5,
+    today rule/.style={draw=cnRed, thick, dashed}
+  ]{1}{23}
+
+  \gantttitle{Semaines (S17 = 22/04/2026)}{23} \\
+  \gantttitlelist{1,...,23}{1} \\
+
+  % Groupe 1 - Démarrage
+  \ganttgroup{1. Démarrage}{1}{2} \\
+  \ganttbar{Note cadrage \& charte}{1}{1} \\
+  \ganttbar{Kick-off J0}{2}{2} \\
+
+  % Groupe 2 - Planification
+  \ganttgroup{2. Planification}{2}{5} \\
+  \ganttbar{PMP + WBS + Gantt}{2}{4} \\
+  \ganttbar{Budget + Risques + Comm}{3}{5} \\
+
+  % Groupe 3 - UX/UI
+  \ganttgroup{3. UX/UI \& Design System}{4}{8} \\
+  \ganttbar{Audit UX + Wireframes}{4}{6} \\
+  \ganttbar{Design System v1}{5}{7} \\
+  \ganttbar{Validation maquettes (J1)}{7}{8} \\
+
+  % Groupe 4 - Socle technique
+  \ganttgroup{4. Socle technique \& API}{6}{12} \\
+  \ganttbar{Architecture + ADR}{6}{7} \\
+  \ganttbar{API REST v1 (OpenAPI)}{7}{11} \\
+  \ganttbar{CI/CD + envs Azure}{6}{10} \\
+  \ganttbar{SSO Office 365}{9}{11} \\
+
+  % Groupe 5 - Réalisation
+  \ganttgroup{5. Réalisation produit}{9}{16} \\
+  \ganttbar{Site corporate (10 templates)}{9}{14} \\
+  \ganttbar{CMS contributeur}{10}{14} \\
+  \ganttbar{Espace client}{11}{15} \\
+  \ganttbar{Intégrations (APM, paiement v0)}{13}{16} \\
+
+  % Groupe 6 - Qualité
+  \ganttgroup{6. Qualité \& Recette}{14}{20} \\
+  \ganttbar{Tests unit. \& intégration}{14}{17} \\
+  \ganttbar{Audit RGAA 4.1 AA}{16}{18} \\
+  \ganttbar{Audit OWASP ASVS 2}{16}{18} \\
+  \ganttbar{Tests perf Lighthouse / k6}{17}{19} \\
+  \ganttbar{Recette MOA + PV (J4)}{18}{20} \\
+
+  % Groupe 7 - Conduite changement
+  \ganttgroup{7. Conduite du changement}{12}{22} \\
+  \ganttbar{Communication interne}{12}{20} \\
+  \ganttbar{Formation contributeurs CMS}{18}{20} \\
+  \ganttbar{Documentation utilisateur}{17}{21} \\
+
+  % Groupe 8 - Clôture
+  \ganttgroup{8. Clôture \& Go-Live}{21}{23} \\
+  \ganttbar{Bascule production (J5)}{21}{21} \\
+  \ganttbar{Hypercare M+1}{22}{23} \\
+  \ganttbar{Transfert run + REX}{22}{23} \\
+
+  % Jalons
+  \ganttmilestone{J0 Kick-off}{2} \\
+  \ganttmilestone{J1 Maquettes UX OK}{6} \\
+  \ganttmilestone{J2 Socle technique OK}{11} \\
+  \ganttmilestone{J3 MVP staging}{16} \\
+  \ganttmilestone{J4 Recette + RGAA OK}{20} \\
+  \ganttmilestone{J5 Go-Live}{23} \\
+
+\end{ganttchart}
+\end{center}
+\end{landscape}
+
+\section*{Synthèse des jalons --- baseline}
+
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{C{1.2cm} L{4.5cm} L{3cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{N°} & \th{Jalon} & \th{Date baseline} & \th{Condition de franchissement} \\
+\midrule
+J0 & Kick-off projet            & 22/04/2026 & Charte signée + équipe staffée \\
+\rowcolor{cnIce}
+J1 & Maquettes UX validées      & 27/05/2026 & Design system v1 + parcours-clés signés MOA \\
+J2 & Socle technique validé     & 30/06/2026 & API v1 testée + CI/CD opérationnelle + envs prêts \\
+\rowcolor{cnIce}
+J3 & MVP fonctionnel en staging & 31/07/2026 & Site + CMS + espace client en démo MOA \\
+J4 & Recette + audits OK        & 31/08/2026 & PV recette signé + RGAA AA + OWASP ASVS 2 \\
+\rowcolor{cnIce}
+J5 & Go-Live production         & 30/09/2026 & Bascule réussie + monitoring run + REX \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+\begin{alert}
+\textbf{Chemin critique :} Validation maquettes (J1, S21) $\rightarrow$ Architecture API (S22) $\rightarrow$ API REST v1 (S23--S27) $\rightarrow$ Réalisation produit (S25--S32) $\rightarrow$ Recette MOA (J4, S36) $\rightarrow$ Go-Live (J5, S40). Toute dérive sur ce chemin déclenche un rapport d'écarts immédiat (cf. P2-08 §3 EVM).
+\end{alert}
+
+\end{document}

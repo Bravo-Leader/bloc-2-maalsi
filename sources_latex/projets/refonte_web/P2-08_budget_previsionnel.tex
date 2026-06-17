@@ -1,0 +1,138 @@
+% ============================================================
+%  BUDGET PRÉVISIONNEL — Phase 2 : Planification
+%  Time'Eats — Cellule PMO
+%  Projet : Refonte Web
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../../style/consulting}
+\hypersetup{pdftitle={Budget Prévisionnel — Refonte Web — Time'Eats PMO}}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\begin{tikzpicture}[remember picture,overlay]
+  \draw[cnNavy,line width=0.5pt](0,0)--(\textwidth,0);
+\end{tikzpicture}\vspace{2pt}\timeeatslogo\hspace{4pt}\small\textcolor{cnSlate}{Time'Eats \textbf{·} Budget Prévisionnel --- \textit{Refonte Web}}}
+\fancyhead[R]{\small\textcolor{cnSlate}{\thepage}}
+\fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel --- Cellule PMO --- CESI MAALSI 2026}}
+\begin{document}\small
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Budget Prévisionnel}\\[4pt]
+\textcolor{cnOrange}{\rule{10cm}{1pt}}\\[4pt]
+{\large\color{cnSlate} Phase 2 --- Planification \quad|\quad Projet : \textbf{Refonte Web}}
+\end{center}
+
+\vspace{6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{L{3.5cm} Y L{3.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Champ} & \th{Valeur} & \th{Champ} & \th{Valeur} \\
+\midrule
+Budget total autorisé & \textbf{300 K€} (ferme)   & Version   & 1.0 baseline \\
+\rowcolor{cnIce}
+Rédacteur             & S. MARTIN (CP)            & Date      & 15/05/2026 \\
+Devise                & EUR HT                     & Période   & Avril 2026 -- Septembre 2026 (6 mois) \\
+\bottomrule
+\end{tabularx}
+
+\section*{1 --- Décomposition budgétaire par poste}
+
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{L{5cm} C{2.5cm} C{2.5cm} C{2cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Poste de dépense} & \th{Type} & \th{Montant (K€)} & \th{\% budget} & \th{Commentaire} \\
+\midrule
+Intégration ESN Sopra Steria       & OPEX\textsuperscript{(*)} & 200 & 66{,}7\,\% & Forfait 400 j.h --- prestation de services (dev front, dev back, UX, QA) \\
+\rowcolor{cnIce}
+Ressources internes valorisées     & Interne & 80  & 26{,}7\,\% & 4{,}5 ETP cumulés sur 6 mois (TJM moyen 550 €) \\
+Licences \& SaaS                   & OPEX  & 7   & 2{,}3\,\%  & Headless CMS (Strapi Cloud), Figma, monitoring APM \\
+\rowcolor{cnIce}
+Hébergement Azure West Europe      & CAPEX & 6   & 2{,}0\,\%  & 3 envs (dev / staging / prod) sur 6 mois \\
+Audits externes (RGAA + OWASP)     & OPEX  & 4   & 1{,}3\,\%  & 1 audit RGAA + 1 pentest OWASP (J4) \\
+\rowcolor{cnIce}
+Réserve pour aléas                 & Réserve & 3 & 1{,}0\,\%  & Non affecté --- déblocage sur arbitrage COPIL \\
+\midrule
+\rowcolor{cnNavy!10}\textbf{TOTAL} & & \textbf{300} & \textbf{100\,\%} & \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+{\footnotesize
+\textsuperscript{(*)} \textbf{Classification comptable du forfait Sopra Steria :} la prestation est intégralement comptabilisée en \textbf{OPEX}. Décision DAF Time'Eats du 18/04/2026, motivée par : (i) caractère de prestation de services au forfait avec clause de pénalité (engagement de moyens et de résultats, pas livraison d'un actif distinct au sens IAS 38) ; (ii) impossibilité de séparer fiablement la part recherche de la part développement immobilisable sur un projet de refonte applicative ; (iii) volonté de préserver la capacité d'investissement (CAPEX) pour l'hébergement Azure et les acquisitions de licences durables. Arbitrage à réexaminer lors du REX (P5-23).
+}
+
+\section*{2 --- Répartition temporelle (échelonnement)}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{4.5cm} C{1.5cm} C{1.5cm} C{1.5cm} C{1.5cm} C{1.5cm} C{1.5cm}}
+\toprule
+\rowcolor{cnNavy}\th{Poste (K€)} & \th{M1 Avr} & \th{M2 Mai} & \th{M3 Juin} & \th{M4 Juil} & \th{M5 Août} & \th{M6 Sep} \\
+\midrule
+Intégration ESN Sopra Steria & 20  & 35  & 45  & 45  & 35  & 20  \\
+\rowcolor{cnIce}
+Ressources internes          & 12  & 14  & 16  & 14  & 14  & 10  \\
+Licences \& SaaS             & 2   & 1   & 1   & 1   & 1   & 1   \\
+\rowcolor{cnIce}
+Hébergement Azure            & 1   & 1   & 1   & 1   & 1   & 1   \\
+Audits externes              & --  & --  & --  & --  & 4   & --  \\
+\rowcolor{cnIce}
+Réserve (sur déblocage)      & --  & --  & --  & --  & --  & --  \\
+\midrule
+\rowcolor{cnNavy!10}\textbf{Total mensuel} & \textbf{35} & \textbf{51} & \textbf{63} & \textbf{61} & \textbf{55} & \textbf{32} \\
+\rowcolor{cnNavy!10}\textbf{Cumulé}        & 35  & 86  & 149 & 210 & 265 & 297 (+ 3 réserve = 300) \\
+\bottomrule
+\end{tabularx}
+
+\section*{3 --- Suivi consommé vs prévu (EVM)}
+
+\begin{finding}
+\textbf{Lecture EVM :} À chaque rapport d'avancement mensuel (P3-13), le CP renseigne le triplet \textbf{BAC / CBTE / CRTE} (PV / EV / AC) et calcule \textbf{IPC} et \textbf{IPD}. Seuils RAG : Vert $\geq$ 0{,}95, Ambre 0{,}90--0{,}95, Rouge $<$ 0{,}90.
+\end{finding}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{2cm} C{2cm} C{2cm} C{2cm} C{2cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Mois} & \th{BAC prévu (K€)} & \th{CBTP (PV)} & \th{CBTE (EV)} & \th{CRTE (AC)} & \th{IPC / IPD --- statut} \\
+\midrule
+M1 Avr & 300 & 35  & 32  & 34  & 0{,}94 / 0{,}91 --- \cellcolor{cnOrange!20}\textbf{Ambre} \\
+\rowcolor{cnIce}
+M2 Mai & 300 & 86  & 80  & 82  & 0{,}98 / 0{,}93 --- \cellcolor{cnGreen!20}\textbf{Vert} (à confirmer 31/05) \\
+M3 Juin & 300 & 149 & --  & --  & À venir \\
+\rowcolor{cnIce}
+M4 Juil & 300 & 210 & --  & --  & À venir \\
+M5 Août & 300 & 265 & --  & --  & À venir \\
+\rowcolor{cnIce}
+M6 Sep  & 300 & 300 & --  & --  & À venir \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+{\footnotesize
+\textbf{BAC} = Budget at Completion (à terminaison) \quad
+\textbf{CBTP / PV} = Coût Budgété du Travail Prévu \quad
+\textbf{CBTE / EV} = Coût Budgété du Travail Effectué (Valeur Acquise) \quad
+\textbf{CRTE / AC} = Coût Réel du Travail Effectué \\
+\textbf{IPC} = CBTE / CRTE \quad (efficience coût) \quad
+\textbf{IPD} = CBTE / CBTP \quad (efficience délai)
+}
+
+\section*{4 --- Modalités contractuelles}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{4cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Élément} & \th{Modalité} \\
+\midrule
+Engagement Sopra Steria & Forfait 200 K€ HT pour 400 j.h --- bon de commande émis le 18/04/2026 (BC-2026-0142) \\
+\rowcolor{cnIce}
+Facturation             & 5 jalons : 20\,\% J0 (kick-off), 20\,\% J1 (maquettes), 20\,\% J2 (socle), 25\,\% J4 (recette), 15\,\% J5 (Go-Live) \\
+Clause de pénalité      & 1\,\% du jalon par semaine de retard, plafonnée à 10\,\% du montant total \\
+\rowcolor{cnIce}
+TVA                     & Non applicable au tableau ci-dessus (montants HT) \\
+\bottomrule
+\end{tabularx}
+
+\begin{reco}
+\textbf{IPC $<$ 0{,}90 ou IPD $<$ 0{,}90} $\Rightarrow$ déclencher un \textbf{rapport d'écarts} (P4-17) immédiat et convoquer un \textbf{COPIL exceptionnel} sous 5 jours ouvrés. La réserve pour aléas (3 K€) ne peut être engagée qu'avec validation explicite du sponsor DSI et accord PMO.
+\end{reco}
+
+\end{document}

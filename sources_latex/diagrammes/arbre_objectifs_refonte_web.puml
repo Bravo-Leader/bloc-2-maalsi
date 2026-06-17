@@ -1,0 +1,63 @@
+@startmindmap
+skinparam dpi 200
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam shadowing false
+
+<style>
+mindmapDiagram {
+  :depth(0) {
+    BackgroundColor #1A3A6A
+    FontColor #FFFFFF
+    LineColor #1A3A6A
+    FontStyle bold
+    RoundCorner 10
+    Padding 10
+  }
+  :depth(1) {
+    BackgroundColor #E65100
+    FontColor #FFFFFF
+    LineColor #E65100
+    FontStyle bold
+    RoundCorner 8
+    Padding 8
+  }
+  :depth(2) {
+    BackgroundColor #E8F0FA
+    FontColor #1A3A6A
+    LineColor #3A5A8A
+    RoundCorner 6
+    Padding 5
+  }
+  :depth(3) {
+    BackgroundColor #FFFFFF
+    FontColor #4E342E
+    LineColor #B47A3A
+    RoundCorner 4
+    Padding 4
+  }
+}
+</style>
+
+* Refonte Web\nsoutenir la croissance\nnationale de Time'Eats
+** O1 — Soutenir\nla croissance nationale
+*** Nouveau site corporate\nresponsive (mobile-first)
+*** SEO technique\n+30% trafic organique
+*** API ouverte\nfuture intégration CRM
+** O2 — Améliorer\nl'expérience client
+*** Espace client\n(compte, suivi commande)
+*** Temps de chargement\nLCP < 2,5 s
+*** RGAA 4.1\nniveau AA confirmé
+** O3 — Industrialiser\nla production web
+*** CMS contributeurs\n(autonomie métier)
+*** CI/CD multi-env.\n(dev / staging / prod)
+*** TCO -25%\nvs site actuel
+** O4 — Sécuriser\n& mettre en conformité
+*** RGPD\nconsentements + DPO
+*** OWASP ASVS\nniveau 2
+*** Hébergement\nAzure France
+** O5 — Préparer\nl'écosystème digital
+*** Design system\nréutilisable
+*** Identité visuelle\nharmonisée
+*** Référentiel\nDevSecOps interne
+@endmindmap

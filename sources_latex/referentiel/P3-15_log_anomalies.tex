@@ -1,0 +1,83 @@
+% ============================================================
+%  LOG DES ANOMALIES — Phase 3 : Exécution (recette)
+%  Time'Eats — Cellule PMO
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../style/consulting}
+\usepackage{pdflscape}
+\hypersetup{pdftitle={Log des Anomalies — Time'Eats PMO}}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\begin{tikzpicture}[remember picture,overlay]
+  \draw[cnNavy,line width=0.5pt](0,0)--(\textwidth,0);
+\end{tikzpicture}\vspace{2pt}\timeeatslogo\hspace{4pt}\small\textcolor{cnSlate}{Time'Eats \textbf{·} Log des Anomalies — \textit{[Nom projet]}}}
+\fancyhead[R]{\small\textcolor{cnSlate}{\thepage}}
+\fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel — Cellule PMO — CESI MAALSI 2026}}
+\begin{document}\small
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Log des Anomalies}\\[4pt]
+\textcolor{cnOrange}{\rule{10cm}{1pt}}\\[4pt]
+{\large\color{cnSlate} Phase 3/5 — Exécution \& Recette \quad|\quad Projet : \textit{[Nom du projet]}}
+\end{center}
+
+\vspace{4pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{L{3.5cm} Y L{3.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Projet} & \th{\textit{[Nom]}} & \th{Dernière MAJ} & \th{\textit{[JJ/MM/AAAA]}} \\
+\midrule
+Responsable & \textit{[Prénom NOM]} & Version & \textit{[X.X]} \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+\begin{finding}
+\textbf{Sévérités :}
+\textbf{P1 Bloquant} — empêche la recette / la mise en prod. \quad
+\textbf{P2 Majeur} — fonctionnalité altérée, contournement difficile. \quad
+\textbf{P3 Mineur} — gêne utilisateur, contournement simple. \quad
+\textbf{P4 Cosmétique} — affichage, libellé.
+\end{finding}
+
+\begin{landscape}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{C{1.2cm} C{2cm} L{3cm} C{1.5cm} L{3cm} L{3cm} C{2cm} C{2cm}}
+\toprule
+\rowcolor{cnNavy}
+\th{ID} & \th{Date détection} & \th{Description} & \th{Sévérité} & \th{Module/Écran} & \th{Correction apportée} & \th{Responsable} & \th{Statut} \\
+\midrule
+ANO-001 & \textit{[JJ/MM]} & \textit{[Description courte]} & \textit{[P1]} & \textit{[Module]} & \textit{[Correction]} & \textit{[ESN]} & \textit{[Ouvert]} \\
+\rowcolor{cnIce}
+ANO-002 & \textit{[JJ/MM]} & \textit{[Description courte]} & \textit{[P2]} & \textit{[Module]} & \textit{[Correction]} & \textit{[ESN]} & \textit{[Résolu]} \\
+ANO-003 & \textit{[JJ/MM]} & \textit{[Description courte]} & \textit{[P3]} & \textit{[Module]} & \textit{[Correction]} & \textit{[DSI]} & \textit{[Résolu]} \\
+\rowcolor{cnIce}
+ANO-004 & \textit{[JJ/MM]} & \textit{[Description courte]} & \textit{[P2]} & \textit{[Module]} & \textit{[En cours]} & \textit{[ESN]} & \textit{[En cours]} \\
+ANO-005 & \textit{[JJ/MM]} & \textit{[Description courte]} & \textit{[P4]} & \textit{[Module]} & \textit{[Correction]} & \textit{[ESN]} & \textit{[Résolu]} \\
+\bottomrule
+\end{tabularx}
+\end{landscape}
+
+\section*{Tableau de synthèse}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{3cm} C{2cm} C{2cm} C{2cm} C{2cm}}
+\toprule
+\rowcolor{cnNavy}\th{Sévérité} & \th{Total détectés} & \th{Résolus} & \th{En cours} & \th{Ouverts} \\
+\midrule
+P1 Bloquant   & \textit{[X]} & \textit{[X]} & \textit{[X]} & \textit{[X]} \\
+\rowcolor{cnIce}
+P2 Majeur     & \textit{[X]} & \textit{[X]} & \textit{[X]} & \textit{[X]} \\
+P3 Mineur     & \textit{[X]} & \textit{[X]} & \textit{[X]} & \textit{[X]} \\
+\rowcolor{cnIce}
+P4 Cosmétique & \textit{[X]} & \textit{[X]} & \textit{[X]} & \textit{[X]} \\
+\midrule
+\rowcolor{cnNavy!10}\textbf{TOTAL} & \textbf{\textit{[X]}} & \textbf{\textit{[X]}} & \textbf{\textit{[X]}} & \textbf{\textit{[X]}} \\
+\bottomrule
+\end{tabularx}
+
+\begin{alert}
+Seuil de GO / NO-GO pour la mise en production : \textbf{0 anomalie P1 ouverte} et \textbf{P2 ouverts $\leq$ 2} avec plan de correction \textless{} 5 jours ouvrés.
+\end{alert}
+
+\end{document}

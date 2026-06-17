@@ -1,0 +1,111 @@
+% ============================================================
+%  PLANNING GANTT — Phase 2 : Planification
+%  Time'Eats — Cellule PMO
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../style/consulting}
+\usepackage{pdflscape}
+\hypersetup{pdftitle={Planning Gantt — Time'Eats PMO}}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\begin{tikzpicture}[remember picture,overlay]
+  \draw[cnNavy,line width=0.5pt](0,0)--(\textwidth,0);
+\end{tikzpicture}\vspace{2pt}\timeeatslogo\hspace{4pt}\small\textcolor{cnSlate}{Time'Eats \textbf{·} Planning Gantt — \textit{[Nom projet]}}}
+\fancyhead[R]{\small\textcolor{cnSlate}{\thepage}}
+\fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel — Cellule PMO — CESI MAALSI 2026}}
+\begin{document}\small
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Planning Gantt}\\[4pt]
+\textcolor{cnOrange}{\rule{10cm}{1pt}}\\[4pt]
+{\large\color{cnSlate} Phase 2 — Planification \quad|\quad Projet : \textit{[Nom du projet]}}
+\end{center}
+
+\vspace{4pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{L{3.5cm} Y L{3.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Champ} & \th{Valeur} & \th{Champ} & \th{Valeur} \\
+\midrule
+Date de début   & \textit{[JJ/MM/AAAA]}  & Date de fin    & \textit{[JJ/MM/AAAA]} \\
+\rowcolor{cnIce}
+Version         & 1.0                     & Dernière MAJ   & \textit{[JJ/MM/AAAA]} \\
+\bottomrule
+\end{tabularx}
+
+\vspace{8pt}
+
+% ── Gantt pgfgantt ────────────────────────────────────────
+\begin{landscape}
+\begin{center}
+\begin{ganttchart}[
+    hgrid,
+    vgrid,
+    x unit=1cm,
+    y unit chart=0.6cm,
+    y unit title=0.7cm,
+    title height=1,
+    bar height=0.5,
+    group height=0.3,
+    bar/.style={fill=cnNavy!60, rounded corners=2pt},
+    group/.style={fill=cnNavy, draw=cnNavy},
+    milestone/.style={fill=cnOrange, shape=diamond, inner sep=2pt},
+    title/.style={fill=cnNavy, draw=none, text=white, font=\small\bfseries},
+    title label font=\small,
+    bar label font=\small,
+    group label font=\small\bfseries,
+    today=1,
+    today rule/.style={draw=cnRed, thick, dashed}
+  ]{1}{18}  % Adapter le nombre de colonnes à la durée réelle (ici 18 semaines)
+
+  \gantttitle{Semaine}{18} \\
+  \gantttitlelist{1,...,18}{1} \\
+
+  % Groupe 1
+  \ganttgroup{1. Démarrage}{1}{2} \\
+  \ganttbar{Charte projet}{1}{1} \\
+  \ganttbar{Kick-off}{2}{2} \\
+
+  % Groupe 2
+  \ganttgroup{2. Planification}{2}{4} \\
+  \ganttbar{PMP}{2}{3} \\
+  \ganttbar{WBS + Planning}{3}{4} \\
+
+  % Groupe 3 — adapter aux lots réels
+  \ganttgroup{3. [Lot métier 1]}{4}{10} \\
+  \ganttbar{[Tâche 3.1]}{4}{6} \\
+  \ganttbar{[Tâche 3.2]}{6}{8} \\
+  \ganttbar{[Tâche 3.3]}{8}{10} \\
+
+  % Groupe 4
+  \ganttgroup{4. [Lot métier 2]}{9}{14} \\
+  \ganttbar{[Tâche 4.1]}{9}{11} \\
+  \ganttbar{[Tâche 4.2]}{11}{14} \\
+
+  % Groupe 5 — Recette
+  \ganttgroup{5. Recette \& formation}{14}{16} \\
+  \ganttbar{Tests DSI}{14}{15} \\
+  \ganttbar{Recette fonctionnelle}{15}{16} \\
+  \ganttbar{Formation}{16}{16} \\
+
+  % Groupe 6 — Clôture
+  \ganttgroup{6. Clôture}{16}{18} \\
+  \ganttbar{PV de recette}{16}{17} \\
+  \ganttbar{Transfert + REX}{17}{18} \\
+
+  % Jalons
+  \ganttmilestone{J0 Démarrage}{2} \\
+  \ganttmilestone{J1 [Jalon 1]}{7} \\
+  \ganttmilestone{J2 [Jalon 2]}{13} \\
+  \ganttmilestone{Jn Clôture}{18} \\
+
+\end{ganttchart}
+\end{center}
+\end{landscape}
+
+\vspace{4pt}
+\begin{alert}
+Ce planning est la \textbf{baseline de référence}. Toute modification de jalon ou de durée doit faire l'objet d'une \textbf{demande de changement} approuvée par le DSI.
+\end{alert}
+
+\end{document}

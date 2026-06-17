@@ -1,0 +1,155 @@
+% ============================================================
+%  COMPTE RENDU DE RÉUNION — Phase 3 : Exécution
+%  Time'Eats — Cellule PMO
+%  Projet : Refonte Web — Kick-off J0
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../../style/consulting}
+\hypersetup{pdftitle={CR Kick-off — Refonte Web — Time'Eats PMO}}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\begin{tikzpicture}[remember picture,overlay]
+  \draw[cnNavy,line width=0.5pt](0,0)--(\textwidth,0);
+\end{tikzpicture}\vspace{2pt}\timeeatslogo\hspace{4pt}\small\textcolor{cnSlate}{Time'Eats \textbf{·} CR Réunion --- \textit{Refonte Web}}}
+\fancyhead[R]{\small\textcolor{cnSlate}{\thepage}}
+\fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel --- Cellule PMO --- CESI MAALSI 2026}}
+\begin{document}\small
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Compte Rendu de Réunion}\\[4pt]
+\textcolor{cnOrange}{\rule{10cm}{1pt}}\\[4pt]
+{\large\color{cnSlate} Kick-off projet --- Jalon J0}
+\end{center}
+
+\vspace{6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{L{3.5cm} Y L{3.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Champ} & \th{Valeur} & \th{Champ} & \th{Valeur} \\
+\midrule
+Projet          & Refonte Web (REF-WEB-2026) & N° CR        & 2026-04-22-01 \\
+\rowcolor{cnIce}
+Date            & 22/04/2026                  & Heure        & 14h00 -- 16h30 \\
+Lieu / Modalité & Siège Time'Eats --- Salle Atrium + Teams & Animateur    & M. X (CP) \\
+\rowcolor{cnIce}
+Rédacteur       & M. X (CP)              & Diffusé le   & 23/04/2026 \\
+Type de réunion & Kick-off projet (J0)        & Confidentialité & Interne Time'Eats + ESN \\
+\bottomrule
+\end{tabularx}
+
+\section*{Participants}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{4cm} L{4cm} L{3cm} C{2cm}}
+\toprule
+\rowcolor{cnNavy}\th{Nom} & \th{Fonction} & \th{Société} & \th{Présent} \\
+\midrule
+M. Z         & Directeur Général                  & Time'Eats     & $\checkmark$ \\
+\rowcolor{cnIce}
+Mme Y          & DSI / Sponsor                      & Time'Eats     & $\checkmark$ \\
+M. X          & Chef de projet                     & Time'Eats     & $\checkmark$ \\
+\rowcolor{cnIce}
+M. A         & Tech Lead Front                    & Time'Eats     & $\checkmark$ \\
+M. B           & Dev Back-End                       & Time'Eats     & $\checkmark$ \\
+\rowcolor{cnIce}
+Mme C        & UX/UI Designer                     & Time'Eats     & $\checkmark$ \\
+M. D          & DevOps / CI-CD                     & Time'Eats     & $\checkmark$ \\
+\rowcolor{cnIce}
+Mme F           & Responsable Marketing (MOA)        & Time'Eats     & $\checkmark$ \\
+Mme E         & RSSI                               & Time'Eats     & Excusé \\
+\rowcolor{cnIce}
+Mme M           & Directrice de compte ESN           & Sopra Steria  & $\checkmark$ \\
+M. N          & Architecte solution                & Sopra Steria  & $\checkmark$ \\
+\rowcolor{cnIce}
+M. L         & PMO transverse                     & Time'Eats     & $\checkmark$ \\
+\bottomrule
+\end{tabularx}
+
+\section*{Ordre du jour}
+
+\begin{enumerate}
+  \item Mot d'accueil DG + vision stratégique (10 min)
+  \item Présentation de la charte projet et validation des baselines (30 min)
+  \item Présentation de l'équipe projet et rôles RACI (20 min)
+  \item Méthodologie hybride retenue (Agile/Waterfall) + rituels (20 min)
+  \item Cartographie des risques et points d'attention (20 min)
+  \item Plan de communication et gouvernance (15 min)
+  \item Questions / réponses + tour de table (20 min)
+  \item Validation et signature des engagements
+\end{enumerate}
+
+\section*{Synthèse des échanges}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{C{0.7cm} L{3.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{\#} & \th{Thème} & \th{Résumé des échanges et décisions} \\
+\midrule
+1 & Vision DG          & M. Z réaffirme la priorité stratégique du projet : la refonte est la pierre angulaire de l'écosystème digital cible (CRM, mobile, espace client). Engagement DG sur le budget 300 K€ ferme et la date Go-Live 30/09/2026. \\
+\rowcolor{cnIce}
+2 & Charte projet      & La charte est lue et amendée à la marge (précision sur la valorisation interne 80 K€). Signature des 3 autorités : CP, DSI, DG. \textbf{Charte v1.0 validée et archivée SharePoint.} \\
+3 & Équipe \& RACI     & Lettres de mission distribuées (5 internes + 1 directrice de compte ESN). Matrice RACI présentée (cf.\ P1-04). Décision : Mme F est officiellement désignée référent MOA principal pour les contenus. \\
+\rowcolor{cnIce}
+4 & Méthode hybride    & Démarrage et planification en mode Waterfall (PMP, WBS, Gantt, budget, baselines). Phases UX et Exécution en Scrum (sprints 2 semaines). Recette et Clôture en Waterfall. Validation à l'unanimité. \\
+5 & Risques majeurs    & Présentation des 7 risques identifiés (cf.\ P2-09). R1 (SSO Office 365) est le plus sensible : Mme Y confirme la disponibilité d'un IdP local en repli (surcoût 8 K€ déjà provisionné dans la réserve). \\
+\rowcolor{cnIce}
+6 & Communication      & COPIL mensuel le 3\textsuperscript{e} mardi de chaque mois, premier COPIL d'inception fixé au \textbf{20/05/2026}. SharePoint projet \texttt{REF-WEB-2026} créé par le PMO. Canal Teams \texttt{\#refonte-web} actif. \\
+7 & Réserves           & La directrice de compte Sopra Steria souligne le caractère tendu du planning sur la fenêtre août (congés). Décision : intégrer dès maintenant un backup nominatif dans le contrat (avenant à formaliser sous 15 j). \\
+\bottomrule
+\end{tabularx}
+
+\section*{Décisions actées}
+
+\begin{decision}
+\begin{enumerate}
+  \item \textbf{Charte projet v1.0 validée et signée} (CP / DSI / DG).
+  \item \textbf{Budget 300 K€ ferme} avec réserve 3 K€ non engagée à ce stade.
+  \item \textbf{Méthodologie hybride} (Waterfall pour cadrage + clôture, Scrum 2 semaines pour exécution).
+  \item \textbf{Mme F désignée référent MOA principal} (15\,\% d'affectation).
+  \item \textbf{Premier COPIL d'inception fixé au 20/05/2026} (validation baselines PMP / WBS / Gantt / budget / risques).
+  \item \textbf{IdP local en solution de repli} pour le risque R1 (SSO Office 365).
+  \item \textbf{Avenant Sopra Steria à formaliser} sous 15 j (backup nominatif été).
+\end{enumerate}
+\end{decision}
+
+\section*{Plan d'actions}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{C{0.6cm} Y L{3cm} C{2.2cm} C{2cm}}
+\toprule
+\rowcolor{cnNavy}\th{\#} & \th{Action} & \th{Responsable} & \th{Échéance} & \th{Statut} \\
+\midrule
+A1 & Créer le site SharePoint projet REF-WEB-2026 & M. L (PMO) & 24/04/2026 & À faire \\
+\rowcolor{cnIce}
+A2 & Diffuser la charte signée + RACI à toute l'équipe & M. X (CP)   & 25/04/2026 & À faire \\
+A3 & Formaliser l'avenant Sopra Steria (backup nominatif) & M. X + Achats & 06/05/2026 & À faire \\
+\rowcolor{cnIce}
+A4 & Lancer le workshop UX co-construction (Key Users) & Mme C + Mme F & 12--13/05/2026 & À faire \\
+A5 & Préparer le COPIL d'inception (slides + 5 baselines) & M. X (CP)   & 18/05/2026 & À faire \\
+\rowcolor{cnIce}
+A6 & Configurer Azure DevOps Boards (project + sprints) & M. D (DevOps) & 28/04/2026 & À faire \\
+A7 & Confirmer la disponibilité IdP local (repli SSO)    & M. A (Tech Lead) & 15/05/2026 & À faire \\
+\rowcolor{cnIce}
+A8 & Constituer le réseau Key Users CMS (5 personnes)    & Mme F + CP    & 27/05/2026 & À faire \\
+\bottomrule
+\end{tabularx}
+
+\section*{Prochaine réunion}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{3cm} Y L{2.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Type}    & \th{Objet}                                 & \th{Date}      & \th{Heure} \\
+\midrule
+Sprint 0 Planning & Backlog initial, calibrage équipe Scrum    & 28/04/2026     & 10h00 -- 12h00 \\
+\rowcolor{cnIce}
+COPIL inception   & Validation baselines (PMP, WBS, Gantt, Budget, Risques) & 20/05/2026 & 14h00 -- 16h00 \\
+\bottomrule
+\end{tabularx}
+
+\vspace{8pt}
+\begin{center}
+{\footnotesize\textit{Validé par : M. X --- Chef de projet --- contresigné par Mme Y (DSI) --- diffusé le 23/04/2026.}}
+\end{center}
+
+\end{document}

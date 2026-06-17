@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Cockpit DSI — Time'Eats</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    :root{
+      --bg:#0f1117;--s1:#1a1d27;--s2:#22263a;--bd:#2e3350;
+      --acc:#3b6fff;--txt:#e2e8f0;--mut:#8892b0;--r:12px;
+      --green:#22c55e;--ambre:#f59e0b;--rouge:#ef4444;--bleu:#3b82f6;--violet:#8b5cf6;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--txt);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh}
+
+    /* ── HEADER ── */
+    header{background:var(--s1);border-bottom:1px solid var(--bd);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:200}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:.95rem}
+    .logo-b{background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;padding:3px 8px;border-radius:5px;font-size:.76rem;font-weight:800}
+    .nav-tabs{display:flex;gap:3px}
+    .nav-tab{padding:5px 13px;border-radius:7px;border:none;cursor:pointer;font-size:.81rem;font-weight:500;background:transparent;color:var(--mut);transition:all .18s}
+    .nav-tab:hover{background:var(--s2);color:var(--txt)}
+    .nav-tab.active{background:var(--acc);color:#fff}
+    .hdr-r{font-size:.76rem;color:var(--mut)}
+    .hdr-r strong{color:var(--txt)}
+
+    /* ── VIEWS ── */
+    .view{display:none;padding:22px 24px;animation:fi .2s}
+    .view.active{display:block}
+    @keyframes fi{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+    .view-title{font-size:1.2rem;font-weight:700;margin-bottom:3px}
+    .view-sub{color:var(--mut);font-size:.81rem;margin-bottom:18px}
+
+    /* ── GRID ── */
+    .g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+    .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .g-auto{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:11px}
+    .span2{grid-column:span 2}
+
+    /* ── CARD ── */
+    .card{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:16px}
+    .card-title{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin-bottom:11px}
+
+    /* ── STAT CARDS ── */
+    .stat-row{display:flex;gap:12px;margin-bottom:18px}
+    .sc{flex:1;background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:13px 16px;display:flex;align-items:center;gap:11px}
+    .sc-ico{font-size:1.5rem}
+    .sc-lbl{font-size:.68rem;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+    .sc-val{font-size:1.4rem;font-weight:700;line-height:1.1}
+    .sc-sub{font-size:.7rem;margin-top:2px}
+    .up{color:var(--green)}.dn{color:var(--rouge)}.neu{color:var(--mut)}.am{color:var(--ambre)}
+
+    /* ── RAG BADGES ── */
+    .rag{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.69rem;font-weight:600;white-space:nowrap}
+    .rag-vert     {background:rgba(34,197,94,.15);color:var(--green);border:1px solid rgba(34,197,94,.3)}
+    .rag-ambre    {background:rgba(245,158,11,.15);color:var(--ambre);border:1px solid rgba(245,158,11,.3)}
+    .rag-rouge    {background:rgba(239,68,68,.15);color:var(--rouge);border:1px solid rgba(239,68,68,.3)}
+    .rag-planifie {background:rgba(59,130,246,.15);color:var(--bleu);border:1px solid rgba(59,130,246,.3)}
+    .mode-agile   {background:rgba(139,92,246,.15);color:var(--violet);border:1px solid rgba(139,92,246,.3);display:inline-block;padding:1px 7px;border-radius:20px;font-size:.67rem;font-weight:600}
+    .mode-wf      {background:rgba(59,111,255,.1);color:var(--bleu);border:1px solid rgba(59,130,246,.25);display:inline-block;padding:1px 7px;border-radius:20px;font-size:.67rem;font-weight:600}
+
+    /* ── TABLE ── */
+    table{width:100%;border-collapse:collapse;font-size:.78rem}
+    th{text-align:left;padding:7px 9px;color:var(--mut);font-size:.64rem;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--bd)}
+    td{padding:8px 9px;border-bottom:1px solid rgba(46,51,80,.4);vertical-align:middle}
+    tr:last-child td{border-bottom:none}
+    tr:hover td{background:rgba(59,111,255,.04)}
+    .pname{font-weight:600;font-size:.82rem}
+    .pdesc{font-size:.69rem;color:var(--mut);margin-top:2px}
+
+    /* ── PROGRESS ── */
+    .pb-wrap{background:var(--s2);border-radius:4px;height:6px;overflow:hidden;min-width:56px}
+    .pb{height:100%;border-radius:4px}
+    .pb-vert  {background:linear-gradient(90deg,#16a34a,#22c55e)}
+    .pb-ambre {background:linear-gradient(90deg,#d97706,#f59e0b)}
+    .pb-rouge {background:linear-gradient(90deg,#b91c1c,#ef4444)}
+    .pb-bleu  {background:linear-gradient(90deg,#1d4ed8,#3b82f6)}
+
+    /* ── DOTS ── */
+    .dots{display:flex;gap:2px;margin-top:2px}
+    .dot{width:7px;height:7px;border-radius:50%}
+
+    /* ── SECTION LABEL ── */
+    .sec-lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--mut);margin:18px 0 9px;font-weight:600}
+
+    /* ── UPTIME ── */
+    .utc{background:var(--s1);border:1px solid var(--bd);border-radius:10px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between}
+    .utc-name{font-size:.79rem;font-weight:600}
+    .utc-env{font-size:.67rem;color:var(--mut);margin-top:2px}
+    .utc-pct{font-size:1.2rem;font-weight:700}
+
+    /* ── INCIDENT / BLOCK ── */
+    .item{background:var(--s2);border-radius:8px;padding:10px 12px;margin-bottom:7px;border-left:3px solid transparent;display:flex;align-items:flex-start;gap:9px}
+    .item-p1{border-left-color:var(--rouge)}
+    .item-p2{border-left-color:var(--ambre)}
+    .item-p3{border-left-color:var(--acc)}
+    .item-block{border-left-color:var(--ambre);display:block}
+    .item-body{flex:1}
+    .item-title{font-size:.8rem;font-weight:600}
+    .item-meta{font-size:.7rem;color:var(--mut);margin-top:2px}
+    .badge-p{font-size:.65rem;font-weight:700;padding:2px 6px;border-radius:4px;white-space:nowrap;margin-top:1px}
+
+    /* ── ESN CARD ── */
+    .esn-card{background:var(--s2);border-radius:9px;padding:11px 14px;margin-bottom:7px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:7px}
+    .esn-name{font-weight:600;font-size:.84rem}
+    .esn-proj{font-size:.7rem;color:var(--mut)}
+    .esn-cr{font-size:.69rem;color:var(--mut);margin-top:3px}
+    .db{font-size:.69rem;font-weight:600;padding:2px 7px;border-radius:20px}
+    .db-ok{background:rgba(34,197,94,.15);color:var(--green)}
+    .db-warn{background:rgba(245,158,11,.15);color:var(--ambre)}
+    .db-alert{background:rgba(239,68,68,.15);color:var(--rouge)}
+
+    /* ── PATCH ── */
+    .patch-item{background:var(--s2);border-radius:7px;padding:8px 11px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-start}
+    .patch-t{font-size:.78rem;font-weight:600}
+    .patch-m{font-size:.68rem;color:var(--mut);margin-top:2px}
+    .patch-d{font-size:.68rem;color:var(--mut);white-space:nowrap;margin-left:7px}
+
+    /* ── RITUAL CARDS ── */
+    .ritual-card{background:var(--s2);border-radius:10px;padding:14px 16px;border-left:3px solid var(--acc)}
+    .ritual-title{font-weight:700;font-size:.86rem;margin-bottom:4px}
+    .ritual-freq{font-size:.72rem;color:var(--ambre);margin-bottom:6px}
+    .ritual-detail{font-size:.74rem;color:var(--mut)}
+
+    /* ── KPI TABLE ── */
+    .kpi-table{width:100%;border-collapse:collapse;font-size:.79rem}
+    .kpi-table th{text-align:left;padding:7px 10px;color:var(--mut);font-size:.64rem;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--bd)}
+    .kpi-table td{padding:8px 10px;border-bottom:1px solid rgba(46,51,80,.4);vertical-align:middle}
+    .kpi-table tr:last-child td{border-bottom:none}
+    .axe-head td{background:rgba(59,111,255,.07);font-weight:700;font-size:.76rem;color:var(--txt)}
+
+    /* ── JALON ── */
+    .jalon-item{background:var(--s2);border-radius:8px;padding:10px 14px;margin-bottom:7px;display:flex;align-items:center;gap:12px}
+    .jalon-id{width:30px;height:30px;border-radius:50%;background:var(--acc);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0}
+    .jalon-desc{font-size:.81rem;font-weight:600;flex:1}
+    .jalon-date{font-size:.7rem;color:var(--mut)}
+
+    /* ── RISK TABLE ── */
+    .risk-badge{font-size:.68rem;font-weight:600;padding:2px 7px;border-radius:4px}
+    .rc-critique{background:rgba(239,68,68,.2);color:var(--rouge)}
+    .rc-majeur{background:rgba(245,158,11,.2);color:var(--ambre)}
+    .rc-mineur{background:rgba(34,197,94,.2);color:var(--green)}
+
+    /* ── DEP TAG ── */
+    .dep-tag{display:inline-block;font-size:.64rem;background:rgba(59,111,255,.12);color:var(--bleu);border:1px solid rgba(59,111,255,.22);padding:1px 5px;border-radius:3px;margin:1px}
+
+    /* ── PMO PERF ── */
+    .pmo-kpi{background:var(--s2);border-radius:8px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between}
+    .pmo-lbl{font-size:.79rem;font-weight:500}
+    .pmo-target{font-size:.7rem;color:var(--mut);margin-top:2px}
+    .pmo-val{font-size:1.3rem;font-weight:700}
+
+    /* ── MODAL ── */
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:1000;align-items:center;justify-content:center}
+    .modal-overlay.open{display:flex}
+    .modal{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:22px;width:450px;max-width:95vw}
+    .modal h3{font-size:.96rem;margin-bottom:14px}
+    .modal label{display:block;font-size:.72rem;color:var(--mut);margin-bottom:3px;margin-top:10px}
+    .modal input,.modal select,.modal textarea{width:100%;background:var(--s2);border:1px solid var(--bd);border-radius:6px;color:var(--txt);font-size:.81rem;padding:6px 9px}
+    .modal textarea{resize:vertical;height:65px}
+    .modal-foot{display:flex;justify-content:flex-end;gap:7px;margin-top:16px}
+    .btn{padding:5px 14px;border-radius:6px;border:none;cursor:pointer;font-size:.8rem;font-weight:500;transition:all .15s}
+    .btn-primary{background:var(--acc);color:#fff}.btn-primary:hover{background:#2a5ef8}
+    .btn-ghost{background:var(--s2);color:var(--mut);border:1px solid var(--bd)}.btn-ghost:hover{color:var(--txt)}
+    .btn-sm{padding:2px 8px;font-size:.69rem}
+
+    /* ── EDIT INLINE ── */
+    .edit-btn{background:transparent;border:1px solid var(--bd);border-radius:5px;color:var(--mut);cursor:pointer;font-size:.68rem;padding:2px 7px;transition:all .15s}
+    .edit-btn:hover{border-color:var(--acc);color:var(--txt)}
+
+    canvas{max-width:100%}
+    ::-webkit-scrollbar{width:5px;height:5px}
+    ::-webkit-scrollbar-track{background:var(--bg)}
+    ::-webkit-scrollbar-thumb{background:var(--bd);border-radius:3px}
+    @media(max-width:860px){.g2,.g3,.g4{grid-template-columns:1fr}.stat-row{flex-direction:column}.span2{grid-column:span 1}}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><span class="logo-b">Time'EATS</span> Cockpit DSI — Cellule PMO</div>
+  <nav class="nav-tabs">
+    <button class="nav-tab active" onclick="nav('portefeuille',this)">Portefeuille</button>
+    <button class="nav-tab" onclick="nav('crm',this)">Projet CRM</button>
+    <button class="nav-tab" onclick="nav('velocite',this)">Vélocité</button>
+    <button class="nav-tab" onclick="nav('ops',this)">Ops & Risques</button>
+    <button class="nav-tab" onclick="nav('esn',this)">ESN</button>
+  </nav>
+  <div class="hdr-r">20 avr. 2026 · DSI <strong>21 pers.</strong> · 11 projets · 1 700 K€</div>
+</header>
+
+<!-- ═══ PORTEFEUILLE ═══ -->
+<div class="view active" id="view-portefeuille">
+  <div class="view-title">Supervision du portefeuille de projets IT</div>
+  <div class="view-sub">Cellule PMO · 5 chefs de projet · Méthodologie PMO Hybride (§1.1 Livrable)</div>
+
+  <div class="stat-row" id="stats-port"></div>
+
+  <!-- Rituels de gouvernance §1.1 Pilier 1 -->
+  <div class="sec-lbl">Rituels de gouvernance PMO (Pilier 1 — §1.1)</div>
+  <div class="g3" style="margin-bottom:18px">
+    <div class="ritual-card">
+      <div class="ritual-title">🏛 Comité Stratégique</div>
+      <div class="ritual-freq">Mensuel</div>
+      <div class="ritual-detail">Participants : DG + DSI<br>Validation budgétaire, escalades risques majeurs, réévaluation de la priorisation</div>
+    </div>
+    <div class="ritual-card" style="border-left-color:var(--ambre)">
+      <div class="ritual-title">📋 Revue Portefeuille PMO</div>
+      <div class="ritual-freq">Hebdomadaire</div>
+      <div class="ritual-detail">Participants : DSI + 5 CPs<br>Météo projets (RAG), jalons critiques, disponibilité ressources, suivi dépendances</div>
+    </div>
+    <div class="ritual-card" style="border-left-color:var(--green)">
+      <div class="ritual-title">⚡ Stand-up DSI</div>
+      <div class="ritual-freq">Quotidien · 15 min</div>
+      <div class="ritual-detail">Participants : équipes techniques<br>Lever les blocages opérationnels Run (MCO) / Build (11 projets)</div>
+    </div>
+  </div>
+
+  <!-- Tableau de priorisation §1.3 -->
+  <div class="g2" style="margin-bottom:16px">
+    <div class="card">
+      <div class="card-title">Modèle de priorisation — Formule pondérée (§1.3)</div>
+      <table style="font-size:.77rem">
+        <tr><td style="padding:5px 6px;color:var(--mut)">Nécessité / Importance stratégique</td><td style="padding:5px 6px;font-weight:700;color:var(--green)">35 %</td></tr>
+        <tr style="background:rgba(59,111,255,.04)"><td style="padding:5px 6px;color:var(--mut)">Rentabilité attendue</td><td style="padding:5px 6px;font-weight:700;color:var(--green)">25 %</td></tr>
+        <tr><td style="padding:5px 6px;color:var(--mut)">Niveau de maîtrise des risques</td><td style="padding:5px 6px;font-weight:700;color:var(--ambre)">20 %</td></tr>
+        <tr style="background:rgba(59,111,255,.04)"><td style="padding:5px 6px;color:var(--mut)">Dépendances critiques (projets bloqués)</td><td style="padding:5px 6px;font-weight:700;color:var(--ambre)">10 %</td></tr>
+        <tr><td style="padding:5px 6px;color:var(--mut)">Urgence réglementaire</td><td style="padding:5px 6px;font-weight:700;color:var(--rouge)">10 %</td></tr>
+        <tr style="border-top:1px solid var(--bd)">
+          <td colspan="2" style="padding:7px 6px;font-size:.72rem;color:var(--mut)">
+            <span class="rag rag-vert">● Vert ≥ 3,50</span>&nbsp;
+            <span class="rag rag-ambre">● Ambre 2,75–3,49</span>&nbsp;
+            <span class="rag rag-rouge">● Rouge &lt; 2,75</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">Score de priorité par projet — classé par score décroissant</div>
+      <div style="height:175px"><canvas id="chartPrio"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Tableau portefeuille complet -->
+  <div class="card">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <div class="card-title" style="margin-bottom:0">Vue synthétique — 11 projets Time'Eats (§1.3)</div>
+      <div style="font-size:.7rem;color:var(--mut)">Imp×35%+Rent×25%+Risq×20%+Dép×10%+Règl×10%</div>
+    </div>
+    <table>
+      <thead><tr>
+        <th>Projet</th><th>Mode</th><th>Début</th><th>Durée</th><th>Budget</th>
+        <th title="Importance stratégique">Imp.</th><th title="Rentabilité">Rent.</th>
+        <th title="Maîtrise risques">Risq.</th><th title="Dépendances">Dép.</th>
+        <th title="Urgence réglementaire">Règl.</th>
+        <th>Score</th><th>Priorité</th><th>Avancement WBS</th><th>Exécution</th><th>Chef</th><th>Action</th>
+      </tr></thead>
+      <tbody id="proj-tbody"></tbody>
+    </table>
+  </div>
+
+  <!-- Budget mensuel + Budget par projet -->
+  <div class="g2" style="margin-top:16px">
+    <div class="card">
+      <div class="card-title">Budget prévisionnel mensuel vs consommé réel (K€) — Avr 2026</div>
+      <div style="height:180px"><canvas id="chartBudget"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Budget prévu vs consommé par projet (K€) — projets actifs</div>
+      <div style="height:180px"><canvas id="chartBudgetProj"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Tableau suivi budget par projet -->
+  <div class="card" style="margin-top:14px">
+    <div class="card-title">Suivi budgétaire détaillé — 11 projets (K€)</div>
+    <table>
+      <thead><tr>
+        <th>Projet</th><th>Mode</th><th>Statut</th>
+        <th>Budget prévu</th><th>Consommé</th><th>Restant</th>
+        <th>Consommation</th><th>Taux</th>
+      </tr></thead>
+      <tbody id="budget-tbody"></tbody>
+      <tfoot id="budget-tfoot"></tfoot>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ PROJET CRM ═══ -->
+<div class="view" id="view-crm">
+  <div class="view-title">Gestion du projet : Progiciel CRM</div>
+  <div class="view-sub">Score priorité : 3,70 ● Vert · Budget : 250 K€ · Durée : 6 mois (Jun–Nov 2026) · ESN : CGI · Chef de projet : L. Moreau</div>
+
+  <div class="stat-row">
+    <div class="sc"><div class="sc-ico">💰</div><div><div class="sc-lbl">Budget total</div><div class="sc-val">250 K€</div><div class="sc-sub neu">Interne 40 K€ + ESN 210 K€</div></div></div>
+    <div class="sc"><div class="sc-ico">📅</div><div><div class="sc-lbl">Démarrage</div><div class="sc-val">Jun 2026</div><div class="sc-sub neu">Fin prévue : Nov 2026</div></div></div>
+    <div class="sc"><div class="sc-ico">⚠️</div><div><div class="sc-lbl">Risques identifiés</div><div class="sc-val">6</div><div class="sc-sub dn">dont 1 Critique (RGPD)</div></div></div>
+    <div class="sc"><div class="sc-ico">🏁</div><div><div class="sc-lbl">Jalons</div><div class="sc-val">5</div><div class="sc-sub neu">J1→J5 · Go-live : 30 nov.</div></div></div>
+  </div>
+
+  <div class="g2" style="margin-bottom:16px">
+    <div class="card">
+      <div class="card-title">Jalons clés (§2.1)</div>
+      <div id="jalons-list"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Budget prévisionnel (§2.1)</div>
+      <table class="kpi-table">
+        <thead><tr><th>Poste de dépense</th><th>Interne</th><th>ESN/Éditeur</th></tr></thead>
+        <tbody>
+          <tr><td>Licences CRM (1 an)</td><td>—</td><td>60 K€</td></tr>
+          <tr style="background:rgba(59,111,255,.04)"><td>Intégration / paramétrage</td><td>—</td><td>90 K€</td></tr>
+          <tr><td>Migration des données (RGPD)</td><td>20 K€</td><td>30 K€</td></tr>
+          <tr style="background:rgba(59,111,255,.04)"><td>Formation utilisateurs</td><td>5 K€</td><td>15 K€</td></tr>
+          <tr><td>Chef de projet interne (6 mois 20%)</td><td>15 K€</td><td>—</td></tr>
+          <tr style="background:rgba(59,111,255,.04)"><td>Réserve aléas (10%)</td><td>—</td><td>15 K€</td></tr>
+          <tr style="border-top:1px solid var(--bd)"><td><strong>TOTAL</strong></td><td><strong>40 K€</strong></td><td><strong>210 K€</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Tableau de bord de pilotage mensuel §2.2 -->
+  <div class="card" style="margin-bottom:16px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <div class="card-title" style="margin-bottom:0">Fiche mensuelle de pilotage CRM — Avr 2026 (§2.2)</div>
+      <span id="crm-statut-global" class="rag rag-vert">● Vert</span>
+    </div>
+    <table class="kpi-table">
+      <thead><tr><th>Axe</th><th>KPI</th><th>Cible</th><th>Seuil alerte</th><th>Valeur M</th><th>Statut</th></tr></thead>
+      <tbody>
+        <tr class="axe-head"><td colspan="6">Coûts</td></tr>
+        <tr><td></td><td>Budget consommé / Budget prévu</td><td>≤ 100 %</td><td>&gt; 110 %</td><td>—</td><td><span class="rag rag-vert">● Vert</span></td></tr>
+        <tr style="background:rgba(59,111,255,.04)"><td></td><td>IPC — Indice Performance Coût</td><td>≥ 0,9</td><td>&lt; 0,8</td><td>—</td><td><span class="rag rag-vert">● Vert</span></td></tr>
+        <tr><td></td><td>Réserve pour aléas restante</td><td>&gt; 0 %</td><td>&lt; 5 %</td><td>100 %</td><td><span class="rag rag-vert">● Vert</span></td></tr>
+        <tr class="axe-head"><td colspan="6">Délais</td></tr>
+        <tr><td></td><td>Jalons respectés / Planifiés</td><td>= 100 %</td><td>&lt; 80 %</td><td>—</td><td><span class="rag rag-vert">● Vert</span></td></tr>
+        <tr style="background:rgba(59,111,255,.04)"><td></td><td>IPD — Indice Performance Délai</td><td>≥ 0,9</td><td>&lt; 0,8</td><td>—</td><td><span class="rag rag-ambre">● Ambre</span></td></tr>
+        <tr><td></td><td>Retard cumulé (jours ouvrés)</td><td>0</td><td>&gt; 10 j</td><td>0 j</td><td><span class="rag rag-vert">● Vert</span></td></tr>
+        <tr class="axe-head"><td colspan="6">Qualité</td></tr>
+        <tr><td></td><td>Taux couverture des tests</td><td>≥ 80 %</td><td>&lt; 60 %</td><td>—</td><td><span class="rag rag-vert">● Vert</span></td></tr>
+        <tr style="background:rgba(59,111,255,.04)"><td></td><td>Anomalies bloquantes ouvertes</td><td>0</td><td>&gt; 2</td><td>0</td><td><span class="rag rag-vert">● Vert</span></td></tr>
+        <tr><td></td><td>Taux satisfaction recette</td><td>≥ 85 %</td><td>&lt; 70 %</td><td>—</td><td><span class="rag rag-vert">● Vert</span></td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:12px;padding:10px;background:var(--s2);border-radius:8px">
+      <div style="font-size:.78rem;font-weight:600;margin-bottom:5px">Points de vigilance du mois :</div>
+      <div id="crm-vigilance"></div>
+      <div style="font-size:.78rem;font-weight:600;margin:8px 0 5px">Décisions demandées au COPIL :</div>
+      <div id="crm-decisions"></div>
+    </div>
+  </div>
+
+  <!-- Contribution CRM → PMO -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-title">Contribution des KPI CRM aux indicateurs PMO — traçabilité §2.2 → §3.2</div>
+    <table class="kpi-table">
+      <thead><tr><th>KPI CRM (§2.2)</th><th>Axe</th><th>↓ Alimente</th><th>KPI PMO (§3.2)</th><th>Logique</th></tr></thead>
+      <tbody>
+        <tr><td style="font-weight:600">IPC — Indice Performance Coût</td><td><span class="rag rag-vert" style="font-size:.65rem">Coûts</span></td><td style="text-align:center;font-size:1rem">→</td><td style="font-weight:600">% projets dans le budget</td><td style="font-size:.72rem;color:var(--mut)">IPC ≥ 0,9 → projet "dans le budget"</td></tr>
+        <tr style="background:rgba(59,111,255,.04)"><td style="font-weight:600">IPD — Indice Performance Délai</td><td><span class="rag rag-ambre" style="font-size:.65rem">Délais</span></td><td style="text-align:center;font-size:1rem">→</td><td style="font-weight:600">% projets dans les délais</td><td style="font-size:.72rem;color:var(--mut)">IPD ≥ 0,9 → jalon respecté</td></tr>
+        <tr><td style="font-weight:600">Jalons respectés / Planifiés</td><td><span class="rag rag-ambre" style="font-size:.65rem">Délais</span></td><td style="text-align:center;font-size:1rem">→</td><td style="font-weight:600">% projets dans les délais</td><td style="font-size:.72rem;color:var(--mut)">Taux jalons contribue directement</td></tr>
+        <tr style="background:rgba(59,111,255,.04)"><td style="font-weight:600">Taux couverture des tests</td><td><span class="rag rag-vert" style="font-size:.65rem">Qualité</span></td><td style="text-align:center;font-size:1rem">→</td><td style="font-weight:600">Satisfaction recette (client interne)</td><td style="font-size:.72rem;color:var(--mut)">Couverture ≥ 80 % → recette réussie</td></tr>
+        <tr><td style="font-weight:600">Taux satisfaction recette</td><td><span class="rag rag-vert" style="font-size:.65rem">Qualité</span></td><td style="text-align:center;font-size:1rem">→</td><td style="font-weight:600">Satisfaction client interne (CDQ)</td><td style="font-size:.72rem;color:var(--mut)">Score recette = axe Qualité du CDQ</td></tr>
+        <tr style="background:rgba(59,111,255,.04)"><td style="font-weight:600">Anomalies bloquantes ouvertes</td><td><span class="rag rag-vert" style="font-size:.65rem">Qualité</span></td><td style="text-align:center;font-size:1rem">→</td><td style="font-weight:600">Délai moyen résolution P1</td><td style="font-size:.72rem;color:var(--mut)">Anomalie bloquante = incident P1 PMO</td></tr>
+        <tr><td style="font-weight:600">Avancement WBS (tâches / total)</td><td><span class="rag rag-ambre" style="font-size:.65rem">Délais</span></td><td style="text-align:center;font-size:1rem">→</td><td style="font-weight:600">% projets dans les délais</td><td style="font-size:.72rem;color:var(--mut)">Tâches réalisées vs prévision WBS</td></tr>
+        <tr style="background:rgba(59,111,255,.04)"><td style="font-weight:600">Réserve pour aléas restante</td><td><span class="rag rag-vert" style="font-size:.65rem">Coûts</span></td><td style="text-align:center;font-size:1rem">→</td><td style="font-weight:600">% projets dans le budget</td><td style="font-size:.72rem;color:var(--mut)">Consommation réserve = signal dépassement</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Registre des risques §2.1 -->
+  <div class="card">
+    <div class="card-title">Registre des risques CRM (§2.1)</div>
+    <table class="kpi-table">
+      <thead><tr><th>Risque</th><th>Proba.</th><th>Impact</th><th>Criticité</th><th>Plan de mitigation</th></tr></thead>
+      <tbody id="crm-risks"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ VÉLOCITÉ ═══ -->
+<div class="view" id="view-velocite">
+  <div class="view-title">Vue Vélocité — DevOps & Équipe</div>
+  <div class="view-sub">6 développeurs + 1 lead developer · Mode bimodal : Agile (4 projets) / Waterfall (7 projets) — Pilier 2 §1.1</div>
+  <div class="stat-row">
+    <div class="sc"><div class="sc-ico">🚀</div><div><div class="sc-lbl">Déploiements (7j)</div><div class="sc-val">7</div><div class="sc-sub up">+5 vs sem. précédente</div></div></div>
+    <div class="sc"><div class="sc-ico">🔴</div><div><div class="sc-lbl">Taux échec builds</div><div class="sc-val">28%</div><div class="sc-sub dn">Pipeline CI/CD en config.</div></div></div>
+    <div class="sc"><div class="sc-ico">⏱</div><div><div class="sc-lbl">Lead Time</div><div class="sc-val">n/d</div><div class="sc-sub neu">Mesure disponible à J+30</div></div></div>
+    <div class="sc"><div class="sc-ico">👩‍💻</div><div><div class="sc-lbl">Charge / dev</div><div class="sc-val">~12 j/h</div><div class="sc-sub neu">3 semaines · 3 projets actifs</div></div></div>
+  </div>
+  <div class="g2" style="margin-bottom:16px">
+    <div class="card">
+      <div class="card-title">Déploiements hebdomadaires depuis le lancement (S14 = 1er avr.)</div>
+      <div style="height:200px"><canvas id="chartDeploy"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Burn-down — Refonte Web · Sprint 2 (15–28 avr. · 45 tickets)</div>
+      <div style="height:200px"><canvas id="chartBurndown"></canvas></div>
+    </div>
+  </div>
+  <div class="g2" style="margin-bottom:16px">
+    <div class="card">
+      <div class="card-title">Charge par développeur — j/h depuis le 1er avril</div>
+      <div style="height:200px"><canvas id="chartCharge"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Répartition charges totales planifiées (j/h) — 11 projets</div>
+      <div style="height:200px"><canvas id="chartCharges"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Satisfaction équipe -->
+  <div class="sec-lbl">Satisfaction équipe — questionnaires post-sprint & rétrospectives</div>
+  <div style="font-size:.72rem;color:var(--mut);margin-bottom:10px">Score : 1 à 5 · Source : questionnaire anonyme post-sprint (outil Rétro PMO) · Fréquence : à chaque fin de sprint / livraison</div>
+  <div id="sat-equipe-list"></div>
+</div>
+
+<!-- ═══ OPS & RISQUES ═══ -->
+<div class="view" id="view-ops">
+  <div class="view-title">Vue Ops & Risques</div>
+  <div class="view-sub">Infrastructure on-premise Rennes (Win Server 2016 / SQL Server 2016) · Migration Azure prévue août 2026</div>
+  <div class="stat-row" id="stats-ops"></div>
+  <div class="sec-lbl">Disponibilité serveurs — Siège Rennes (on-premise)</div>
+  <div class="g-auto" id="uptime-grid"></div>
+  <div class="g2" style="margin-top:16px">
+    <div class="card">
+      <div class="card-title">Radar risques / importance stratégique par projet (§1.3)</div>
+      <div style="height:260px"><canvas id="chartRadar"></canvas></div>
+    </div>
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px">
+        <div class="card-title" style="margin-bottom:0">Incidents actifs</div>
+        <button class="btn btn-primary btn-sm" onclick="openModal('incident')">+ Ajouter</button>
+      </div>
+      <div id="incident-list"></div>
+    </div>
+  </div>
+  <!-- KPIs PMO §3.2 -->
+  <div class="sec-lbl">Indicateurs de performance PMO (§3.2 — Amélioration continue)</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-bottom:18px">
+    <div class="pmo-kpi"><div><div class="pmo-lbl">% projets dans les délais</div><div class="pmo-target">Cible ≥ 80 %</div></div><div class="pmo-val up">n/d</div></div>
+    <div class="pmo-kpi"><div><div class="pmo-lbl">% projets dans le budget</div><div class="pmo-target">Cible ≥ 85 %</div></div><div class="pmo-val up">100 %</div></div>
+    <div class="pmo-kpi"><div><div class="pmo-lbl">Satisfaction recette</div><div class="pmo-target">Cible ≥ 80 %</div></div><div class="pmo-val neu">n/d</div></div>
+    <div class="pmo-kpi"><div><div class="pmo-lbl">% risques identifiés en amont</div><div class="pmo-target">Cible ≥ 70 %</div></div><div class="pmo-val up">100 %</div></div>
+    <div class="pmo-kpi"><div><div class="pmo-lbl">Délai moyen résolution P1</div><div class="pmo-target">Cible ≤ 5 j</div></div><div class="pmo-val am">3 j</div></div>
+    <div class="pmo-kpi"><div><div class="pmo-lbl">Taux réutilisation templates</div><div class="pmo-target">Cible ≥ 60 %</div></div><div class="pmo-val am">n/d</div></div>
+  </div>
+
+  <!-- Satisfaction client interne CDQ -->
+  <div class="sec-lbl">Satisfaction client interne — mesurée via axes Coût / Délai / Qualité / Fonctionnalités</div>
+  <div class="card" style="margin-bottom:6px">
+    <div style="font-size:.72rem;color:var(--mut);margin-bottom:10px">Scoring : 0–100 % par axe · Source : chef de projet + MOA · Fréquence : post-sprint / fin de phase</div>
+    <table class="kpi-table">
+      <thead><tr><th>Projet</th><th title="Respect du budget consommé">Coût</th><th title="Respect du planning">Délai</th><th title="Couverture tests + anomalies">Qualité</th><th title="Fonctionnalités livrées vs attendues">Fonctionnalités</th><th>Score global</th><th>Commentaire</th></tr></thead>
+      <tbody id="sat-client-tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ ESN ═══ -->
+<div class="view" id="view-esn">
+  <div class="view-title">Vue Relationnelle — ESN & Prestataires</div>
+  <div class="view-sub">Stratégie Faire/Faire Faire — Contrats au forfait privilégiés (Pilier 3 §1.1)</div>
+  <div class="stat-row" id="stats-esn"></div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">Derniers contacts par ESN / équipe interne</div>
+      <div id="esn-list"></div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:14px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px">
+          <div class="card-title" style="margin-bottom:0">Points bloquants ouverts</div>
+          <button class="btn btn-primary btn-sm" onclick="openModal('blocking')">+ Ajouter</button>
+        </div>
+        <div id="block-list"></div>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px">
+          <div class="card-title" style="margin-bottom:0">Patch Notes & Livrables</div>
+          <button class="btn btn-primary btn-sm" onclick="openModal('patch')">+ Ajouter</button>
+        </div>
+        <div id="patch-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── MODALS ── -->
+<div class="modal-overlay" id="modal-projet"><div class="modal">
+  <h3 id="modal-proj-title">Modifier le projet</h3>
+  <input type="hidden" id="edit-proj-id"/>
+  <label>Avancement (%)</label><input type="number" id="edit-av" min="0" max="100"/>
+  <label>Consommé (K€)</label><input type="number" id="edit-conso" min="0"/>
+  <label>RAG d'exécution</label>
+  <select id="edit-exec-rag">
+    <option value="vert">● Vert — Sur la bonne trajectoire</option>
+    <option value="ambre">● Ambre — Point de vigilance</option>
+    <option value="rouge">● Rouge — Situation critique</option>
+    <option value="planifie">○ Planifié — Pas encore démarré</option>
+  </select>
+  <label>Statut</label>
+  <select id="edit-statut">
+    <option>En cours</option><option>Planifié</option><option>Terminé</option><option>En pause</option>
+  </select>
+  <label>Chef de projet</label><input type="text" id="edit-chef"/>
+  <label>ESN / Prestataire</label><input type="text" id="edit-esn"/>
+  <div class="modal-foot">
+    <button class="btn btn-ghost" onclick="closeModal('projet')">Annuler</button>
+    <button class="btn btn-primary" onclick="saveProject()">Enregistrer</button>
+  </div>
+</div></div>
+
+<div class="modal-overlay" id="modal-incident"><div class="modal">
+  <h3>Nouvel incident</h3>
+  <label>Priorité</label><select id="inc-prio"><option>P1</option><option>P2</option><option>P3</option></select>
+  <label>Titre</label><textarea id="inc-titre"></textarea>
+  <label>Projet concerné</label><input type="text" id="inc-proj"/>
+  <label>Ancienneté (heures)</label><input type="number" id="inc-age" value="0"/>
+  <div class="modal-foot">
+    <button class="btn btn-ghost" onclick="closeModal('incident')">Annuler</button>
+    <button class="btn btn-primary" onclick="saveIncident()">Créer</button>
+  </div>
+</div></div>
+
+<div class="modal-overlay" id="modal-blocking"><div class="modal">
+  <h3>Nouveau point bloquant</h3>
+  <label>Description</label><textarea id="bl-titre"></textarea>
+  <label>Projet</label><input type="text" id="bl-proj"/>
+  <label>Ancienneté (jours)</label><input type="number" id="bl-jours" value="0"/>
+  <label>Responsable</label><input type="text" id="bl-resp"/>
+  <div class="modal-foot">
+    <button class="btn btn-ghost" onclick="closeModal('blocking')">Annuler</button>
+    <button class="btn btn-primary" onclick="saveBlocking()">Créer</button>
+  </div>
+</div></div>
+
+<div class="modal-overlay" id="modal-patch"><div class="modal">
+  <h3>Nouveau livrable / patch note</h3>
+  <label>Titre</label><textarea id="pt-titre"></textarea>
+  <label>ESN / Équipe</label><input type="text" id="pt-esn"/>
+  <label>Date de livraison</label><input type="date" id="pt-date"/>
+  <div class="modal-foot">
+    <button class="btn btn-ghost" onclick="closeModal('patch')">Annuler</button>
+    <button class="btn btn-primary" onclick="savePatch()">Créer</button>
+  </div>
+</div></div>
+
+<script>
+// ── STATE ─────────────────────────────────────────────────────
+let PROJECTS=[], INCIDENTS=[], SERVERS=[], ESN=[], BLOCKING=[], PATCHES=[], STATS={}, CRM={};
+let charts={};
+
+async function boot() {
+  await Promise.all([loadProjects(),loadIncidents(),loadServers(),loadEsn(),loadBlocking(),loadPatches(),loadStats(),loadCrm()]);
+  tabBuilt['portefeuille']=true;
+}
+
+const api = (url,opts={}) => fetch(url,{headers:{'Content-Type':'application/json'},...opts}).then(r=>r.json());
+
+async function loadProjects()  { PROJECTS  = await api('/api/projects');  renderProjects(); renderChartPrio(); renderChartBudget(); renderChartBudgetProj(); renderBudgetTable(); }
+async function loadIncidents() { INCIDENTS = await api('/api/incidents'); renderIncidents(); }
+async function loadServers()   { SERVERS   = await api('/api/servers');   renderServers(); }
+async function loadEsn()       { ESN       = await api('/api/esn');       renderEsn(); }
+async function loadBlocking()  { BLOCKING  = await api('/api/blocking');  renderBlocking(); }
+async function loadPatches()   { PATCHES   = await api('/api/patches');   renderPatches(); }
+async function loadStats()     { STATS     = await api('/api/stats');     renderStatsAll(); }
+async function loadCrm()       { CRM       = await api('/api/crm');       renderCrm(); }
+
+const tabBuilt = {};
+function nav(id, btn) {
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('view-'+id).classList.add('active');
+  btn.classList.add('active');
+  if (!tabBuilt[id]) { tabBuilt[id]=true; buildTabCharts(id); }
+}
+function buildTabCharts(id) {
+  if (id==='velocite') buildVelocite();
+  if (id==='ops')      buildRadar();
+}
+
+// ── HELPERS ───────────────────────────────────────────────────
+function rc(r){ return 'rag-'+(r||'planifie'); }
+function rl(r){ return {vert:'● Vert',ambre:'● Ambre',rouge:'● Rouge',planifie:'○ Planifié'}[r]||'—'; }
+function pc(r){ return {vert:'pb-vert',ambre:'pb-ambre',rouge:'pb-rouge',planifie:'pb-bleu'}[r]||'pb-bleu'; }
+function sc(r){ return {vert:'var(--green)',ambre:'var(--ambre)',rouge:'var(--rouge)',planifie:'var(--bleu)'}[r]||'var(--mut)'; }
+function fmtAge(h){ return h<24 ? h+'h' : Math.floor(h/24)+'j'+(h%24?h%24+'h':''); }
+function prioColor(s){ return s>=3.5?'var(--green)':s>=2.75?'var(--ambre)':'var(--rouge)'; }
+function wbsCell(p) {
+  const tot = p.taches_total||0, done = p.taches_faites||0;
+  if (!tot) return `<span style="font-size:.68rem;color:var(--mut)">—</span>`;
+  const pct = Math.round(done/tot*100);
+  const col = pct>=80?'pb-vert':pct>=40?'pb-ambre':'pb-rouge';
+  return `<div style="display:flex;flex-direction:column;gap:2px">
+    <div style="display:flex;align-items:center;gap:5px">
+      <div class="pb-wrap" style="width:52px"><div class="pb ${col}" style="width:${pct}%"></div></div>
+      <span style="font-size:.7rem;color:var(--mut)">${pct}%</span>
+    </div>
+    <span style="font-size:.64rem;color:var(--mut)">${done}/${tot} tâches</span>
+  </div>`;
+}
+
+// ── STATS ─────────────────────────────────────────────────────
+function renderStatsAll() {
+  const wbsTot  = PROJECTS.reduce((s,p)=>s+(p.taches_total||0),0);
+  const wbsDone = PROJECTS.reduce((s,p)=>s+(p.taches_faites||0),0);
+  const wbsPct  = wbsTot ? Math.round(wbsDone/wbsTot*100) : 0;
+  document.getElementById('stats-port').innerHTML = `
+    <div class="sc"><div class="sc-ico">💰</div><div><div class="sc-lbl">Budget engagé</div><div class="sc-val">${STATS.totalConso} K€</div><div class="sc-sub neu">sur ${STATS.totalBudget} K€ (${Math.round(STATS.totalConso/STATS.totalBudget*100)}%)</div></div></div>
+    <div class="sc"><div class="sc-ico">🚀</div><div><div class="sc-lbl">Projets actifs</div><div class="sc-val">${STATS.actifs}/11</div><div class="sc-sub neu">Office 365 · Refonte Web · CI/CD</div></div></div>
+    <div class="sc"><div class="sc-ico">✅</div><div><div class="sc-lbl">Avancement WBS global</div><div class="sc-val">${wbsPct}%</div><div class="sc-sub neu">${wbsDone}/${wbsTot} tâches réalisées</div></div></div>
+    <div class="sc"><div class="sc-ico">⚠️</div><div><div class="sc-lbl">Alertes exécution</div><div class="sc-val">${STATS.alertesExec}</div><div class="sc-sub dn">Ambre ou Rouge</div></div></div>
+    <div class="sc"><div class="sc-ico">🔴</div><div><div class="sc-lbl">Priorité Rouge</div><div class="sc-val">${STATS.projetsPrioRouge}</div><div class="sc-sub dn">Migration Azure (2,55)</div></div></div>`;
+
+  document.getElementById('stats-ops').innerHTML = `
+    <div class="sc"><div class="sc-ico">🟢</div><div><div class="sc-lbl">Uptime moyen</div><div class="sc-val">${STATS.uptimeMoy}%</div><div class="sc-sub up">9 serveurs on-premise</div></div></div>
+    <div class="sc"><div class="sc-ico">🔥</div><div><div class="sc-lbl">Incidents P1</div><div class="sc-val">${STATS.p1Open}</div><div class="sc-sub dn">Ouverts — délai résolution cible ≤5j</div></div></div>
+    <div class="sc"><div class="sc-ico">🛡</div><div><div class="sc-lbl">Migration Azure risque</div><div class="sc-val">1/5</div><div class="sc-sub dn">ESN Azure spécialisée impérative</div></div></div>
+    <div class="sc"><div class="sc-ico">🚧</div><div><div class="sc-lbl">Points bloquants</div><div class="sc-val">${STATS.blocksOpen}</div><div class="sc-sub am">Ouverts ou en cours</div></div></div>`;
+
+  document.getElementById('stats-esn').innerHTML = `
+    <div class="sc"><div class="sc-ico">🤝</div><div><div class="sc-lbl">ESN mobilisées</div><div class="sc-val">4</div><div class="sc-sub neu">Econocom · Sopra · Capgemini · CGI</div></div></div>
+    <div class="sc"><div class="sc-ico">🚧</div><div><div class="sc-lbl">Points bloquants</div><div class="sc-val">${STATS.blocksOpen}</div><div class="sc-sub dn">dont 1 bloque sprint Refonte Web</div></div></div>
+    <div class="sc"><div class="sc-ico">📋</div><div><div class="sc-lbl">CR reçus (avril)</div><div class="sc-val">3</div><div class="sc-sub up">Kick-off O365 · Lancement Sopra</div></div></div>
+    <div class="sc"><div class="sc-ico">📨</div><div><div class="sc-lbl">RFP en attente</div><div class="sc-val">1</div><div class="sc-sub dn">CGI — réponse CRM due 30 avr.</div></div></div>`;
+}
+
+// ── PROJECTS TABLE ─────────────────────────────────────────────
+function renderProjects() {
+  document.getElementById('proj-tbody').innerHTML = PROJECTS.map(p => {
+    const modeHtml = p.mode==='Agile'
+      ? `<span class="mode-agile">Agile</span>`
+      : `<span class="mode-wf">Waterfall</span>`;
+    const advBar = p.avancement>0
+      ? `<div style="display:flex;align-items:center;gap:6px"><div class="pb-wrap" style="width:55px"><div class="pb ${pc(p.exec_rag)}" style="width:${p.avancement}%"></div></div><span style="font-size:.72rem;color:var(--mut)">${p.avancement}%</span></div>`
+      : `<span style="font-size:.68rem;color:var(--mut)">—</span>`;
+    const deps = (p.dependances||[]).map(d=>`<span class="dep-tag">${d}</span>`).join('')||'';
+    return `<tr>
+      <td><div class="pname">${p.name}</div><div class="pdesc">${p.desc||''}</div>${deps?`<div style="margin-top:3px">${deps}</div>`:''}</td>
+      <td>${modeHtml}</td>
+      <td style="font-size:.77rem;white-space:nowrap">${p.debut}</td>
+      <td style="font-size:.77rem">${p.duree_mois} mois</td>
+      <td style="font-weight:600;font-size:.79rem">${p.budget_k} K€</td>
+      <td style="text-align:center;font-weight:700;color:${prioColor(p.strat/5*3.5+1.5)}">${p.strat}/5</td>
+      <td style="text-align:center;font-weight:700;color:${prioColor(p.rent/5*3.5+1.5)}">${p.rent}/5</td>
+      <td style="text-align:center;font-weight:700;color:${prioColor(p.risque/5*3.5+1.5)}">${p.risque}/5</td>
+      <td style="text-align:center;font-weight:700">${p.dep}/5</td>
+      <td style="text-align:center;font-weight:700">${p.regl}/5</td>
+      <td><div style="font-weight:800;font-size:.9rem;color:${prioColor(p.prio_score)}">${p.prio_score.toFixed(2)}</div></td>
+      <td><span class="rag ${rc(p.prio_rag)}">${rl(p.prio_rag)}</span></td>
+      <td>${wbsCell(p)}</td>
+      <td>${p.avancement>0 ? advBar : `<span class="rag ${rc(p.exec_rag)}">${rl(p.exec_rag)}</span>`}</td>
+      <td style="font-size:.73rem;color:var(--mut)">${p.chef}</td>
+      <td><button class="edit-btn" onclick="openEditProject(${p.id})">✏</button></td>
+    </tr>`;
+  }).join('');
+}
+
+// ── CRM ───────────────────────────────────────────────────────
+function renderCrm() {
+  if (!CRM.jalons) return;
+  const statusColor = {'À venir':'planifie','En cours':'ambre','Terminé':'vert','Retard':'rouge'};
+  document.getElementById('jalons-list').innerHTML = CRM.jalons.map(j=>`
+    <div class="jalon-item">
+      <div class="jalon-id">${j.id}</div>
+      <div class="jalon-desc">${j.desc}</div>
+      <div><div class="jalon-date">${j.date_cible}</div><span class="rag rag-${statusColor[j.statut]||'planifie'}">${j.statut}</span></div>
+    </div>`).join('');
+
+  document.getElementById('crm-vigilance').innerHTML = (CRM.points_vigilance||[]).map(v=>`<div style="font-size:.74rem;color:var(--mut);padding:2px 0">• ${v}</div>`).join('');
+  document.getElementById('crm-decisions').innerHTML = (CRM.decisions_copil||[]).map(d=>`<div style="font-size:.74rem;color:var(--ambre);padding:2px 0">→ ${d}</div>`).join('');
+
+  const rcMap = {Critique:'rc-critique',Majeur:'rc-majeur',Mineur:'rc-mineur'};
+  document.getElementById('crm-risks').innerHTML = (CRM.risques||[]).map((r,i)=>`
+    <tr ${i%2?'style="background:rgba(59,111,255,.04)"':''}>
+      <td style="font-weight:600">${r.risque}</td>
+      <td>${r.proba}</td><td>${r.impact}</td>
+      <td><span class="risk-badge ${rcMap[r.criticite]||'rc-mineur'}">${r.criticite}</span></td>
+      <td style="font-size:.73rem;color:var(--mut)">${r.mitigation}</td>
+    </tr>`).join('');
+  renderSatisfactionClient();
+  renderSatisfactionEquipe();
+}
+
+// ── SATISFACTION CLIENT ───────────────────────────────────────
+function renderSatisfactionClient() {
+  const tbody = document.getElementById('sat-client-tbody');
+  if (!tbody || !CRM.satisfaction_client) return;
+  const scoreBar = (v) => {
+    const col = v>=80?'pb-vert':v>=60?'pb-ambre':'pb-rouge';
+    const tc  = v>=80?'var(--green)':v>=60?'var(--ambre)':'var(--rouge)';
+    return `<div style="display:flex;align-items:center;gap:5px">
+      <div class="pb-wrap" style="width:44px"><div class="pb ${col}" style="width:${v}%"></div></div>
+      <span style="font-size:.75rem;font-weight:600;color:${tc}">${v}%</span>
+    </div>`;
+  };
+  tbody.innerHTML = CRM.satisfaction_client.map((s,i) => {
+    const global = Math.round((s.cout+s.delai+s.qualite+s.fonctionnalites)/4);
+    const gc = global>=80?'var(--green)':global>=60?'var(--ambre)':'var(--rouge)';
+    return `<tr ${i%2?'style="background:rgba(59,111,255,.04)"':''}>
+      <td style="font-weight:600">${s.projet}</td>
+      <td>${scoreBar(s.cout)}</td>
+      <td>${scoreBar(s.delai)}</td>
+      <td>${scoreBar(s.qualite)}</td>
+      <td>${scoreBar(s.fonctionnalites)}</td>
+      <td><span style="font-size:1rem;font-weight:800;color:${gc}">${global}%</span></td>
+      <td style="font-size:.72rem;color:var(--mut)">${s.commentaire}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ── SATISFACTION ÉQUIPE ───────────────────────────────────────
+function renderSatisfactionEquipe() {
+  const el = document.getElementById('sat-equipe-list');
+  if (!el || !CRM.satisfaction_equipe) return;
+  const stars = (s) => {
+    const full = Math.floor(s), half = (s-full)>=0.5;
+    let h='';
+    for(let i=0;i<5;i++) h+=`<span style="color:${i<full?'var(--ambre)':'var(--bd)'}">★</span>`;
+    return `<span style="font-size:.85rem">${h}</span> <span style="font-size:.78rem;font-weight:700;color:var(--ambre)">${s.toFixed(1)}/5</span>`;
+  };
+  el.innerHTML = CRM.satisfaction_equipe.map(r => `
+    <div class="card" style="margin-bottom:10px">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px">
+        <div>
+          <div style="font-weight:700;font-size:.86rem">${r.sprint}</div>
+          <div style="font-size:.7rem;color:var(--mut);margin-top:2px">${r.date} · ${r.participants} participant(s)</div>
+        </div>
+        <div style="text-align:right">${stars(r.score)}</div>
+      </div>
+      <div class="g2" style="gap:10px">
+        <div>
+          <div style="font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:var(--green);margin-bottom:5px;font-weight:600">Points positifs</div>
+          ${r.points_positifs.map(p=>`<div style="font-size:.74rem;color:var(--mut);padding:2px 0">✓ ${p}</div>`).join('')}
+        </div>
+        <div>
+          <div style="font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:var(--ambre);margin-bottom:5px;font-weight:600">Axes d'amélioration</div>
+          ${r.points_amelioration.map(p=>`<div style="font-size:.74rem;color:var(--mut);padding:2px 0">△ ${p}</div>`).join('')}
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+// ── SERVERS ───────────────────────────────────────────────────
+function renderServers() {
+  document.getElementById('uptime-grid').innerHTML = SERVERS.map(s=>`
+    <div class="utc">
+      <div><div class="utc-name">${s.name}</div><div class="utc-env">${s.env}</div></div>
+      <div class="utc-pct" style="color:${sc(s.rag)}">${s.uptime}%</div>
+    </div>`).join('');
+}
+
+// ── INCIDENTS ─────────────────────────────────────────────────
+function renderIncidents() {
+  const open = INCIDENTS.filter(i=>i.statut!=='Résolu');
+  const list = document.getElementById('incident-list');
+  if (!open.length){ list.innerHTML=`<p style="color:var(--mut);font-size:.79rem;text-align:center;padding:10px">Aucun incident actif 🎉</p>`; return; }
+  const C = {P1:['item-p1','rgba(239,68,68,.2)','#ef4444'],P2:['item-p2','rgba(245,158,11,.2)','#f59e0b'],P3:['item-p3','rgba(59,111,255,.2)','#3b6fff']};
+  list.innerHTML = open.map(i=>{
+    const [cls,bc,tc]=C[i.priorite]||C.P3;
+    return `<div class="item ${cls}">
+      <span class="badge-p" style="background:${bc};color:${tc}">${i.priorite}</span>
+      <div class="item-body">
+        <div class="item-title">${i.titre}</div>
+        <div class="item-meta">${i.projet} · ${fmtAge(i.age_heures)} · ${i.statut}
+          <button class="edit-btn btn-sm" style="margin-left:6px" onclick="cycleInc(${i.id})">→ ${i.statut==='Ouvert'?'En cours':'Résolu'}</button>
+          <button class="edit-btn btn-sm" style="margin-left:3px;color:var(--rouge)" onclick="delInc(${i.id})">✕</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+async function cycleInc(id){ const i=INCIDENTS.find(x=>x.id===id); await api(`/api/incidents/${id}`,{method:'PATCH',body:JSON.stringify({statut:i.statut==='Ouvert'?'En cours':'Résolu'})}); await loadIncidents(); await loadStats(); }
+async function delInc(id){ await api(`/api/incidents/${id}`,{method:'DELETE'}); await loadIncidents(); await loadStats(); }
+
+// ── ESN ───────────────────────────────────────────────────────
+function renderEsn() {
+  document.getElementById('esn-list').innerHTML = ESN.map(e=>{
+    const cls=e.jours_depuis_contact<=7?'db-ok':e.jours_depuis_contact<=21?'db-warn':'db-alert';
+    return `<div class="esn-card">
+      <div><div class="esn-name">${e.name}</div><div class="esn-proj">${e.projets}</div><div class="esn-cr">${e.dernier_cr}${e.note?` · Note ${e.note}/5`:' · Note à venir'}</div></div>
+      <div><span class="db ${cls}">Il y a ${e.jours_depuis_contact}j</span></div>
+    </div>`;
+  }).join('');
+}
+
+// ── BLOCKING ──────────────────────────────────────────────────
+function renderBlocking() {
+  const list = document.getElementById('block-list');
+  if (!BLOCKING.length){ list.innerHTML=`<p style="color:var(--mut);font-size:.79rem;text-align:center;padding:10px">Aucun blocage 🎉</p>`; return; }
+  list.innerHTML = BLOCKING.map(b=>{
+    const c=b.jours>10?'var(--rouge)':'var(--ambre)';
+    return `<div class="item item-block" style="border-left-color:${c}">
+      <div class="item-title">${b.titre}</div>
+      <div class="item-meta">📁 ${b.projet} · 👤 ${b.responsable} · <span style="color:${c}">⏱ ${b.jours}j</span>
+        <button class="edit-btn btn-sm" style="margin-left:6px" onclick="resolveBlock(${b.id})">✓ Lever</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+async function resolveBlock(id){ await api(`/api/blocking/${id}`,{method:'PATCH',body:JSON.stringify({statut:'Levé'})}); await loadBlocking(); await loadStats(); }
+
+// ── PATCHES ───────────────────────────────────────────────────
+function renderPatches() {
+  document.getElementById('patch-list').innerHTML = PATCHES.map(p=>`
+    <div class="patch-item">
+      <div><div class="patch-t">${p.titre}</div><div class="patch-m">${p.esn}</div></div>
+      <div class="patch-d">${p.date_livraison}</div>
+    </div>`).join('');
+}
+
+// ── CHARTS ────────────────────────────────────────────────────
+const CT={tick:'#8892b0',grid:'rgba(46,51,80,.6)'};
+function so(){ return {x:{ticks:{color:CT.tick,font:{size:10}},grid:{color:CT.grid}},y:{ticks:{color:CT.tick,font:{size:10}},grid:{color:CT.grid}}}; }
+const LEG = { labels:{color:'#8892b0',font:{size:10}} };
+
+function renderChartPrio() {
+  const sorted=[...PROJECTS].sort((a,b)=>b.prio_score-a.prio_score);
+  const cols=sorted.map(p=>p.prio_score>=3.5?'rgba(34,197,94,.75)':p.prio_score>=2.75?'rgba(245,158,11,.75)':'rgba(239,68,68,.75)');
+  if(charts.prio) charts.prio.destroy();
+  charts.prio=new Chart(document.getElementById('chartPrio'),{
+    type:'bar',
+    data:{labels:sorted.map(p=>p.name.length>14?p.name.slice(0,14)+'…':p.name),datasets:[{label:'Score /5',data:sorted.map(p=>p.prio_score),backgroundColor:cols,borderRadius:4}]},
+    options:{maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{...so().x,max:5},y:{ticks:{color:CT.tick,font:{size:9}},grid:{color:CT.grid}}}}
+  });
+}
+
+function renderChartBudget() {
+  if(charts.budget) charts.budget.destroy();
+  charts.budget=new Chart(document.getElementById('chartBudget'),{
+    type:'bar',
+    data:{
+      labels:['Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'],
+      datasets:[
+        {label:'Prévisionnel (K€)',data:[56,95,155,195,215,180,220,190,145],backgroundColor:'rgba(59,111,255,.3)',borderRadius:4},
+        {label:'Réel (K€)',data:[STATS.totalConso||59,null,null,null,null,null,null,null,null],backgroundColor:'rgba(34,197,94,.7)',borderRadius:4},
+      ]
+    },
+    options:{maintainAspectRatio:false,plugins:{legend:LEG},scales:so()}
+  });
+}
+
+function renderChartBudgetProj() {
+  const actifs = PROJECTS.filter(p => p.consomme_k > 0);
+  if(charts.budgetProj) charts.budgetProj.destroy();
+  charts.budgetProj = new Chart(document.getElementById('chartBudgetProj'), {
+    type: 'bar',
+    data: {
+      labels: actifs.map(p => p.name.length>14 ? p.name.slice(0,14)+'…' : p.name),
+      datasets: [
+        { label:'Budget prévu (K€)', data: actifs.map(p=>p.budget_k),   backgroundColor:'rgba(59,111,255,.35)', borderRadius:4 },
+        { label:'Consommé (K€)',     data: actifs.map(p=>p.consomme_k), backgroundColor:'rgba(34,197,94,.75)',  borderRadius:4 },
+      ]
+    },
+    options: { maintainAspectRatio:false, plugins:{legend:LEG}, scales:so() }
+  });
+}
+
+function renderBudgetTable() {
+  const tot_bud = PROJECTS.reduce((s,p)=>s+p.budget_k,0);
+  const tot_conso = PROJECTS.reduce((s,p)=>s+p.consomme_k,0);
+  document.getElementById('budget-tbody').innerHTML = PROJECTS.map((p,i) => {
+    const restant = p.budget_k - p.consomme_k;
+    const taux = p.consomme_k > 0 ? Math.round(p.consomme_k/p.budget_k*100) : 0;
+    const alert = taux > 90 ? 'rouge' : taux > 60 ? 'ambre' : 'vert';
+    const modeHtml = p.mode==='Agile' ? `<span class="mode-agile">Agile</span>` : `<span class="mode-wf">Waterfall</span>`;
+    return `<tr ${i%2?'style="background:rgba(59,111,255,.03)"':''}>
+      <td><span class="pname">${p.name}</span></td>
+      <td>${modeHtml}</td>
+      <td><span class="rag rag-${p.exec_rag}">${rl(p.exec_rag)}</span></td>
+      <td style="font-weight:600;text-align:right">${p.budget_k} K€</td>
+      <td style="font-weight:600;text-align:right;color:${p.consomme_k>0?'var(--txt)':'var(--mut)'}">${p.consomme_k > 0 ? p.consomme_k+' K€' : '—'}</td>
+      <td style="text-align:right;color:${restant<0?'var(--rouge)':'var(--mut)'}">${p.consomme_k>0 ? restant+' K€' : '—'}</td>
+      <td style="min-width:120px">${p.consomme_k > 0 ? `
+        <div style="display:flex;align-items:center;gap:6px">
+          <div class="pb-wrap" style="width:80px"><div class="pb pb-${alert}" style="width:${Math.min(taux,100)}%"></div></div>
+          <span style="font-size:.73rem;color:var(--mut)">${taux}%</span>
+        </div>` : `<span style="font-size:.72rem;color:var(--mut)">Non démarré</span>`}
+      </td>
+      <td>${p.consomme_k > 0 ? `<span class="rag rag-${alert}" style="font-size:.68rem">${taux}%</span>` : '—'}</td>
+    </tr>`;
+  }).join('');
+
+  const tauxGlobal = Math.round(tot_conso/tot_bud*100);
+  document.getElementById('budget-tfoot').innerHTML = `
+    <tr style="border-top:2px solid var(--bd);font-weight:700">
+      <td colspan="3" style="padding:8px 9px;color:var(--mut);font-size:.78rem">TOTAL portefeuille</td>
+      <td style="padding:8px 9px;text-align:right">${tot_bud} K€</td>
+      <td style="padding:8px 9px;text-align:right;color:var(--green)">${tot_conso} K€</td>
+      <td style="padding:8px 9px;text-align:right;color:var(--mut)">${tot_bud-tot_conso} K€</td>
+      <td style="padding:8px 9px">
+        <div style="display:flex;align-items:center;gap:6px">
+          <div class="pb-wrap" style="width:80px"><div class="pb pb-vert" style="width:${tauxGlobal}%"></div></div>
+          <span style="font-size:.73rem;color:var(--mut)">${tauxGlobal}%</span>
+        </div>
+      </td>
+      <td style="padding:8px 9px"><span class="rag rag-vert">${tauxGlobal}%</span></td>
+    </tr>`;
+}
+
+function buildVelocite() {
+  if(charts.deploy) return;
+  charts.deploy=new Chart(document.getElementById('chartDeploy'),{
+    type:'bar',
+    data:{labels:['S14 (1–7 avr)','S15 (8–14 avr)','S16 (15–20 avr)'],datasets:[
+      {label:'Réussis',data:[2,5,7],backgroundColor:'rgba(59,111,255,.75)',borderRadius:5},
+      {label:'Échoués',data:[3,4,4],backgroundColor:'rgba(239,68,68,.5)',borderRadius:5},
+    ]},
+    options:{maintainAspectRatio:false,plugins:{legend:LEG},scales:so()}
+  });
+  charts.burndown=new Chart(document.getElementById('chartBurndown'),{
+    type:'line',
+    data:{labels:['J1','J2','J3','J4','J5(auj)','J6','J7','J8','J9','J10'],datasets:[
+      {label:'Idéal',data:[45,40,35,30,25,20,15,10,5,0],borderColor:'rgba(139,92,246,.5)',borderDash:[5,3],fill:false,tension:0,pointRadius:2},
+      {label:'Réel', data:[45,44,41,38,35,null,null,null,null,null],borderColor:'#3b6fff',backgroundColor:'rgba(59,111,255,.07)',fill:true,tension:.3,pointRadius:3,spanGaps:false},
+    ]},
+    options:{maintainAspectRatio:false,plugins:{legend:LEG},scales:so()}
+  });
+  charts.charge=new Chart(document.getElementById('chartCharge'),{
+    type:'bar',
+    data:{
+      labels:['K. Rousseau (lead)','A. Bernard','L. Durand','M. Martin','T. Simon','J. Garcia','P. Lefèvre'],
+      datasets:[{label:'j/h consommés',data:[15,12,11,13,10,11,12],backgroundColor:['rgba(139,92,246,.8)',...Array(6).fill('rgba(59,111,255,.75)')],borderRadius:5}]
+    },
+    options:{maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:so().x,y:{ticks:{color:CT.tick,font:{size:9}},grid:{color:CT.grid}}}}
+  });
+  charts.chargesTotal=new Chart(document.getElementById('chartCharges'),{
+    type:'doughnut',
+    data:{
+      labels:PROJECTS.map(p=>p.name.length>14?p.name.slice(0,14)+'…':p.name),
+      datasets:[{data:PROJECTS.map(p=>p.charges_jh),backgroundColor:['#3b6fff','#7c3aed','#22c55e','#f59e0b','#ef4444','#06b6d4','#8b5cf6','#f97316','#84cc16','#ec4899','#14b8a6'],borderColor:'#0f1117',borderWidth:2}]
+    },
+    options:{maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{color:'#8892b0',font:{size:8},boxWidth:9}}}}
+  });
+}
+
+function buildRadar() {
+  if(charts.radar) return;
+  charts.radar=new Chart(document.getElementById('chartRadar'),{
+    type:'radar',
+    data:{
+      labels:PROJECTS.map(p=>p.name.length>12?p.name.slice(0,12)+'…':p.name),
+      datasets:[
+        {label:'Maîtrise risques',data:PROJECTS.map(p=>p.risque),borderColor:'#3b6fff',backgroundColor:'rgba(59,111,255,.1)',pointBackgroundColor:'#3b6fff',pointRadius:3},
+        {label:'Importance strat.',data:PROJECTS.map(p=>p.strat),borderColor:'#f59e0b',backgroundColor:'rgba(245,158,11,.07)',pointBackgroundColor:'#f59e0b',pointRadius:3},
+      ]
+    },
+    options:{maintainAspectRatio:false,plugins:{legend:LEG},scales:{r:{min:0,max:5,ticks:{color:CT.tick,font:{size:8},backdropColor:'transparent'},grid:{color:CT.grid},pointLabels:{color:CT.tick,font:{size:8}}}}}
+  });
+}
+
+// ── MODALS ────────────────────────────────────────────────────
+function openModal(t){ if(t==='patch') document.getElementById('pt-date').value=new Date().toISOString().slice(0,10); document.getElementById('modal-'+t).classList.add('open'); }
+function closeModal(t){ document.getElementById('modal-'+t).classList.remove('open'); }
+
+function openEditProject(id) {
+  const p=PROJECTS.find(x=>x.id===id); if(!p) return;
+  document.getElementById('modal-proj-title').textContent=`Modifier — ${p.name}`;
+  document.getElementById('edit-proj-id').value=p.id;
+  document.getElementById('edit-av').value=p.avancement;
+  document.getElementById('edit-conso').value=p.consomme_k;
+  document.getElementById('edit-exec-rag').value=p.exec_rag;
+  document.getElementById('edit-statut').value=p.statut;
+  document.getElementById('edit-chef').value=p.chef||'';
+  document.getElementById('edit-esn').value=p.esn||'';
+  document.getElementById('modal-projet').classList.add('open');
+}
+async function saveProject(){
+  const id=document.getElementById('edit-proj-id').value;
+  await api(`/api/projects/${id}`,{method:'PATCH',body:JSON.stringify({
+    avancement:+document.getElementById('edit-av').value,
+    consomme_k:+document.getElementById('edit-conso').value,
+    exec_rag:document.getElementById('edit-exec-rag').value,
+    statut:document.getElementById('edit-statut').value,
+    chef:document.getElementById('edit-chef').value,
+    esn:document.getElementById('edit-esn').value,
+  })});
+  closeModal('projet'); await loadProjects(); await loadStats();
+}
+
+async function saveIncident(){
+  await api('/api/incidents',{method:'POST',body:JSON.stringify({
+    priorite:document.getElementById('inc-prio').value,
+    titre:document.getElementById('inc-titre').value,
+    projet:document.getElementById('inc-proj').value,
+    age_heures:+document.getElementById('inc-age').value||0,
+  })});
+  closeModal('incident');
+  ['inc-titre','inc-proj'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('inc-age').value='0';
+  await loadIncidents(); await loadStats();
+}
+
+async function saveBlocking(){
+  await api('/api/blocking',{method:'POST',body:JSON.stringify({
+    titre:document.getElementById('bl-titre').value,
+    projet:document.getElementById('bl-proj').value,
+    jours:+document.getElementById('bl-jours').value||0,
+    responsable:document.getElementById('bl-resp').value,
+  })});
+  closeModal('blocking');
+  ['bl-titre','bl-proj','bl-resp'].forEach(id=>document.getElementById(id).value='');
+  await loadBlocking(); await loadStats();
+}
+
+async function savePatch(){
+  await api('/api/patches',{method:'POST',body:JSON.stringify({
+    titre:document.getElementById('pt-titre').value,
+    esn:document.getElementById('pt-esn').value,
+    date_livraison:document.getElementById('pt-date').value,
+  })});
+  closeModal('patch');
+  ['pt-titre','pt-esn'].forEach(id=>document.getElementById(id).value='');
+  await loadPatches();
+}
+
+document.querySelectorAll('.modal-overlay').forEach(el=>el.addEventListener('click',e=>{ if(e.target===el) el.classList.remove('open'); }));
+
+boot();
+</script>
+</body>
+</html>

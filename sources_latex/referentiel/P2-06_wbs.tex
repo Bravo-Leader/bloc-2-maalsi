@@ -1,0 +1,94 @@
+% ============================================================
+%  WBS (Work Breakdown Structure) — Phase 2 : Planification
+%  Time'Eats — Cellule PMO
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../style/consulting}
+\usepackage{pdflscape}
+\hypersetup{pdftitle={WBS — Time'Eats PMO}}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\begin{tikzpicture}[remember picture,overlay]
+  \draw[cnNavy,line width=0.5pt](0,0)--(\textwidth,0);
+\end{tikzpicture}\vspace{2pt}\timeeatslogo\hspace{4pt}\small\textcolor{cnSlate}{Time'Eats \textbf{·} WBS — \textit{[Nom projet]}}}
+\fancyhead[R]{\small\textcolor{cnSlate}{\thepage}}
+\fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel — Cellule PMO — CESI MAALSI 2026}}
+\begin{document}\small
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Work Breakdown Structure (WBS)}\\[4pt]
+\textcolor{cnOrange}{\rule{10cm}{1pt}}\\[4pt]
+{\large\color{cnSlate} Phase 2 — Planification \quad|\quad Projet : \textit{[Nom du projet]}}
+\end{center}
+
+\vspace{6pt}
+
+\begin{finding}
+Le WBS décompose l'intégralité du périmètre en \textbf{lots de travaux} (Work Packages). Chaque lot est assigné à un responsable unique. La somme des lots = 100\% du périmètre.
+\end{finding}
+
+\vspace{6pt}
+
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{C{2.5cm} L{6cm} Y C{3cm} C{2cm}}
+\toprule
+\rowcolor{cnNavy}
+\th{Code WBS} & \th{Livrable / Lot de travaux} & \th{Description} & \th{Responsable} & \th{Durée est.} \\
+\midrule
+
+\multicolumn{5}{l}{\cellcolor{cnNavy!15}\textbf{\textcolor{cnNavy}{1. Démarrage}}} \\
+\midrule
+1.1 & Charte projet signée       & Autorisation formelle & CP & \textit{[Xj]} \\
+\rowcolor{cnIce}
+1.2 & Kick-off réalisé           & Lancement équipe      & CP & \textit{[Xj]} \\
+\midrule
+
+\multicolumn{5}{l}{\cellcolor{cnNavy!15}\textbf{\textcolor{cnNavy}{2. Planification}}} \\
+\midrule
+2.1 & PMP validé                 & Document de référence & CP & \textit{[Xj]} \\
+\rowcolor{cnIce}
+2.2 & Planning Gantt validé      & Ordonnancement complet & CP + ESN & \textit{[Xj]} \\
+2.3 & Budget détaillé            & Ventilation par poste & CP & \textit{[Xj]} \\
+\midrule
+
+\multicolumn{5}{l}{\cellcolor{cnNavy!15}\textbf{\textcolor{cnNavy}{3. Exécution — \textit{[Lot métier 1]}}}} \\
+\midrule
+3.1 & \textit{[Livrable 3.1]}   & \textit{[Description]} & \textit{[Resp.]} & \textit{[Xj]} \\
+\rowcolor{cnIce}
+3.2 & \textit{[Livrable 3.2]}   & \textit{[Description]} & \textit{[Resp.]} & \textit{[Xj]} \\
+3.3 & \textit{[Livrable 3.3]}   & \textit{[Description]} & \textit{[Resp.]} & \textit{[Xj]} \\
+\midrule
+
+\multicolumn{5}{l}{\cellcolor{cnNavy!15}\textbf{\textcolor{cnNavy}{4. Exécution — \textit{[Lot métier 2]}}}} \\
+\midrule
+\rowcolor{cnIce}
+4.1 & \textit{[Livrable 4.1]}   & \textit{[Description]} & \textit{[Resp.]} & \textit{[Xj]} \\
+4.2 & \textit{[Livrable 4.2]}   & \textit{[Description]} & \textit{[Resp.]} & \textit{[Xj]} \\
+\midrule
+
+\multicolumn{5}{l}{\cellcolor{cnNavy!15}\textbf{\textcolor{cnNavy}{5. Recette et formation}}} \\
+\midrule
+\rowcolor{cnIce}
+5.1 & Tests unitaires DSI        & Validation technique   & DSI & \textit{[Xj]} \\
+5.2 & Recette fonctionnelle      & Validation métier      & MOA + CP & \textit{[Xj]} \\
+\rowcolor{cnIce}
+5.3 & Formation Key Users        & Prise en main outil    & CP + ESN & \textit{[Xj]} \\
+\midrule
+
+\multicolumn{5}{l}{\cellcolor{cnNavy!15}\textbf{\textcolor{cnNavy}{6. Clôture}}} \\
+\midrule
+6.1 & PV de recette signé        & Validation officielle  & CP + MOA & \textit{[Xj]} \\
+\rowcolor{cnIce}
+6.2 & Transfert en exploitation  & Remise run             & CP + DSI Ops & \textit{[Xj]} \\
+6.3 & Fiche REX rédigée          & Capitalisation PMO     & CP & \textit{[Xj]} \\
+\midrule
+\rowcolor{cnNavy!10}
+\multicolumn{4}{l}{\textbf{TOTAL}} & \textbf{\textit{[XX jours]}} \\
+\bottomrule
+\end{tabularx}
+
+\begin{reco}
+Mettre à jour le WBS à chaque demande de changement acceptée. La version de référence (baseline) est celle validée lors du kick-off. Tout écart doit faire l'objet d'un avenant.
+\end{reco}
+
+\end{document}

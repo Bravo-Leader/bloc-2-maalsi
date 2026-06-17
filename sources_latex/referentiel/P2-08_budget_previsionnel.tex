@@ -1,0 +1,109 @@
+% ============================================================
+%  BUDGET PRÉVISIONNEL — Phase 2 : Planification
+%  Time'Eats — Cellule PMO
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../style/consulting}
+\hypersetup{pdftitle={Budget Prévisionnel — Time'Eats PMO}}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\begin{tikzpicture}[remember picture,overlay]
+  \draw[cnNavy,line width=0.5pt](0,0)--(\textwidth,0);
+\end{tikzpicture}\vspace{2pt}\timeeatslogo\hspace{4pt}\small\textcolor{cnSlate}{Time'Eats \textbf{·} Budget Prévisionnel — \textit{[Nom projet]}}}
+\fancyhead[R]{\small\textcolor{cnSlate}{\thepage}}
+\fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel — Cellule PMO — CESI MAALSI 2026}}
+\begin{document}\small
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Budget Prévisionnel}\\[4pt]
+\textcolor{cnOrange}{\rule{10cm}{1pt}}\\[4pt]
+{\large\color{cnSlate} Phase 2 — Planification \quad|\quad Projet : \textit{[Nom du projet]}}
+\end{center}
+
+\vspace{6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{L{3.5cm} Y L{3.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Champ} & \th{Valeur} & \th{Champ} & \th{Valeur} \\
+\midrule
+Budget total autorisé & \textit{[XXX K€]} & Version   & 1.0 \\
+\rowcolor{cnIce}
+Rédacteur             & \textit{[Prénom NOM]} & Date  & \textit{[JJ/MM/AAAA]} \\
+\bottomrule
+\end{tabularx}
+
+\section*{1 — Décomposition budgétaire par poste}
+
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{L{5cm} C{2.5cm} C{2.5cm} C{2.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Poste de dépense} & \th{Type} & \th{Montant (K€)} & \th{\% budget} & \th{Commentaire} \\
+\midrule
+Licences / SaaS        & OPEX & \textit{[X]} & \textit{[X\%]} & \textit{[Détail]} \\
+\rowcolor{cnIce}
+Intégration ESN        & OPEX\textsuperscript{(*)} & \textit{[X]} & \textit{[X\%]} & Forfait --- prestations de services \\
+Ressources internes    & Interne & \textit{[X]} & \textit{[X\%]} & TJM estimé \\
+\rowcolor{cnIce}
+Infrastructure / Hébergement & CAPEX & \textit{[X]} & \textit{[X\%]} & \textit{[Détail]} \\
+Formation utilisateurs & OPEX & \textit{[X]} & \textit{[X\%]} & \textit{[Détail]} \\
+\rowcolor{cnIce}
+Tests et recette       & Interne & \textit{[X]} & \textit{[X\%]} & \textit{[Détail]} \\
+Conduite du changement & OPEX & \textit{[X]} & \textit{[X\%]} & \textit{[Détail]} \\
+\rowcolor{cnIce}
+Réserve pour aléas     & Réserve & \textit{[X]} & 10\% & Non affecté au départ \\
+\midrule
+\rowcolor{cnNavy!10}\textbf{TOTAL} & & \textbf{\textit{[X K€]}} & \textbf{100\%} & \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+{\footnotesize
+\textsuperscript{(*)} Les j/h ESN sont par défaut comptabilisés en \textbf{OPEX} (prestations de services consommées dans l'exercice). Une fraction peut être immobilisée en \textbf{CAPEX} si elle correspond à du développement spécifique répondant aux critères IAS 38 (faisabilité technique, intention d'achever, capacité à utiliser, génération d'avantages économiques futurs, ressources adéquates, mesure fiable des coûts). \textit{Arbitrage à formaliser avec la DAF projet par projet et à tracer dans le présent budget.}
+}
+
+\section*{2 — Répartition temporelle (échelonnement)}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{5cm} C{2cm} C{2cm} C{2cm} C{2cm} C{2cm}}
+\toprule
+\rowcolor{cnNavy}\th{Poste} & \th{M1--M2} & \th{M3--M4} & \th{M5--M6} & \th{M7--M8} & \th{M9+} \\
+\midrule
+Licences / SaaS      & \textit{[X]} & \textit{[X]} & \textit{[X]} & \textit{[X]} & \textit{[X]} \\
+\rowcolor{cnIce}
+Intégration ESN      & \textit{[X]} & \textit{[X]} & \textit{[X]} & \textit{[X]} & \textit{[X]} \\
+Ressources internes  & \textit{[X]} & \textit{[X]} & \textit{[X]} & \textit{[X]} & \textit{[X]} \\
+\rowcolor{cnIce}
+Formation            & --           & --           & --           & \textit{[X]} & \textit{[X]} \\
+\midrule
+\rowcolor{cnNavy!10}\textbf{Total mensuel} & \textit{[X]} & \textit{[X]} & \textit{[X]} & \textit{[X]} & \textit{[X]} \\
+\bottomrule
+\end{tabularx}
+
+\section*{3 — Suivi consommé vs prévu (EVM)}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{4cm} C{2.5cm} C{2.5cm} C{2.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Période} & \th{BAC prévu (K€)} & \th{CBTE (K€)} & \th{CRTE (K€)} & \th{IPC / IPD} \\
+\midrule
+Mois 1 & \textit{[X]} & \textit{[X]} & \textit{[X]} & \textit{[X.XX / X.XX]} \\
+\rowcolor{cnIce}
+Mois 2 & \textit{[X]} & \textit{[X]} & \textit{[X]} & \textit{[X.XX / X.XX]} \\
+Mois 3 & \textit{[X]} & \textit{[X]} & \textit{[X]} & \textit{[X.XX / X.XX]} \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+{\footnotesize
+\textbf{BAC} = Budget à Complétion \quad
+\textbf{CBTE} = Coût Budgété du Travail Effectué (valeur acquise) \quad
+\textbf{CRTE} = Coût Réel du Travail Effectué \quad
+\textbf{IPC} = CBTE/CRTE \quad
+\textbf{IPD} = CBTE/CBTP
+}
+
+\begin{reco}
+IPC \textless{} 0.90 ou IPD \textless{} 0.90 → déclencher un \textbf{rapport d'écarts} immédiat et convoquer un COPIL exceptionnel.
+\end{reco}
+
+\end{document}

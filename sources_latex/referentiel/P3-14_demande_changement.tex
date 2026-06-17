@@ -1,0 +1,97 @@
+% ============================================================
+%  DEMANDE DE CHANGEMENT — Phase 3 : Exécution
+%  Time'Eats — Cellule PMO
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../style/consulting}
+\hypersetup{pdftitle={Demande de Changement — Time'Eats PMO}}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\begin{tikzpicture}[remember picture,overlay]
+  \draw[cnNavy,line width=0.5pt](0,0)--(\textwidth,0);
+\end{tikzpicture}\vspace{2pt}\timeeatslogo\hspace{4pt}\small\textcolor{cnSlate}{Time'Eats \textbf{·} Demande de Changement}}
+\fancyhead[R]{\small\textcolor{cnSlate}{\thepage}}
+\fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel — Cellule PMO — CESI MAALSI 2026}}
+\begin{document}\small
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Demande de Changement}\\[4pt]
+\textcolor{cnOrange}{\rule{10cm}{1pt}}\\[4pt]
+{\large\color{cnSlate} Phase 3 — Exécution}
+\end{center}
+
+\vspace{6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{L{3.5cm} Y L{3.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Champ} & \th{Valeur} & \th{Champ} & \th{Valeur} \\
+\midrule
+Projet                & \textit{[Nom du projet]} & N° de la DC & \textit{[DC-AAAA-XX]} \\
+\rowcolor{cnIce}
+Date de soumission    & \textit{[JJ/MM/AAAA]}    & Demandeur   & \textit{[Prénom NOM]} \\
+Priorité              & $\square$ Critique \quad $\square$ Haute \quad $\square$ Normale & Catégorie & $\square$ Périmètre \quad $\square$ Budget \quad $\square$ Délai \\
+\bottomrule
+\end{tabularx}
+
+\section*{1 — Description du changement demandé}
+
+\textit{[Décrire précisément ce qui est demandé : nouvelle fonctionnalité, modification de périmètre, évolution technique, correction contractuelle.]}
+
+\section*{2 — Justification}
+
+\textit{[Expliquer pourquoi ce changement est nécessaire : contrainte métier, erreur de spec initiale, demande réglementaire, opportunité identifiée.]}
+
+\section*{3 — Impact analysé}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{3cm} Y Y}
+\toprule
+\rowcolor{cnNavy}\th{Axe} & \th{Impact estimé} & \th{Commentaire} \\
+\midrule
+Périmètre & \textit{[ex. +3 fonctionnalités]} & \textit{[détail]} \\
+\rowcolor{cnIce}
+Budget    & \textit{[ex. +15 K€]}             & \textit{[réserve disponible / avenant requis]} \\
+Délai     & \textit{[ex. +2 semaines]}         & \textit{[impact sur Jn]} \\
+\rowcolor{cnIce}
+Risques   & \textit{[ex. risque RGPD ajouté]} & \textit{[mitigation]} \\
+Ressources & \textit{[ex. +5j ESN]}            & \textit{[détail]} \\
+\bottomrule
+\end{tabularx}
+
+\section*{4 — Options étudiées}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{3cm} Y C{3cm}}
+\toprule
+\rowcolor{cnNavy}\th{Option} & \th{Description} & \th{Recommandation} \\
+\midrule
+A — Accepter & \textit{[Mettre en œuvre tel quel]} & $\square$ \\
+\rowcolor{cnIce}
+B — Accepter partiellement & \textit{[Mise en œuvre réduite]} & $\square$ \\
+C — Reporter & \textit{[Post go-live, version V2]} & $\square$ \\
+\rowcolor{cnIce}
+D — Rejeter & \textit{[Motif de rejet]} & $\square$ \\
+\bottomrule
+\end{tabularx}
+
+\section*{5 — Décision}
+
+\begin{tcolorbox}[
+  colback=cnLightBlue, colframe=cnNavy,
+  leftrule=4pt, rightrule=0pt, toprule=0pt, bottomrule=0pt,
+  arc=0pt, boxsep=4pt, top=6pt, bottom=4pt, left=6pt, right=6pt]
+\renewcommand{\arraystretch}{2}
+\begin{tabularx}{\textwidth}{Y Y}
+$\square$ \textbf{Approuvée} & $\square$ \textbf{Rejetée} \\
+$\square$ \textbf{Approuvée avec modifications} & $\square$ \textbf{Reportée} \\
+\multicolumn{2}{l}{\textbf{Commentaire décision :} \textit{[motif / conditions]}} \\
+\end{tabularx}
+
+\vspace{4pt}
+\begin{tabularx}{\textwidth}{Y Y Y}
+\textit{Décideur :} & \textit{Fonction :} & \textit{Date :} \\
+\textit{Signature :} & & \\
+\end{tabularx}
+\end{tcolorbox}
+
+\end{document}

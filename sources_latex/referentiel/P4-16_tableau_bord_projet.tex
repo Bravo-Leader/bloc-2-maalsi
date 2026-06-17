@@ -1,0 +1,108 @@
+% ============================================================
+%  TABLEAU DE BORD PROJET — Phase 4 : Maîtrise (mensuel)
+%  Time'Eats — Cellule PMO
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../style/consulting}
+\hypersetup{pdftitle={Tableau de Bord Projet — Time'Eats PMO}}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\begin{tikzpicture}[remember picture,overlay]
+  \draw[cnNavy,line width=0.5pt](0,0)--(\textwidth,0);
+\end{tikzpicture}\vspace{2pt}\timeeatslogo\hspace{4pt}\small\textcolor{cnSlate}{Time'Eats \textbf{·} Tableau de Bord — \textit{[Nom projet]}}}
+\fancyhead[R]{\small\textcolor{cnSlate}{\thepage}}
+\fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel — Cellule PMO — CESI MAALSI 2026}}
+
+\newcommand{\ragV}{\cellcolor{cnGreen!20}\textbf{\textcolor{cnGreen}{Vert}}}
+\newcommand{\ragA}{\cellcolor{cnOrange!20}\textbf{\textcolor{cnOrange}{Ambre}}}
+\newcommand{\ragR}{\cellcolor{cnRed!20}\textbf{\textcolor{cnRed}{Rouge}}}
+
+\begin{document}\small
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Tableau de Bord de Pilotage}\\[4pt]
+\textcolor{cnOrange}{\rule{10cm}{1pt}}\\[4pt]
+{\large\color{cnSlate} \textit{[Nom du projet]} \quad|\quad Période : \textit{[Mois AAAA]}}
+\end{center}
+
+\vspace{4pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{L{3.5cm} Y C{4cm} c}
+\toprule
+\rowcolor{cnNavy}\th{Projet} & \th{\textit{[Nom]}} & \th{Statut global} & \textit{[\ragV / \ragA / \ragR]} \\
+\midrule
+CP & \textit{[Prénom NOM]} & \% avancement & \textit{[XX\%]} \\
+\rowcolor{cnIce}
+Phase & \textit{[Phase]} & N° rapport & \textit{[XX]} \\
+\bottomrule
+\end{tabularx}
+
+\section*{Axe 1 — Coûts}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{5cm} C{2.5cm} C{2.5cm} C{2.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Indicateur} & \th{Valeur} & \th{Cible} & \th{Statut} & \th{Commentaire} \\
+\midrule
+Budget consommé (K€) & \textit{[X K€]} & Selon échelonnement & \textit{[\ragV]} & \\
+\rowcolor{cnIce}
+IPC (Indice Perf. Coût) & \textit{[X.XX]} & $\geq$ 0.90 & \textit{[\ragV]} & \\
+Reste à dépenser (K€) & \textit{[X K€]} & & \textit{[\ragV]} & \\
+\rowcolor{cnIce}
+Réserve disponible (\%) & \textit{[XX\%]} & $\geq$ 5\% & \textit{[\ragA]} & \\
+\bottomrule
+\end{tabularx}
+
+\section*{Axe 2 — Délais}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{5cm} C{2.5cm} C{2.5cm} C{2.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Indicateur} & \th{Valeur} & \th{Cible} & \th{Statut} & \th{Commentaire} \\
+\midrule
+IPD (Indice Perf. Délai) & \textit{[X.XX]} & $\geq$ 0.90 & \textit{[\ragV]} & \\
+\rowcolor{cnIce}
+Jalons respectés (\%) & \textit{[XX\%]} & $\geq$ 80\% & \textit{[\ragV]} & \\
+Retard cumulé (jours) & \textit{[X j]} & 0 & \textit{[\ragA]} & \\
+\rowcolor{cnIce}
+Prochain jalon & \textit{[Jalon]} & \textit{[date]} & & \\
+\bottomrule
+\end{tabularx}
+
+\section*{Axe 3 — Qualité}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{5cm} C{2.5cm} C{2.5cm} C{2.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Indicateur} & \th{Valeur} & \th{Cible} & \th{Statut} & \th{Commentaire} \\
+\midrule
+Couverture des tests (\%) & \textit{[XX\%]} & $\geq$ 80\% & \textit{[\ragV]} & \\
+\rowcolor{cnIce}
+Anomalies P1 ouvertes & \textit{[X]} & 0 & \textit{[\ragR]} & \\
+Anomalies P2 ouvertes & \textit{[X]} & $\leq$ 2 & \textit{[\ragA]} & \\
+\rowcolor{cnIce}
+Taux satisfaction recette (\%) & \textit{[XX\%]} & $\geq$ 85\% & \textit{[\ragV]} & \\
+\bottomrule
+\end{tabularx}
+
+\section*{Risques actifs}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{C{0.6cm} L{5cm} C{2cm} L{5cm} C{2.5cm}}
+\toprule
+\rowcolor{cnNavy}\th{\#} & \th{Risque} & \th{Niveau} & \th{Action en cours} & \th{Évolution} \\
+\midrule
+R1 & \textit{[Risque 1]} & \textit{[\ragR]} & \textit{[Action]} & \textit{[$\uparrow$ / $\downarrow$ / $\rightarrow$]} \\
+\rowcolor{cnIce}
+R2 & \textit{[Risque 2]} & \textit{[\ragA]} & \textit{[Action]} & \textit{[$\rightarrow$]} \\
+\bottomrule
+\end{tabularx}
+
+\section*{Décisions requises}
+
+\begin{itemize}
+  \item \textit{[Décision à prendre par la DSI / DG avant le \textit{[date]}]}
+  \item \textit{[Arbitrage budget nécessaire pour...]}
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,108 @@
+% ============================================================
+%  CR COMITÉ DE PILOTAGE (COPIL) — Phase 4 : Maîtrise (mensuel)
+%  Time'Eats — Cellule PMO
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../style/consulting}
+\hypersetup{pdftitle={CR COPIL — Time'Eats PMO}}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\begin{tikzpicture}[remember picture,overlay]
+  \draw[cnNavy,line width=0.5pt](0,0)--(\textwidth,0);
+\end{tikzpicture}\vspace{2pt}\timeeatslogo\hspace{4pt}\small\textcolor{cnSlate}{Time'Eats \textbf{·} CR COPIL — \textit{[Nom projet]}}}
+\fancyhead[R]{\small\textcolor{cnSlate}{\thepage}}
+\fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel — Cellule PMO — CESI MAALSI 2026}}
+
+\newcommand{\ragV}{\cellcolor{cnGreen!20}\textbf{\textcolor{cnGreen}{Vert}}}
+\newcommand{\ragA}{\cellcolor{cnOrange!20}\textbf{\textcolor{cnOrange}{Ambre}}}
+\newcommand{\ragR}{\cellcolor{cnRed!20}\textbf{\textcolor{cnRed}{Rouge}}}
+
+\begin{document}\small
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Compte Rendu de Comité de Pilotage}\\[4pt]
+\textcolor{cnOrange}{\rule{10cm}{1pt}}\\[4pt]
+{\large\color{cnSlate} COPIL \textit{[Nom du projet]} \quad|\quad \textit{[JJ/MM/AAAA]}}
+\end{center}
+
+\vspace{4pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{L{3.5cm} Y L{3.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Champ} & \th{Valeur} & \th{Champ} & \th{Valeur} \\
+\midrule
+Projet        & \textit{[Nom]}           & N° COPIL        & \textit{[XX]} \\
+\rowcolor{cnIce}
+Date          & \textit{[JJ/MM/AAAA]}    & Heure           & \textit{[HH:MM -- HH:MM]} \\
+Lieu          & \textit{[Salle / Teams]} & Animateur       & \textit{[PMO / DSI]} \\
+\rowcolor{cnIce}
+Statut projet & \textit{[\ragV / \ragA / \ragR]} & \% avancement & \textit{[XX\%]} \\
+\bottomrule
+\end{tabularx}
+
+\section*{Présents}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{4cm} L{3.5cm} Y C{2cm}}
+\toprule
+\rowcolor{cnNavy}\th{Nom} & \th{Fonction} & \th{Entité} & \th{Présent} \\
+\midrule
+\textit{[Prénom NOM]} & Directeur SI & Time'Eats & $\checkmark$ \\
+\rowcolor{cnIce}
+\textit{[Prénom NOM]} & Directeur Général & Time'Eats & $\checkmark$ \\
+\textit{[Prénom NOM]} & Chef de projet & Time'Eats & $\checkmark$ \\
+\rowcolor{cnIce}
+\textit{[Prénom NOM]} & Directeur de mission & ESN & $\checkmark$ \\
+\textit{[Prénom NOM]} & \textit{[Fonction]} & \textit{[Entité]} & Excusé \\
+\bottomrule
+\end{tabularx}
+
+\section*{Synthèse du tableau de bord}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{3cm} C{2.5cm} C{2.5cm} C{3cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Axe} & \th{Indicateur clé} & \th{Valeur} & \th{Statut} & \th{Tendance} \\
+\midrule
+Coûts   & IPC & \textit{[X.XX]} & \textit{[\ragV]} & \textit{[$\rightarrow$]} \\
+\rowcolor{cnIce}
+Délais  & IPD & \textit{[X.XX]} & \textit{[\ragA]} & \textit{[$\downarrow$]} \\
+Qualité & Anomalies P1 & \textit{[X]} & \textit{[\ragV]} & \textit{[$\rightarrow$]} \\
+\bottomrule
+\end{tabularx}
+
+\section*{Points discutés et décisions}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{C{0.6cm} L{5cm} Y C{3.5cm}}
+\toprule
+\rowcolor{cnNavy}\th{\#} & \th{Sujet} & \th{Décision / Résolution} & \th{Décideur} \\
+\midrule
+1 & \textit{[Sujet 1]} & \textit{[Décision prise]} & \textit{[DSI / DG]} \\
+\rowcolor{cnIce}
+2 & \textit{[Sujet 2]} & \textit{[Décision prise]} & \textit{[DSI]} \\
+3 & \textit{[Sujet 3]} & \textit{[Décision prise]} & \textit{[CP]} \\
+\bottomrule
+\end{tabularx}
+
+\section*{Plan d'actions issu du COPIL}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{C{0.6cm} Y L{3.5cm} C{2.5cm} C{2cm}}
+\toprule
+\rowcolor{cnNavy}\th{\#} & \th{Action} & \th{Responsable} & \th{Échéance} & \th{Priorité} \\
+\midrule
+A1 & \textit{[Action 1]} & \textit{[Prénom NOM]} & \textit{[JJ/MM]} & Haute \\
+\rowcolor{cnIce}
+A2 & \textit{[Action 2]} & \textit{[Prénom NOM]} & \textit{[JJ/MM]} & Normale \\
+\bottomrule
+\end{tabularx}
+
+\section*{Prochain COPIL}
+
+Date : \textit{[JJ/MM/AAAA]} \quad Heure : \textit{[HH:MM]} \quad Lieu : \textit{[Salle / Teams]}
+
+\vspace{6pt}
+{\footnotesize\textit{CR validé par l'animateur : \textit{[Prénom NOM]} — \textit{[JJ/MM/AAAA]}}}
+
+\end{document}

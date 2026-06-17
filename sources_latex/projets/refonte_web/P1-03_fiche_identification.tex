@@ -1,0 +1,109 @@
+% ============================================================
+%  FICHE D'IDENTIFICATION — Phase 1 : Démarrage
+%  Time'Eats — Cellule PMO  (format 1 page)
+%  Projet : Refonte Web
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../../style/consulting}
+\hypersetup{pdftitle={Fiche d'Identification — Refonte Web — Time'Eats PMO}}
+\pagestyle{empty}
+\begin{document}\small
+
+\noindent\hfill\timeeatslogo
+
+\vspace{-10pt}
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Fiche d'Identification Projet}\\[4pt]
+\textcolor{cnOrange}{\rule{14cm}{1pt}}\\[4pt]
+{\normalsize\color{cnSlate} Document de synthèse portefeuille --- 1 page \quad|\quad Projet : \textbf{Refonte Web}}
+\end{center}
+
+\vspace{8pt}
+
+% Bloc identité
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{L{4cm} Y L{4cm} Y}
+\toprule
+\rowcolor{cnNavy}
+\multicolumn{4}{l}{\th{Identité du projet}} \\
+\midrule
+Nom du projet    & Refonte Web              & Code              & REF-WEB-2026 \\
+\rowcolor{cnIce}
+Chef de projet   & M. X                & Sponsor           & Mme Y (DSI) \\
+Date de début    & 22/04/2026               & Date de fin       & 30/09/2026 \\
+\rowcolor{cnIce}
+Budget total     & 300 K€                   & Mode d'exécution  & $\square$ Waterfall \quad $\boxtimes$ Agile \\
+\bottomrule
+\end{tabularx}
+
+\vspace{6pt}
+
+% Bloc statut
+\begin{tabularx}{\textwidth}{L{4cm} Y L{3cm} Y}
+\toprule
+\rowcolor{cnNavy}
+\multicolumn{4}{l}{\th{Statut \& Priorisation (au 19/05/2026)}} \\
+\midrule
+Statut RAG       & $\boxtimes$ Vert \quad $\square$ Ambre \quad $\square$ Rouge &
+Score priorité   & \textbf{3{,}80 / 5{,}00} \\
+\rowcolor{cnIce}
+\% avancement    & \textbf{8\,\%}            & Phase actuelle    & Planification (vers Exécution) \\
+\bottomrule
+\end{tabularx}
+
+\vspace{6pt}
+
+% Bloc résumé
+\begin{tabularx}{\textwidth}{Y}
+\toprule
+\rowcolor{cnNavy}\th{Résumé en une phrase} \\
+\midrule
+Refondre \texttt{timeats.fr} d'ici fin septembre 2026 pour soutenir la croissance nationale, livrer une API publique réutilisable par CRM et apps mobiles, et industrialiser la production éditoriale via un CMS contributeur. \\[4pt]
+\bottomrule
+\end{tabularx}
+
+\vspace{6pt}
+
+% Dépendances + risques majeurs côte à côte
+\begin{tabularx}{\textwidth}{Y Y}
+\toprule
+\rowcolor{cnNavy}\th{Dépendances critiques} & \th{Risques majeurs} \\
+\midrule
+Office 365 (SSO espace client) --- Ambre & R1 -- Retard SSO Office 365 --- \textbf{Ambre} \\
+Migration Azure (hébergement) --- Rouge & R2 -- Non-conformité RGAA 4.1 --- \textbf{Ambre} \\
+Aucun amont produit nécessaire & R3 -- Sous-effectif ESN sprint critique --- \textbf{Ambre} \\
+\bottomrule
+\end{tabularx}
+
+\vspace{6pt}
+
+% Jalons
+\begin{tabularx}{\textwidth}{C{1cm} L{6.5cm} C{2.5cm} C{3cm}}
+\toprule
+\rowcolor{cnNavy}\th{\#} & \th{Jalon} & \th{Date cible} & \th{Statut} \\
+\midrule
+J0 & Démarrage --- Charte signée                  & 22/04/2026 & $\checkmark$ Réalisé \\
+\rowcolor{cnIce}
+J1 & Maquettes UX validées (design system v1)     & 27/05/2026 & En cours \\
+J2 & Socle technique validé (API v1, CI/CD)       & 30/06/2026 & À venir \\
+\rowcolor{cnIce}
+J3 & MVP fonctionnel en staging                   & 31/07/2026 & À venir \\
+J4 & Recette + audit RGAA OK                      & 31/08/2026 & À venir \\
+\rowcolor{cnIce}
+J5 & Clôture --- Go-Live + transfert run + REX    & 30/09/2026 & À venir \\
+\bottomrule
+\end{tabularx}
+
+\vspace{6pt}
+
+% Dernière mise à jour + signature PMO
+\begin{tabularx}{\textwidth}{Y Y}
+\toprule
+\rowcolor{cnNavy}\th{Dernière mise à jour} & \th{Validé par le PMO} \\
+\midrule
+19/05/2026 & M. X (CP) --- contresigné par la cellule PMO \\
+\bottomrule
+\end{tabularx}
+
+\end{document}

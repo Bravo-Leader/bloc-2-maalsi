@@ -1,0 +1,117 @@
+% ============================================================
+%  PV DE RECETTE TECHNIQUE — Phase 5 : Clôture
+%  Time'Eats — Cellule PMO / DSI
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../style/consulting}
+\hypersetup{pdftitle={PV de Recette Technique — Time'Eats PMO}}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\begin{tikzpicture}[remember picture,overlay]
+  \draw[cnNavy,line width=0.5pt](0,0)--(\textwidth,0);
+\end{tikzpicture}\vspace{2pt}\timeeatslogo\hspace{4pt}\small\textcolor{cnSlate}{Time'Eats \textbf{·} PV de Recette Technique — \textit{[Nom projet]}}}
+\fancyhead[R]{\small\textcolor{cnSlate}{\thepage}}
+\fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel — Cellule PMO — CESI MAALSI 2026}}
+\begin{document}\small
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Procès-Verbal de Recette Technique}\\[4pt]
+\textcolor{cnOrange}{\rule{10cm}{1pt}}\\[4pt]
+{\large\color{cnSlate} Phase 5 — Clôture \quad|\quad Projet : \textit{[Nom du projet]}}
+\end{center}
+
+\vspace{4pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{L{3.5cm} Y L{3.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Champ} & \th{Valeur} & \th{Champ} & \th{Valeur} \\
+\midrule
+Projet             & \textit{[Nom]}         & Version livrée  & \textit{[v X.X]} \\
+\rowcolor{cnIce}
+Date de recette    & \textit{[JJ/MM/AAAA]}  & Env. de recette & \textit{[Préprod / Staging]} \\
+Responsable DSI    & \textit{[Prénom NOM]}  & Chef de projet  & \textit{[Prénom NOM]} \\
+\bottomrule
+\end{tabularx}
+
+\section*{1 — Périmètre de vérification technique}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{C{1cm} L{5cm} Y C{3cm}}
+\toprule
+\rowcolor{cnNavy}\th{\#} & \th{Critère technique} & \th{Exigence / Valeur attendue} & \th{Résultat} \\
+\midrule
+T01 & Performance (temps de réponse) & $\leq$ 2 secondes & $\square$ OK \quad $\square$ KO \\
+\rowcolor{cnIce}
+T02 & Disponibilité cible & $\geq$ 99.5\% & $\square$ OK \quad $\square$ KO \\
+T03 & Sécurité — tests de pénétration & Zéro vulnérabilité critique & $\square$ OK \quad $\square$ KO \\
+\rowcolor{cnIce}
+T04 & Gestion des sauvegardes & RPO $\leq$ 4h, RTO $\leq$ 8h & $\square$ OK \quad $\square$ KO \\
+T05 & Authentification MFA & Activée pour tous les profils & $\square$ OK \quad $\square$ KO \\
+\rowcolor{cnIce}
+T06 & Compatibilité navigateurs & Chrome, Edge, Firefox & $\square$ OK \quad $\square$ KO \\
+T07 & Intégration SI (API) & Tests d'intégration passants & $\square$ OK \quad $\square$ KO \\
+\rowcolor{cnIce}
+T08 & Documentation technique livrée & Complète et à jour & $\square$ OK \quad $\square$ KO \\
+T09 & Runbook exploitation fourni & Procédures démarrage/arrêt & $\square$ OK \quad $\square$ KO \\
+\rowcolor{cnIce}
+T10 & \textit{[Critère spécifique projet]} & \textit{[Exigence]} & $\square$ OK \quad $\square$ KO \\
+\bottomrule
+\end{tabularx}
+
+\section*{2 — Résultats de charge et performance}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{4cm} C{3cm} C{3cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Test} & \th{Valeur cible} & \th{Valeur mesurée} & \th{Statut} \\
+\midrule
+Charge simultanée max. & \textit{[X users]} & \textit{[X users]} & $\square$ OK \quad $\square$ KO \\
+\rowcolor{cnIce}
+Temps réponse moyen    & \textit{[X ms]} & \textit{[X ms]} & $\square$ OK \quad $\square$ KO \\
+Temps réponse P95      & \textit{[X ms]} & \textit{[X ms]} & $\square$ OK \quad $\square$ KO \\
+\rowcolor{cnIce}
+Taux d'erreur HTTP     & $\leq$ 0.1\%       & \textit{[X\%]}   & $\square$ OK \quad $\square$ KO \\
+\bottomrule
+\end{tabularx}
+
+\section*{3 — Réserves techniques}
+
+\begin{enumerate}
+  \item \textit{[Réserve technique 1 : ex. T03 — rapport de pentest non reçu, attendu pour le JJ/MM]}
+  \item \textit{[Réserve technique 2]}
+  \item \textit{[Aucune réserve — le cas échéant]}
+\end{enumerate}
+
+\section*{4 — Décision}
+
+\begin{tcolorbox}[
+  colback=cnLightBlue, colframe=cnNavy,
+  leftrule=4pt, rightrule=0pt, toprule=0pt, bottomrule=0pt,
+  arc=0pt, boxsep=6pt, top=6pt, bottom=6pt, left=6pt, right=6pt]
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{ccc}
+\cellcolor{cnGreen!25}\large $\square$ \textbf{Recette technique acceptée}
+& \cellcolor{cnOrange!25}\large $\square$ \textbf{Acceptée avec réserves}
+& \cellcolor{cnRed!25}\large $\square$ \textbf{Refusée} \\
+\end{tabularx}
+
+\vspace{6pt}
+\textbf{Prérequis à la mise en production :} \textit{[Conditions]}
+
+\end{tcolorbox}
+
+\section*{5 — Signatures}
+
+\renewcommand{\arraystretch}{2.5}
+\begin{tabularx}{\textwidth}{Y Y Y}
+\toprule
+\rowcolor{cnNavy}\th{Responsable DSI} & \th{Chef de projet} & \th{Responsable ESN} \\
+\midrule
+\textit{Nom :} & \textit{Nom :} & \textit{Nom :} \\
+\textit{Date :} & \textit{Date :} & \textit{Date :} \\
+\textit{Signature :} & \textit{Signature :} & \textit{Signature :} \\
+\bottomrule
+\end{tabularx}
+
+\end{document}

@@ -1,0 +1,103 @@
+================================================================
+  TIME'EATS — CELLULE PMO
+  Livrable final — Projet Collaboratif 2 (CESI MAALSI 2026)
+================================================================
+
+CONTENU DU DOSSIER
+------------------
+
+[1] 01_livrable_principal.pdf
+    Document maître (32 pages, 2 parties) :
+      • Partie I — Gestion du portefeuille
+          Ch.1  Enjeux & gouvernance du portefeuille
+          Ch.2  Méthodologie projet partagée (4 piliers)
+          Ch.3  Référentiel documentaire (catalogue des 25 templates
+                avec chemins .tex et .pdf)
+          Ch.4  Tableau de bord de supervision (Cockpit DSI)
+      • Partie II — Application au projet Refonte Web
+          Ch.5  Cadrage (carte d'identité, SMART, périmètre IN/OUT)
+          Ch.6  Pilotage opérationnel (jalons, WBS tabulaire +
+                graphique PNG, budget, risques, tableau de bord)
+          Ch.7  Renvoi vers le dossier PMP compagnon
+      • Annexe — Grille d'auto-évaluation (20 pts, 4 axes)
+
+[2] 03_dossier_pmp_refonte_web/
+    15 documents instanciés pour le projet Refonte Web (le PMP de
+    référence est P2-05) :
+      P1-01     Charte projet
+      P1-02     Note de cadrage
+      P1-02bis  Product Breakdown Structure (PBS)
+      P1-02ter  Cahier des charges (CDC)
+      P1-03     Fiche d'identification
+      P1-04     Matrice RACI (paysage)
+      P2-05     Plan de Management Projet (11 sections, 30+ pages)
+      P2-06     WBS (tabulaire + graphique PlantUML)
+      P2-07     Planning Gantt (pgfgantt, 23 semaines)
+      P2-08     Budget prévisionnel (300 K€, EVM)
+      P2-09     Registre des risques (7 risques + heatmap)
+      P2-10     Plan de communication (parties prenantes + matrice)
+      P2-11     Plan de conduite du changement (ADKAR + Key Users)
+      P3-12     CR de réunion (exemple : kick-off 22/04/2026)
+      P3-13     Rapport d'avancement (exemple : M+1 mai 2026)
+
+[3] 04_referentiel_templates_vides/
+    Les 25 templates vierges du référentiel + README, utilisables
+    par les autres projets du portefeuille pour démultiplier la
+    méthodologie.
+
+[4] sources_latex/
+    Sources LaTeX pour recompilation :
+      • livrable_complet.tex
+      • style/consulting.sty (charte graphique)
+      • projets/refonte_web/*.tex (15 documents instanciés)
+      • referentiel/*.tex (25 templates vierges)
+      • diagrammes/*.puml + *.png (6 diagrammes PlantUML)
+
+[5] cockpit_dsi/
+    Application web de supervision DSI (Node.js / Express) :
+      • server.js + db.js + db.json (7 collections)
+      • public/ (interface 5 onglets : Portefeuille, Projets,
+        Capacité, Risques, KPIs)
+    Installation : npm install puis node server.js → http://localhost:3000
+
+
+COHÉRENCE DES DONNÉES (vérifiée entre tous les documents)
+---------------------------------------------------------
+  Projet           : Refonte Web (REF-WEB-2026)
+  Chef de projet   : M. X
+  Sponsor          : Mme Y (DSI Time'Eats)
+  ESN              : Sopra Steria (forfait 400 j/h)
+  Budget           : 300 K€ (Interne valorisé 80 + ESN 200 +
+                     Licences/Azure/Audits 17 + Réserve 3)
+  Période          : 22/04/2026 — 30/09/2026 (6 mois)
+  Méthode          : Hybride Waterfall (cadrage/clôture) + Scrum
+                     2 semaines (exécution)
+  Jalons J0–J5     : 22/04 — 27/05 — 30/06 — 31/07 — 31/08 — 30/09
+  Risques majeurs  : R1 SSO Office 365 (12), R2 RGAA (12),
+                     R7 OWASP (10), R3 sous-effectif été (9),
+                     R6 Web Vitals (9), R4 MOA (8), R5 Azure (8)
+
+
+RECOMPILATION (optionnelle)
+---------------------------
+Pré-requis : MiKTeX (Windows) ou TeX Live (Linux/macOS), Java +
+PlantUML pour régénérer les diagrammes.
+
+  cd sources_latex/projets/refonte_web/
+  for f in *.tex; do pdflatex -output-directory=pdf "$f"; done
+
+  cd sources_latex/
+  pdflatex livrable_complet.tex
+
+  # Diagrammes (si PlantUML installé) :
+  plantuml diagrammes/*.puml
+
+
+CONTACT
+-------
+  Étudiant : Virgile COUDERT
+  Promotion : CESI MAALSI 2025-2026 — Semestre 2
+  Projet : Projet Collaboratif 2 — Cellule PMO Time'Eats
+  Date livraison : Mai 2026
+
+================================================================

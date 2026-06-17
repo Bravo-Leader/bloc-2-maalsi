@@ -1,0 +1,156 @@
+% ============================================================
+%  RAPPORT D'AVANCEMENT MENSUEL — Phase 3 : Exécution
+%  Time'Eats — Cellule PMO
+%  Projet : Refonte Web — Période : Mai 2026 (M+1)
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../../style/consulting}
+\hypersetup{pdftitle={Rapport d'Avancement Mai 2026 — Refonte Web — Time'Eats PMO}}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\begin{tikzpicture}[remember picture,overlay]
+  \draw[cnNavy,line width=0.5pt](0,0)--(\textwidth,0);
+\end{tikzpicture}\vspace{2pt}\timeeatslogo\hspace{4pt}\small\textcolor{cnSlate}{Time'Eats \textbf{·} Rapport d'Avancement --- \textit{Refonte Web}}}
+\fancyhead[R]{\small\textcolor{cnSlate}{\thepage}}
+\fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel --- Cellule PMO --- CESI MAALSI 2026}}
+
+\newcommand{\ragV}{\cellcolor{cnGreen!20}\textbf{\textcolor{cnGreen}{Vert}}}
+\newcommand{\ragA}{\cellcolor{cnOrange!20}\textbf{\textcolor{cnOrange}{Ambre}}}
+\newcommand{\ragR}{\cellcolor{cnRed!20}\textbf{\textcolor{cnRed}{Rouge}}}
+
+\begin{document}\small
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Rapport d'Avancement Mensuel}\\[4pt]
+\textcolor{cnOrange}{\rule{10cm}{1pt}}\\[4pt]
+{\large\color{cnSlate} \textbf{Refonte Web} \quad|\quad Période : \textbf{Mai 2026 (M+1)}}
+\end{center}
+
+\vspace{4pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{L{3.5cm} Y L{3.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Champ} & \th{Valeur} & \th{Champ} & \th{Valeur} \\
+\midrule
+Chef de projet  & M. X              & Statut global  & \ragV \\
+\rowcolor{cnIce}
+Date du rapport & 19/05/2026             & N° rapport     & 01 \\
+Phase actuelle  & Planification (vers Exécution) & \% avancement  & 8\,\% \\
+\rowcolor{cnIce}
+Budget consommé & 35 K€ / 300 K€ (11{,}7\,\%) & Période couverte & 22/04 -- 18/05/2026 \\
+\bottomrule
+\end{tabularx}
+
+\section*{1 --- Résumé exécutif}
+
+Le projet \textbf{Refonte Web} est en \textbf{statut RAG Vert} à fin M+1. Le kick-off du 22/04 a permis de signer la charte et de lancer la phase de planification. Les baselines (PMP, WBS, Gantt, budget, risques) sont \textbf{en cours de validation} en vue du COPIL d'inception du 20/05/2026. L'équipe est complète, l'environnement Azure DevOps Boards est opérationnel, et le workshop UX de co-construction s'est tenu les 12--13 mai avec 9 contributeurs Marketing. \textbf{Point d'attention} : le projet Office 365 (dépendance R1) accuse 2 semaines de glissement --- l'IdP local de repli est confirmé techniquement par M. A, sans surcoût immédiat à ce stade.
+
+\section*{2 --- Avancement par jalon}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{C{1cm} L{5cm} C{2.5cm} C{2.5cm} C{2cm}}
+\toprule
+\rowcolor{cnNavy}\th{\#} & \th{Jalon} & \th{Date baseline} & \th{Date révisée} & \th{Statut} \\
+\midrule
+J0 & Kick-off projet           & 22/04/2026 & 22/04/2026 & \ragV \\
+\rowcolor{cnIce}
+J1 & Maquettes UX validées     & 27/05/2026 & 27/05/2026 & \ragV (en cours) \\
+J2 & Socle technique validé    & 30/06/2026 & 30/06/2026 & \ragV (à venir) \\
+\rowcolor{cnIce}
+J3 & MVP fonctionnel staging   & 31/07/2026 & 31/07/2026 & À venir \\
+J4 & Recette + audits OK       & 31/08/2026 & 31/08/2026 & À venir \\
+\rowcolor{cnIce}
+J5 & Go-Live production        & 30/09/2026 & 30/09/2026 & À venir \\
+\bottomrule
+\end{tabularx}
+
+\section*{3 --- Indicateurs EVM}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{4cm} C{2cm} C{2cm} C{2cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Indicateur} & \th{Valeur} & \th{Seuil vert} & \th{Statut} & \th{Commentaire} \\
+\midrule
+IPC (Indice Perf. Coût)   & 0{,}98 & $\geq$ 0{,}95 & \ragV & Consommation budget alignée sur la valeur acquise. \\
+\rowcolor{cnIce}
+IPD (Indice Perf. Délai)  & 0{,}93 & $\geq$ 0{,}95 & \ragA & Léger retard sur la livraison du document PMP (J+2). \\
+Budget consommé (\%)       & 11{,}7\,\% & $\leq$ \% avancement + 5\,pt & \ragA & 11{,}7\,\% consommé pour 8\,\% d'avancement physique. \\
+\rowcolor{cnIce}
+Jalons respectés (\%)      & 100\,\% & $\geq$ 80\,\% & \ragV & J0 livré à date, J1 en trajectoire. \\
+\bottomrule
+\end{tabularx}
+
+\section*{4 --- Faits marquants du mois}
+
+\begin{itemize}
+  \item \textbf{+} Kick-off projet réalisé à date (22/04) avec adhésion complète DG / DSI / MOA.
+  \item \textbf{+} Site SharePoint REF-WEB-2026 et Azure DevOps Boards opérationnels J+6.
+  \item \textbf{+} Workshop UX co-construction du 12--13/05 : 9 contributeurs Marketing présents, 3 personas validés, 4 parcours-clés priorisés.
+  \item \textbf{+} Avenant Sopra Steria (backup nominatif été) signé le 06/05/2026.
+  \item \textbf{$\triangle$} Projet Office 365 (dépendance R1) : 2 semaines de glissement annoncées par l'équipe Infra le 15/05. Activation préventive du plan de repli IdP local lancée.
+  \item \textbf{$\triangle$} Mobilisation effective du référent MOA Mme F à 12\,\% (vs 15\,\% prévu) sur le mois --- congés. À régulariser sur juin.
+\end{itemize}
+
+\section*{5 --- Risques actifs ce mois}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{C{0.6cm} L{4.5cm} C{1.5cm} L{5cm} C{1.5cm}}
+\toprule
+\rowcolor{cnNavy}\th{\#} & \th{Risque} & \th{Criticité} & \th{Action en cours} & \th{Tendance} \\
+\midrule
+R1 & Retard Office 365 / SSO        & \cellcolor{cnOrange!20}\textbf{12} & Plan de repli IdP local activé (validation technique en cours)   & $\rightarrow$ \\
+\rowcolor{cnIce}
+R2 & Non-conformité RGAA 4.1 AA     & \cellcolor{cnOrange!20}\textbf{12} & Audit accessibilité prévu S30 (mi-juillet, pré-audit)            & $\rightarrow$ \\
+R7 & Vulnérabilité OWASP ASVS 2     & \cellcolor{cnOrange!20}\textbf{10} & Threat modeling planifié S25 ; SAST CodeQL activé sur le repo   & $\rightarrow$ \\
+\rowcolor{cnIce}
+R4 & Indispo. référent Marketing    & \cellcolor{cnOrange!20}\textbf{8}  & Suppléant Marketing désigné le 28/05 (en cours de validation)   & $\uparrow$ \\
+\bottomrule
+\end{tabularx}
+
+\section*{6 --- Avancement par lot WBS}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{1cm} L{5cm} C{2cm} C{2cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Lot} & \th{Libellé} & \th{Charge plan.} & \th{Charge cons.} & \th{Statut} \\
+\midrule
+1 & Démarrage                    & 14 j.h  & 14 j.h  & \ragV Terminé \\
+\rowcolor{cnIce}
+2 & Planification                & 28 j.h  & 19 j.h  & \ragA 68\,\% --- finalisation pour COPIL 20/05 \\
+3 & UX/UI \& Design System       & 63 j.h  & 8 j.h   & \ragV 13\,\% --- conforme planning \\
+\rowcolor{cnIce}
+4 & Socle technique \& API       & 88 j.h  & 2 j.h   & À venir (démarrage S22) \\
+5 à 8 & Réalisation / Qualité / Conduite / Clôture & 287 j.h & 0 j.h   & À venir \\
+\bottomrule
+\end{tabularx}
+
+\section*{7 --- Prévisions mois suivant (Juin 2026)}
+
+\begin{itemize}
+  \item Tenue du \textbf{COPIL d'inception le 20/05} (J-1 du rapport) : validation officielle des 5 baselines.
+  \item Validation \textbf{maquettes UX (J1)} prévue le 27/05/2026.
+  \item Démarrage du \textbf{Sprint 1} (architecture cible + amorçage API REST) le 02/06/2026.
+  \item Finalisation de l'\textbf{avenant IdP local} si glissement Office 365 confirmé.
+  \item Mise en place du \textbf{Design System v1} et lancement du développement des 10 templates Next.js.
+  \item Préparer le \textbf{pré-audit RGAA} (cabinet identifié, planifié S30).
+\end{itemize}
+
+\section*{8 --- Décisions requises}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{C{0.6cm} Y L{3cm} C{2cm}}
+\toprule
+\rowcolor{cnNavy}\th{\#} & \th{Décision attendue} & \th{Demandeur} & \th{Échéance} \\
+\midrule
+D1 & Validation officielle des baselines (PMP, WBS, Gantt, budget, risques) & DSI + PMO & 20/05/2026 (COPIL) \\
+\rowcolor{cnIce}
+D2 & Arbitrage déclenchement IdP local (surcoût provisionné 8 K€) & DSI & 31/05/2026 \\
+D3 & Confirmation suppléant MOA Marketing (sécurise R4) & DSI + DG & 28/05/2026 \\
+\bottomrule
+\end{tabularx}
+
+\begin{reco}
+\textbf{Aucun écart critique à signaler ce mois.} Le projet est dans sa trajectoire baseline. Les 2 points d'attention (R1 Office 365 et R4 référent MOA) ont des plans d'action lancés. Maintenir la vigilance sur IPD en juin (rattrapage du léger retard PMP) et confirmer J1 le 27/05.
+\end{reco}
+
+\end{document}

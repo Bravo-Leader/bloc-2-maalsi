@@ -1,0 +1,133 @@
+% ============================================================
+%  CHARTE PROJET — Phase 1 : Démarrage
+%  Time'Eats — Cellule PMO
+%  Projet : Refonte Web (instance du template P1-01)
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../../style/consulting}
+\hypersetup{pdftitle={Charte Projet — Refonte Web — Time'Eats PMO}}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\begin{tikzpicture}[remember picture,overlay]
+  \draw[cnNavy,line width=0.5pt](0,0)--(\textwidth,0);
+\end{tikzpicture}\vspace{2pt}\timeeatslogo\hspace{4pt}\small\textcolor{cnSlate}{Time'Eats \textbf{·} Charte Projet — \textit{Refonte Web}}}
+\fancyhead[R]{\small\textcolor{cnSlate}{\thepage}}
+\fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel — Cellule PMO — CESI MAALSI 2026}}
+\begin{document}\small
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Charte Projet}\\[4pt]
+\textcolor{cnOrange}{\rule{10cm}{1pt}}\\[4pt]
+{\large\color{cnSlate} Phase 1 --- Démarrage \quad|\quad Projet : \textbf{Refonte Web}}
+\end{center}
+
+\vspace{6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{L{4cm} Y L{4cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Champ} & \th{Valeur} & \th{Champ} & \th{Valeur} \\
+\midrule
+Nom du projet      & Refonte Web                & Code projet       & REF-WEB-2026 \\
+\rowcolor{cnIce}
+Chef de projet     & M. X           & Date de rédaction & 22/04/2026 \\
+Sponsor / DSI      & Mme Y (DSI)        & Version           & 1.0 \\
+\rowcolor{cnIce}
+Budget autorisé    & 300 K€                     & Date de démarrage & 22/04/2026 \\
+ESN partenaire     & Sopra Steria (forfait 400 j/h) & Date de Go-Live cible & 30/09/2026 \\
+\bottomrule
+\end{tabularx}
+
+\section*{1 --- Contexte et justification}
+
+Time'Eats, spécialiste de la vente de nourriture préparée et de la livraison à domicile, vise un objectif stratégique ambitieux pour 2026--2027 : conquérir \textbf{1\,M de nouveaux clients}, servir 10\,000 restaurants partenaires et atteindre \textbf{25\,\% de part de marché}. Le site web actuel, daté et peu \emph{responsive}, ne soutient ni cette croissance, ni l'industrialisation de la production de contenu, ni l'interconnexion avec le futur CRM et les applications mobiles. La refonte web est la \textbf{pierre angulaire de la transformation digitale} : socle commun à l'écosystème (CRM, App Clients, App Fournisseurs) via une API publique, et levier de conversion direct pour les équipes marketing et commerce.
+
+\section*{2 --- Objectifs}
+
+\begin{itemize}
+  \item \textbf{Objectif principal :} livrer un nouveau site \texttt{timeats.fr} \emph{responsive}, conforme RGAA 4.1 niveau AA et RGPD, avec espace client et CMS contributeur, en production le \textbf{30/09/2026}.
+  \item \textbf{Objectif secondaire :} augmenter le \textbf{trafic organique de +30\,\%} à 6 mois (M+6) par une refonte SEO technique (Core Web Vitals : LCP $<$ 2{,}5 s, INP $<$ 200 ms, CLS $<$ 0{,}1).
+  \item \textbf{Objectif secondaire :} fournir une \textbf{API publique REST v1} consommable par les futures applications mobiles et le CRM, livrée et documentée au plus tard à J2 (30/06/2026).
+  \item \textbf{Objectif secondaire :} \textbf{industrialiser la chaîne de production} (CI/CD multi-environnement, design system réutilisable) afin de réduire le TCO de 25\,\% à 12 mois.
+\end{itemize}
+
+\section*{3 --- Périmètre}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{1.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{} & \th{Description} \\
+\midrule
+\cellcolor{cnGreen!20}\textbf{In} & Site corporate \texttt{timeats.fr} (refonte UX/UI, contenus, design system), CMS contributeurs métier, API publique REST v1, espace client (compte, suivi commandes, historique), SEO technique, conformité RGAA 4.1 / RGPD, authentification SSO via Office 365 (ou IdP local en repli), pipeline CI/CD (dev / staging / prod), monitoring applicatif. \\
+\rowcolor{cnIce}
+\cellcolor{cnRed!20}\textbf{Out} & Refonte du CRM (projet dédié), applications mobiles Clients / Fournisseurs (projets séparés), back-office logistique, refonte du tunnel de commande B2B (Phase 2 post-Go-Live), migration des contenus legacy antérieurs à 2024 (à statuer en avenant). \\
+\bottomrule
+\end{tabularx}
+
+\section*{4 --- Jalons clés}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{C{1.5cm} L{5.5cm} Y C{2.5cm}}
+\toprule
+\rowcolor{cnNavy}\th{N°} & \th{Jalon} & \th{Livrable associé} & \th{Date cible} \\
+\midrule
+J0 & Démarrage officiel       & Charte signée + équipe staffée    & 22/04/2026 \\
+\rowcolor{cnIce}
+J1 & Maquettes UX validées    & Wireframes + design system v1 + parcours-clés signés métier & 27/05/2026 \\
+J2 & Socle technique validé   & Architecture, API v1, CI/CD, environnements prêts & 30/06/2026 \\
+\rowcolor{cnIce}
+J3 & MVP fonctionnel          & Site corporate + CMS + espace client minimal en staging & 31/07/2026 \\
+J4 & Recette + RGAA           & Recette MOA OK + audit RGAA AA & 31/08/2026 \\
+\rowcolor{cnIce}
+J5 & Go-Live                  & Bascule production + transfert run + REX & 30/09/2026 \\
+\bottomrule
+\end{tabularx}
+
+\section*{5 --- Ressources affectées}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{4cm} L{3.5cm} Y C{2.5cm}}
+\toprule
+\rowcolor{cnNavy}\th{Ressource} & \th{Rôle} & \th{Responsabilités} & \th{Affectation} \\
+\midrule
+M. X            & Chef de projet      & Pilotage global, COPIL, gestion ESN & 50\,\% \\
+\rowcolor{cnIce}
+M. A           & Tech Lead Front     & Architecture front, design system, qualité code & 60\,\% \\
+M. B             & Dev Back-End        & API, intégrations, sécurité applicative & 60\,\% \\
+\rowcolor{cnIce}
+Mme C          & UX/UI Designer      & Wireframes, maquettes, design system & 80\,\% Avr-Mai / 30\,\% ensuite \\
+M. D            & DevOps / CI-CD      & Pipeline, environnements, monitoring & 20\,\% \\
+\rowcolor{cnIce}
+Mme E           & RSSI                & Validation sécurité, audit OWASP & 10\,\% \\
+Mme F             & Resp. Marketing     & Référent métier, validation contenus & 15\,\% \\
+\rowcolor{cnIce}
+Sopra Steria         & ESN forfait         & Dev front/back, UX expert, QA & 400 j/h forfait \\
+\bottomrule
+\end{tabularx}
+
+\section*{6 --- Contraintes et hypothèses}
+
+\begin{itemize}
+  \item \textbf{Contrainte 1 :} budget non extensible (300 K€ fermes, dont 200 K€ ESN au forfait).
+  \item \textbf{Contrainte 2 :} Go-Live impératif au \textbf{30/09/2026} pour précéder la campagne marketing nationale Q4 2026.
+  \item \textbf{Contrainte 3 :} conformité RGAA 4.1 niveau AA et OWASP ASVS niveau 2 obligatoires avant bascule.
+  \item \textbf{Contrainte 4 :} hébergement en France (Azure West Europe — Paris), exigence RGPD souveraineté.
+  \item \textbf{Hypothèse 1 :} disponibilité du référent Marketing (Mme F) à 15\,\% confirmée jusqu'à J5.
+  \item \textbf{Hypothèse 2 :} projet \textbf{Office 365} livré à temps pour le SSO de l'espace client (sinon : repli IdP local — surcoût estimé 8 K€).
+  \item \textbf{Hypothèse 3 :} stabilité des équipes Sopra Steria sur toute la durée (clause forfaitaire de continuité).
+\end{itemize}
+
+\section*{7 --- Signatures d'autorisation}
+
+\vspace{1cm}
+\renewcommand{\arraystretch}{2}
+\begin{tabularx}{\textwidth}{Y Y Y}
+\toprule
+\rowcolor{cnNavy}\th{Chef de projet} & \th{DSI / Sponsor} & \th{Direction Générale} \\
+\midrule
+Nom : M. X & Nom : Mme Y & Nom : M. Z \\
+Date : 22/04/2026 & Date : 22/04/2026 & Date : 22/04/2026 \\
+Signature : & Signature : & Signature : \\
+\bottomrule
+\end{tabularx}
+
+\end{document}

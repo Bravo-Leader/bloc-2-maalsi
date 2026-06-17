@@ -1,0 +1,115 @@
+% ============================================================
+%  CHARTE PROJET — Phase 1 : Démarrage
+%  Time'Eats — Cellule PMO
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../style/consulting}
+\hypersetup{pdftitle={Charte Projet — Time'Eats PMO}}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\begin{tikzpicture}[remember picture,overlay]
+  \draw[cnNavy,line width=0.5pt](0,0)--(\textwidth,0);
+\end{tikzpicture}\vspace{2pt}\timeeatslogo\hspace{4pt}\small\textcolor{cnSlate}{Time'Eats \textbf{·} Charte Projet}}
+\fancyhead[R]{\small\textcolor{cnSlate}{\thepage}}
+\fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel — Cellule PMO — CESI MAALSI 2026}}
+\begin{document}\small
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Charte Projet}\\[4pt]
+\textcolor{cnOrange}{\rule{10cm}{1pt}}\\[4pt]
+{\large\color{cnSlate} Phase 1 --- Démarrage}
+\end{center}
+
+\vspace{6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{L{4cm} Y L{4cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Champ} & \th{Valeur} & \th{Champ} & \th{Valeur} \\
+\midrule
+Nom du projet      & \textit{[Nom]}         & Code projet    & \textit{[CODE-XX]} \\
+\rowcolor{cnIce}
+Chef de projet     & \textit{[Prénom NOM]}  & Date de rédaction & \textit{[JJ/MM/AAAA]} \\
+Sponsor / DSI      & \textit{[Prénom NOM]}  & Version        & 1.0 \\
+\rowcolor{cnIce}
+Budget autorisé    & \textit{[XXX K€]} & Date de démarrage & \textit{[JJ/MM/AAAA]} \\
+\bottomrule
+\end{tabularx}
+
+\section*{1 --- Contexte et justification}
+
+\textit{[Décrire en 2--4 phrases le contexte business qui justifie ce projet : problème à résoudre, opportunité à saisir, contrainte réglementaire, etc.]}
+
+\section*{2 --- Objectifs}
+
+\begin{itemize}
+  \item \textbf{Objectif principal :} \textit{[Objectif SMART 1]}
+  \item \textbf{Objectif secondaire :} \textit{[Objectif SMART 2]}
+  \item \textbf{Objectif secondaire :} \textit{[Objectif SMART 3]}
+\end{itemize}
+
+\section*{3 --- Périmètre}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{1.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{} & \th{Description} \\
+\midrule
+\cellcolor{cnGreen!20}\textbf{In} & \textit{[Ce qui est inclus dans le projet]} \\
+\rowcolor{cnIce}
+\cellcolor{cnRed!20}\textbf{Out} & \textit{[Ce qui est explicitement exclu]} \\
+\bottomrule
+\end{tabularx}
+
+\section*{4 --- Jalons clés}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{C{1.5cm} L{5cm} Y C{2.5cm}}
+\toprule
+\rowcolor{cnNavy}\th{N°} & \th{Jalon} & \th{Livrable associé} & \th{Date cible} \\
+\midrule
+J0 & Démarrage officiel & Charte signée & \textit{[date]} \\
+\rowcolor{cnIce}
+J1 & \textit{[Jalon 1]} & \textit{[Livrable]} & \textit{[date]} \\
+J2 & \textit{[Jalon 2]} & \textit{[Livrable]} & \textit{[date]} \\
+\rowcolor{cnIce}
+Jn & Clôture & PV de recette + REX & \textit{[date]} \\
+\bottomrule
+\end{tabularx}
+
+\section*{5 --- Ressources affectées}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{4cm} L{3cm} Y C{2.5cm}}
+\toprule
+\rowcolor{cnNavy}\th{Ressource} & \th{Rôle} & \th{Responsabilités} & \th{Affectation} \\
+\midrule
+\textit{[Prénom NOM]} & Chef de projet & Pilotage global & \textit{[X\%]} \\
+\rowcolor{cnIce}
+\textit{[Prénom NOM]} & \textit{[Rôle]} & \textit{[Resp.]} & \textit{[X\%]} \\
+ESN / Prestataire & \textit{[Rôle]} & \textit{[Resp.]} & Forfait \\
+\bottomrule
+\end{tabularx}
+
+\section*{6 --- Contraintes et hypothèses}
+
+\begin{itemize}
+  \item \textbf{Contrainte 1 :} \textit{[ex. dépendance Office 365 terminé avant démarrage]}
+  \item \textbf{Contrainte 2 :} \textit{[ex. budget non extensible]}
+  \item \textbf{Hypothèse 1 :} \textit{[ex. disponibilité de la MOA à 20\%]}
+\end{itemize}
+
+\section*{7 --- Signatures d'autorisation}
+
+\vspace{1cm}
+\renewcommand{\arraystretch}{2}
+\begin{tabularx}{\textwidth}{Y Y Y}
+\toprule
+\rowcolor{cnNavy}\th{Chef de projet} & \th{DSI / Sponsor} & \th{Direction Générale} \\
+\midrule
+\textit{Nom :} & \textit{Nom :} & \textit{Nom :} \\
+\textit{Date :} & \textit{Date :} & \textit{Date :} \\
+\textit{Signature :} & \textit{Signature :} & \textit{Signature :} \\
+\bottomrule
+\end{tabularx}
+
+\end{document}

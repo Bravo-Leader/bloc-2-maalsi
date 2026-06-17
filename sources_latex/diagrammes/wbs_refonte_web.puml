@@ -1,0 +1,95 @@
+@startwbs
+skinparam dpi 200
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam shadowing false
+skinparam ArrowColor #1A3A6A
+skinparam wbsDiagram {
+  BorderColor #1A3A6A
+}
+
+<style>
+wbsDiagram {
+  Linecolor #1A3A6A
+  arrow {
+    Linecolor #1A3A6A
+    Linethickness 1.4
+  }
+  :depth(0) {
+    BackgroundColor #1A3A6A
+    FontColor #FFFFFF
+    BorderColor #1A3A6A
+    FontStyle bold
+    FontSize 13
+    Padding 8
+    RoundCorner 8
+  }
+  :depth(1) {
+    BackgroundColor #3A5A8A
+    FontColor #FFFFFF
+    BorderColor #1A3A6A
+    FontStyle bold
+    RoundCorner 6
+    Padding 6
+  }
+  :depth(2) {
+    BackgroundColor #E8F0FA
+    FontColor #1A3A6A
+    BorderColor #3A5A8A
+    Padding 5
+    RoundCorner 4
+  }
+  :depth(3) {
+    BackgroundColor #FFEBD1
+    FontColor #6B3A0F
+    BorderColor #E65100
+    Padding 4
+    RoundCorner 3
+  }
+}
+</style>
+
+* Refonte Web (REF-WEB-2026)
+** 1. Démarrage
+*** 1.1 Charte projet signée
+*** 1.2 Kick-off réalisé (équipe + ESN)
+** 2. Planification
+*** 2.1 PMP validé (v1.0)
+*** 2.2 Planning Gantt baseline
+*** 2.3 Budget détaillé 300 K€
+*** 2.4 Registre des risques
+*** 2.5 Plan de communication
+** 3. UX/UI & Design system
+*** 3.1 Audit existant & benchmarks
+*** 3.2 Personas + parcours-clés
+*** 3.3 Wireframes basse fidélité
+*** 3.4 Maquettes haute fidélité (Figma)
+*** 3.5 Design system v1
+** 4. Socle technique & API
+*** 4.1 Architecture cible validée
+*** 4.2 Environnements dev/staging/prod
+*** 4.3 Pipeline CI/CD (DevOps)
+*** 4.4 API publique REST v1
+*** 4.5 SSO O365 (SI dispo) ou IdP local
+** 5. Réalisation produit
+*** 5.1 Site corporate (vitrine)
+*** 5.2 CMS contributeurs
+*** 5.3 Espace client (compte, historique)
+*** 5.4 Intégration future CRM (API)
+*** 5.5 SEO technique
+** 6. Qualité & recette
+*** 6.1 Tests unitaires & intégration
+*** 6.2 Recette fonctionnelle MOA
+*** 6.3 Audit RGAA 4.1
+*** 6.4 Audit sécurité OWASP ASVS 2
+*** 6.5 Tests perf (Lighthouse > 90)
+** 7. Conduite du changement
+*** 7.1 Formation Key Users CMS
+*** 7.2 Plan de communication interne
+*** 7.3 Documentation utilisateur
+** 8. Clôture & Go-Live
+*** 8.1 Bascule production
+*** 8.2 Transfert exploitation
+*** 8.3 PV de recette signé
+*** 8.4 Fiche REX rédigée
+@endwbs

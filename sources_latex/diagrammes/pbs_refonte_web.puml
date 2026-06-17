@@ -1,0 +1,86 @@
+@startwbs
+skinparam dpi 200
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam shadowing false
+skinparam ArrowColor #1A3A6A
+skinparam wbsDiagram {
+  BorderColor #1A3A6A
+}
+
+<style>
+wbsDiagram {
+  Linecolor #1A3A6A
+  arrow {
+    Linecolor #1A3A6A
+    Linethickness 1.4
+  }
+  :depth(0) {
+    BackgroundColor #1A3A6A
+    FontColor #FFFFFF
+    BorderColor #1A3A6A
+    FontStyle bold
+    FontSize 13
+    Padding 8
+    RoundCorner 8
+  }
+  :depth(1) {
+    BackgroundColor #3A5A8A
+    FontColor #FFFFFF
+    BorderColor #1A3A6A
+    FontStyle bold
+    RoundCorner 6
+    Padding 6
+  }
+  :depth(2) {
+    BackgroundColor #E8F0FA
+    FontColor #1A3A6A
+    BorderColor #3A5A8A
+    Padding 5
+    RoundCorner 4
+  }
+  :depth(3) {
+    BackgroundColor #FFEBD1
+    FontColor #6B3A0F
+    BorderColor #E65100
+    Padding 4
+    RoundCorner 3
+  }
+}
+</style>
+
+title PBS - Refonte Web Time'Eats (RW-2026)
+
+* Refonte Web Time'Eats
+** 1. Portail public
+*** 1.1 Pages éditoriales (CMS Strapi)
+*** 1.2 Module SEO (sitemap, meta, JSON-LD)
+*** 1.3 Module RGAA 4.1 AA
+** 2. Espace client authentifié
+*** 2.1 Login SSO Office 365 (OIDC)
+*** 2.2 Tableau de bord commandes
+*** 2.3 Gestion profil + RGPD
+*** 2.4 Notifications (mail, in-app)
+** 3. Espace fournisseur
+*** 3.1 Catalogue produit (CRUD)
+*** 3.2 Suivi livraisons (sync ERP)
+*** 3.3 Facturation (PDF + export Sage)
+** 4. CMS éditorial (back-office)
+*** 4.1 Workflow validation (3 étapes)
+*** 4.2 Médiathèque (DAM Strapi)
+*** 4.3 Rôles & permissions (RBAC)
+** 5. Couche d'intégration API
+*** 5.1 API CRM (8 endpoints REST)
+*** 5.2 API ERP (4 endpoints REST)
+*** 5.3 SSO Office 365 (Azure AD)
+** 6. Socle technique
+*** 6.1 Front-end Next.js 14
+*** 6.2 API gateway Node.js
+*** 6.3 PostgreSQL 15
+*** 6.4 Hébergement Azure (3 envs)
+*** 6.5 Pipeline CI/CD GitLab
+** 7. Conformité & sécurité
+*** 7.1 Conformité RGPD
+*** 7.2 Conformité RGAA 4.1 AA
+*** 7.3 Sécurité OWASP ASVS L2
+@endwbs

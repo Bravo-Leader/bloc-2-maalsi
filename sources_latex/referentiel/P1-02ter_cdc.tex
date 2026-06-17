@@ -1,0 +1,128 @@
+% ============================================================
+%  CAHIER DES CHARGES (CDC) — Phase 1 : Démarrage
+%  Time'Eats — Cellule PMO
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../style/consulting}
+\hypersetup{pdftitle={Cahier des Charges (CDC) — Time'Eats PMO}}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\begin{tikzpicture}[remember picture,overlay]
+  \draw[cnNavy,line width=0.5pt](0,0)--(\textwidth,0);
+\end{tikzpicture}\vspace{2pt}\timeeatslogo\hspace{4pt}\small\textcolor{cnSlate}{Time'Eats \textbf{·} Cahier des Charges (CDC)}}
+\fancyhead[R]{\small\textcolor{cnSlate}{\thepage}}
+\fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel --- Cellule PMO --- CESI MAALSI 2026}}
+\begin{document}\small
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Cahier des Charges (CDC)}\\[4pt]
+\textcolor{cnOrange}{\rule{10cm}{1pt}}\\[4pt]
+{\large\color{cnSlate} Phase 1 --- Démarrage}
+\end{center}
+
+\vspace{6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{L{3.5cm} Y L{3.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Projet} & \th{} & \th{Date} & \th{} \\
+\midrule
+Nom        & \textit{[Nom du projet]} & Rédacteur & \textit{[Prénom NOM]} \\
+\rowcolor{cnIce}
+Code       & \textit{[CODE-XX]}       & Version   & 1.0 \\
+\bottomrule
+\end{tabularx}
+
+\section*{1 --- Objet et contexte}
+\textit{[Rappeler le contexte business et la finalité du projet. Référencer la note de cadrage P1-02.]}
+
+\section*{2 --- Objectifs}
+\begin{itemize}
+  \item \textit{[Objectif fonctionnel 1]}
+  \item \textit{[Objectif fonctionnel 2]}
+  \item \textit{[Objectif fonctionnel 3]}
+\end{itemize}
+
+\section*{3 --- Périmètre détaillé}
+\textit{[Reprendre la décomposition PBS (P1-02bis) pour ancrer le périmètre.]}
+
+\section*{4 --- Exigences fonctionnelles (FX)}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{C{1.2cm} L{3.5cm} Y C{1.5cm} C{1.5cm}}
+\toprule
+\rowcolor{cnNavy}\th{ID} & \th{Intitulé} & \th{Description / critères d'acceptation} & \th{Priorité} & \th{Lien PBS} \\
+\midrule
+FX-01 & \textit{[Intitulé]} & \textit{[Description et critères mesurables]} & M / S / C / W & \textit{[1.x]} \\
+\rowcolor{cnIce}
+FX-02 & \textit{[Intitulé]} & \textit{[Description et critères mesurables]} & M / S / C / W & \textit{[1.x]} \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+{\footnotesize MoSCoW : \textbf{M} = Must (indispensable), \textbf{S} = Should (important), \textbf{C} = Could (souhaitable), \textbf{W} = Won't (hors lot).}
+
+\section*{5 --- Exigences non fonctionnelles (NFX)}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{C{1.2cm} L{3.2cm} Y C{2.5cm}}
+\toprule
+\rowcolor{cnNavy}\th{ID} & \th{Axe} & \th{Exigence / critère mesurable} & \th{Cible / seuil} \\
+\midrule
+NFX-01 & Performance       & \textit{[Ex : LCP $\leq$ 2 s p95]}            & \textit{[Seuil]} \\
+\rowcolor{cnIce}
+NFX-02 & Accessibilité     & \textit{[RGAA niveau visé]}                    & \textit{[Seuil]} \\
+NFX-03 & Sécurité          & \textit{[OWASP ASVS niveau]}                   & \textit{[Seuil]} \\
+\rowcolor{cnIce}
+NFX-04 & Disponibilité     & \textit{[SLA \%]}                              & \textit{[Seuil]} \\
+NFX-05 & Volumétrie        & \textit{[Nb visiteurs / requêtes]}             & \textit{[Seuil]} \\
+\rowcolor{cnIce}
+NFX-06 & Compatibilité     & \textit{[Navigateurs, OS]}                     & \textit{[Liste]} \\
+\bottomrule
+\end{tabularx}
+
+\section*{6 --- Contraintes}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{3cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Type} & \th{Description} \\
+\midrule
+Délai          & \textit{[Date butoir, jalons imposés]} \\
+\rowcolor{cnIce}
+Budget         & \textit{[Enveloppe budgétaire]} \\
+Réglementaire  & \textit{[RGPD, RGAA, sectoriel]} \\
+\rowcolor{cnIce}
+Technique      & \textit{[Stack imposée, dépendances]} \\
+\bottomrule
+\end{tabularx}
+
+\section*{7 --- Critères de recette}
+
+\textit{[Définir comment chaque exigence sera vérifiée à la recette : tests automatisés, recette MOA, audit externe, mesure outillée. Référencer les PV de recette P5-19 et P5-20.]}
+
+\section*{8 --- Planning de référence}
+
+\textit{[Jalons J0 à Jn, alignés sur le PMP (P2-05) et le Gantt (P2-07).]}
+
+\section*{9 --- Modalités contractuelles}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{4cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Élément} & \th{Modalité} \\
+\midrule
+Type de contrat         & \textit{[Forfait / régie / mixte]} \\
+\rowcolor{cnIce}
+Jalons de facturation   & \textit{[\% par jalon]} \\
+Pénalités de retard     & \textit{[Clause]} \\
+\rowcolor{cnIce}
+Propriété intellectuelle & \textit{[Cession des droits, code source]} \\
+Garantie                & \textit{[Durée et périmètre]} \\
+\bottomrule
+\end{tabularx}
+
+\begin{reco}
+\textbf{Validation :} le CDC doit être validé par la MOA, la MOE (DSI) et le sponsor avant l'émission du bon de commande. Toute évolution post-signature suit le processus de demande de changement (P3-14).
+\end{reco}
+
+\end{document}

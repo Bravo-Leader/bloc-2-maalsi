@@ -1,0 +1,269 @@
+% ============================================================
+% consulting.sty — Style cabinet de consulting pour BricoLoc
+% ============================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{consulting}[2026/03/08 Consulting Style]
+
+% ── Packages ────────────────────────────────────────────────
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage[french]{babel}
+\RequirePackage[top=1.2cm, bottom=1.2cm, left=1.5cm, right=1.5cm, headheight=15pt, includeheadfoot]{geometry}
+\RequirePackage{graphicx}
+\graphicspath{{img/}{../img/}{../../img/}}
+\newcommand{\timeeatslogo}{\raisebox{-0.32\height}{\includegraphics[height=0.55cm]{logo_time_eat}}}
+\RequirePackage{booktabs}
+\RequirePackage{tabularx}
+\RequirePackage{array}
+\RequirePackage[table,x11names]{xcolor}
+\RequirePackage{colortbl}
+% Patch colortbl v1.0k / array.sty v2.5g incompatibility:
+% colortbl v1.0k's \@classz uses \insert@pcolumn (array.sty v2.6+)
+% but array.sty v2.5g uses \insert@column for p-columns.
+% We patch \@classz to restore compatibility.
+\makeatletter
+\@ifundefined{insert@pcolumn}{%
+  \def\@classz{\@classx
+   \@tempcnta \count@
+   \prepnext@tok
+   \expandafter\CT@extract\the\toks\@tempcnta\columncolor!\@nil
+   \@addtopreamble{%
+    \setbox\z@\hbox\bgroup\bgroup
+      \CT@everycr{}%
+      \ifcase \@chnum
+      \hskip\stretch{.5}\kern\z@
+      \d@llarbegin
+      \insert@column
+      \d@llarend\do@row@strut\hskip\stretch{.5}\or
+      \d@llarbegin \insert@column \d@llarend\do@row@strut \hfill
+   \or
+      \hfill\kern\z@ \d@llarbegin \insert@column \d@llarend\do@row@strut
+   \or
+      \ifx\ar@align@mcell\@undefined
+        $\vcenter
+         \@startpbox{\@nextchar}\insert@column \@endpbox $
+      \else
+        \setbox\ar@mcellbox\vbox
+          \@startpbox{\@nextchar}\insert@column \@endpbox
+        \ar@align@mcell
+        \do@row@strut
+      \fi
+   \or
+     \vtop \@startpbox{\@nextchar}\insert@column \@endpbox\do@row@strut
+   \or
+     \vbox \@startpbox{\@nextchar}\insert@column \@endpbox\do@row@strut
+  \fi
+ \egroup\egroup
+\begingroup
+  \CT@setup
+  \CT@column@color
+  \CT@row@color
+  \CT@cell@color
+  \CT@do@color
+\endgroup
+        \@tempdima\ht\z@
+        \advance\@tempdima\minrowclearance
+        \vrule\@height\@tempdima\@width\z@
+        \unhbox\z@}%
+  \prepnext@tok}%
+}{}
+\makeatother
+\RequirePackage{hyperref}
+\RequirePackage{fancyhdr}
+\RequirePackage{titlesec}
+\RequirePackage{enumitem}
+\RequirePackage{float}
+\RequirePackage{caption}
+\RequirePackage{subcaption}
+\RequirePackage{pifont}
+\RequirePackage{amssymb}
+\RequirePackage{tikz}
+\RequirePackage{pgfgantt}
+\RequirePackage[backend=biber, style=numeric, sorting=nyt]{biblatex}
+\RequirePackage{csquotes}
+\RequirePackage{listings}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\RequirePackage{multirow}
+\RequirePackage{longtable}
+\RequirePackage{pdflscape}
+\RequirePackage{ragged2e}
+\RequirePackage{microtype}
+\RequirePackage{lmodern}
+\setlength\emergencystretch{8em}
+\setlist{nosep, topsep=2pt}
+
+% ── Palette de couleurs ──────────────────────────────────────
+\definecolor{cnNavy}{HTML}{1E3A5F}
+\definecolor{cnNavyLight}{HTML}{2C5282}
+\definecolor{cnOrange}{HTML}{E67E22}
+\definecolor{cnSlate}{HTML}{7F8C8D}
+\definecolor{cnIce}{HTML}{F0F4F8}
+\definecolor{cnGreen}{HTML}{27AE60}
+\definecolor{cnRed}{HTML}{C0392B}
+\definecolor{cnLightBlue}{HTML}{EBF5FB}
+\definecolor{cnLightOrange}{HTML}{FEF9E7}
+\definecolor{cnLightGreen}{HTML}{EAFAF1}
+\definecolor{cnLightRed}{HTML}{FDEDEC}
+
+% ── Hyperref ────────────────────────────────────────────────
+\hypersetup{
+    colorlinks=true,
+    linkcolor=cnNavy,
+    citecolor=cnNavy,
+    urlcolor=cnOrange,
+    pdftitle={BricoLoc 2.0 -- Architecture Logicielle du SI},
+    pdfauthor={V. Coudert},
+    pdfsubject={CESI MAALSI -- Architecture logicielle},
+}
+
+% ── En-têtes et pieds de page ───────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \draw[cnNavy, line width=0.5pt] (0,0) -- (\textwidth,0);
+  \end{tikzpicture}%
+  \vspace{2pt}\small\textcolor{cnSlate}{BricoLoc 2.0 \textbf{·} Architecture Logicielle du SI}%
+}
+\fancyhead[R]{\small\textcolor{cnSlate}{\thepage}}
+\fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel — V. Coudert — CESI MAALSI 2026}}
+\renewcommand{\footrulewidth}{0pt}
+
+% Style de la page de chapitre (pas de header)
+\fancypagestyle{chapterpage}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel — V. Coudert — CESI MAALSI 2026}}
+}
+
+% ── Chapitres ────────────────────────────────────────────────
+% Chapter opener : pleine largeur, fond navy, texte blanc
+\titleformat{\chapter}[block]
+  {\normalfont}
+  {}
+  {0pt}
+  {\chapterTitleBox}
+  []
+
+\newcommand{\chapterTitleBox}[1]{%
+  \thispagestyle{chapterpage}%
+  \begin{tikzpicture}
+    \node[fill=cnNavy, text width=\textwidth, inner xsep=1cm, inner ysep=1.2cm,
+          align=left, text=white] {%
+      \normalfont\scriptsize\textcolor{cnOrange}{\MakeUppercase{Partie \thechapter}}\\[6pt]
+      \normalfont\LARGE\bfseries #1%
+    };
+  \end{tikzpicture}%
+  \vspace{0.6cm}%
+}
+\titlespacing*{\chapter}{0pt}{0pt}{0pt}
+
+% ── Sections ─────────────────────────────────────────────────
+\titleformat{\section}
+  {\normalfont\large\bfseries\color{cnNavy}}
+  {\color{cnOrange}\rule[-3pt]{4pt}{14pt}\hspace{8pt}\thesection}
+  {0.4em}
+  {}
+  []
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries\color{cnNavy}}
+  {\thesubsection}
+  {0.5em}
+  {}
+  []
+\titlespacing*{\subsection}{0pt}{6pt}{2pt}
+
+% ── Colonnes tabularx ────────────────────────────────────────
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+
+% ── Helper cellule d'en-tête de tableau ──────────────────────
+\providecommand{\th}[1]{\textcolor{white}{\textbf{#1}}}
+\renewcommand{\th}[1]{\textcolor{white}{\textbf{#1}}}
+
+% ── Espacement figures / tableaux ────────────────────────────
+\setlength{\parskip}{2pt}
+\setlength{\floatsep}{4pt}
+\setlength{\textfloatsep}{6pt}
+\setlength{\intextsep}{4pt}
+\setlength{\abovecaptionskip}{3pt}
+\setlength{\belowcaptionskip}{2pt}
+\captionsetup{font=small, labelfont={bf,color=cnNavy}, textfont=it}
+
+% ── Boîtes consulting ────────────────────────────────────────
+
+% Constat / Key finding (bleu clair)
+\newtcolorbox{finding}[1][]{
+  enhanced,
+  colback=cnLightBlue,
+  colframe=cnNavy,
+  leftrule=4pt, rightrule=0pt, toprule=0pt, bottomrule=0pt,
+  arc=0pt,
+  fonttitle=\bfseries\small\color{cnNavy},
+  title={\ding{118}\enspace Constat clé},
+  coltitle=cnNavy,
+  attach boxed title to top left={yshift=-2mm, xshift=4pt},
+  boxed title style={colback=white, colframe=white},
+  boxsep=4pt, top=6pt, bottom=4pt, left=6pt, right=6pt,
+  before skip=6pt, after skip=6pt,
+  #1
+}
+
+% Alerte (orange/rouge)
+\newtcolorbox{alert}[1][]{
+  enhanced,
+  colback=cnLightRed,
+  colframe=cnRed,
+  leftrule=4pt, rightrule=0pt, toprule=0pt, bottomrule=0pt,
+  arc=0pt,
+  fonttitle=\bfseries\small\color{cnRed},
+  title={\ding{115}\enspace Point d'alerte},
+  coltitle=cnRed,
+  attach boxed title to top left={yshift=-2mm, xshift=4pt},
+  boxed title style={colback=white, colframe=white},
+  boxsep=4pt, top=6pt, bottom=4pt, left=6pt, right=6pt,
+  before skip=6pt, after skip=6pt,
+  #1
+}
+
+% Recommandation (vert)
+\newtcolorbox{reco}[1][]{
+  enhanced,
+  colback=cnLightGreen,
+  colframe=cnGreen,
+  leftrule=4pt, rightrule=0pt, toprule=0pt, bottomrule=0pt,
+  arc=0pt,
+  fonttitle=\bfseries\small\color{cnGreen},
+  title={\ding{52}\enspace Recommandation},
+  coltitle=cnGreen,
+  attach boxed title to top left={yshift=-2mm, xshift=4pt},
+  boxed title style={colback=white, colframe=white},
+  boxsep=4pt, top=6pt, bottom=4pt, left=6pt, right=6pt,
+  before skip=6pt, after skip=6pt,
+  #1
+}
+
+% Décision / choix retenu (orange)
+\newtcolorbox{decision}[1][]{
+  enhanced,
+  colback=cnLightOrange,
+  colframe=cnOrange,
+  leftrule=4pt, rightrule=0pt, toprule=0pt, bottomrule=0pt,
+  arc=0pt,
+  fonttitle=\bfseries\small\color{cnOrange},
+  title={\ding{226}\enspace Choix retenu},
+  coltitle=cnOrange,
+  attach boxed title to top left={yshift=-2mm, xshift=4pt},
+  boxed title style={colback=white, colframe=white},
+  boxsep=4pt, top=6pt, bottom=4pt, left=6pt, right=6pt,
+  before skip=6pt, after skip=6pt,
+  #1
+}
+
+\raggedbottom

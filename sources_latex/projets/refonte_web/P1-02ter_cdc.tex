@@ -1,0 +1,220 @@
+% ============================================================
+%  CAHIER DES CHARGES (CDC) — Phase 1 : Démarrage
+%  Time'Eats — Cellule PMO
+%  Projet : Refonte Web
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../../style/consulting}
+\hypersetup{pdftitle={CDC — Refonte Web — Time'Eats PMO}}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\begin{tikzpicture}[remember picture,overlay]
+  \draw[cnNavy,line width=0.5pt](0,0)--(\textwidth,0);
+\end{tikzpicture}\vspace{2pt}\timeeatslogo\hspace{4pt}\small\textcolor{cnSlate}{Time'Eats \textbf{·} CDC --- \textit{Refonte Web}}}
+\fancyhead[R]{\small\textcolor{cnSlate}{\thepage}}
+\fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel --- Cellule PMO --- CESI MAALSI 2026}}
+\begin{document}\small
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Cahier des Charges (CDC)}\\[4pt]
+\textcolor{cnOrange}{\rule{10cm}{1pt}}\\[4pt]
+{\large\color{cnSlate} Phase 1 --- Démarrage \quad|\quad Projet : \textbf{Refonte Web}}
+\end{center}
+
+\vspace{6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{L{3.5cm} Y L{3.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Projet} & \th{} & \th{Date} & \th{} \\
+\midrule
+Nom        & Refonte Web Time'Eats & Rédacteur & S. MARTIN (CP) \\
+\rowcolor{cnIce}
+Code       & RW-2026              & Version   & 1.0 (15/04/2026) \\
+Validé par & DSI, DG, DPO          & Statut    & Approuvé en COPIL d'avril 2026 \\
+\bottomrule
+\end{tabularx}
+
+\section*{1 --- Objet et contexte}
+
+Time'Eats engage la refonte intégrale de son site web actuel (CMS WordPress 5.x daté, non responsive, isolé du SI). Le présent CDC formalise l'expression du besoin contractuelle pour ce projet, alignée sur la Note de cadrage (P1-02) et le PBS (P1-02bis). Il sert de base au bon de commande Sopra Steria (BC-2026-0142, forfait 200 K€ / 400 j.h).
+
+\section*{2 --- Objectifs}
+
+\begin{itemize}
+  \item Délivrer un site moderne, responsive, conforme RGAA 4.1 AA et RGPD.
+  \item Offrir un \textbf{espace client B2B/B2C} et un \textbf{espace fournisseur} authentifiés.
+  \item Intégrer le futur \textbf{CRM} (API v1, contrats figés en juin 2026) et le \textbf{SSO Office 365}.
+  \item Industrialiser la production éditoriale (CMS Strapi headless) et la livraison applicative (CI/CD GitLab $\to$ Azure).
+  \item Atteindre $\geq +30\,\%$ de trafic organique et $\leq 45\,\%$ de taux de rebond à M+3.
+\end{itemize}
+
+\section*{3 --- Périmètre détaillé}
+
+Le périmètre fonctionnel est décomposé dans le PBS (P1-02bis) en 7 sous-systèmes : Portail public, Espace client, Espace fournisseur, CMS éditorial, Couche API, Socle technique, Conformité \& sécurité.
+
+\textbf{Hors périmètre :} App mobile clients/fournisseurs (projets dédiés), déploiement du CRM lui-même (projet dédié), Migration Azure infra (projet dédié), paiement en ligne (phase 2), intégration ERP comptable (hors portefeuille 2026).
+
+\section*{4 --- Exigences fonctionnelles (FX)}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{C{1.1cm} L{3.5cm} Y C{1cm} C{1cm}}
+\toprule
+\rowcolor{cnNavy}\th{ID} & \th{Intitulé} & \th{Description et critères d'acceptation} & \th{Prio.} & \th{PBS} \\
+\midrule
+FX-01 & Pages éditoriales CMS         & 12 templates publiables depuis Strapi sans intervention dev. Aperçu avant publication. & M & 1.1 \\
+\rowcolor{cnIce}
+FX-02 & Référencement SEO             & Sitemap XML auto, balises meta dynamiques, JSON-LD validé via Google Rich Results Test. & M & 1.2 \\
+FX-03 & Redirections legacy           & 100\,\% des URLs de l'ancien site $\to$ redirection 301 vers la nouvelle URL équivalente. & M & 1.2 \\
+\rowcolor{cnIce}
+FX-04 & Accessibilité RGAA 4.1 AA     & $\geq 95\,\%$ critères conformes, audit externe par bureau certifié. & M & 1.3 \\
+FX-05 & Formulaire contact            & Anti-spam (reCAPTCHA v3), accusé de réception sous 5 min. & S & 1.1 \\
+\midrule
+\rowcolor{cnIce}
+FX-06 & Authentification SSO O365     & Login Azure AD (OIDC), MFA optionnelle, session 8 h. & M & 2.1 \\
+FX-07 & Tableau de bord commandes     & Historique 24 mois, filtres (date, statut, montant), export CSV. & M & 2.2 \\
+\rowcolor{cnIce}
+FX-08 & Téléchargement facture        & PDF généré à la volée, conforme aux mentions légales obligatoires. & M & 2.2 \\
+FX-09 & Export RGPD données           & Export JSON complet sous 72 h, suppression compte effective sous 30 j. & M & 2.3 \\
+\rowcolor{cnIce}
+FX-10 & Notifications multi-canal     & Email transactionnel + in-app, préférences gérées par l'utilisateur. & S & 2.4 \\
+\midrule
+FX-11 & Catalogue produit fournisseur & CRUD complet : nom, photo (max 5), prix HT/TTC, allergènes (liste ANSES), stock. & M & 3.1 \\
+\rowcolor{cnIce}
+FX-12 & Suivi livraisons              & Synchro temps réel ERP, statut visible $\leq 30$ s après changement, preuve PDF. & M & 3.2 \\
+FX-13 & Facturation fournisseur       & Génération auto mensuelle, export comptable CSV au format Sage, relances J+30. & S & 3.3 \\
+\midrule
+\rowcolor{cnIce}
+FX-14 & Workflow validation CMS       & 3 étapes (brouillon $\to$ relecture $\to$ publication), 4 rôles, historique 10 versions. & M & 4.1 \\
+FX-15 & Médiathèque (DAM)             & Upload, ré-encodage auto (WebP, AVIF), 3 tailles responsives, recherche full-text. & C & 4.2 \\
+\rowcolor{cnIce}
+FX-16 & Gestion des rôles             & RBAC strict, 4 rôles, audit log des actions sensibles. & M & 4.3 \\
+\midrule
+FX-17 & API CRM (8 endpoints)         & REST JSON, OpenAPI 3.1, contrats v1 figés en juin 2026, tests de contrat verts. & M & 5.1 \\
+\rowcolor{cnIce}
+FX-18 & API ERP (4 endpoints)         & REST JSON, sync produits / stocks / factures / livraisons. & M & 5.2 \\
+\midrule
+FX-19 & Bandeau cookies (RGPD)        & Solution Axeptio, consentement granulaire, journal de preuve $\geq 3$ ans. & M & 7.1 \\
+\rowcolor{cnIce}
+FX-20 & Pentest pré go-live           & 0 vulnérabilité critique au rapport final, OWASP ASVS niveau 2 atteint. & M & 7.3 \\
+\midrule
+\multicolumn{5}{l}{\cellcolor{cnNavy!15}\textbf{\textcolor{cnNavy}{Exigences souhaitables (Could) et hors lot (Won't) --- pour mémoire}}} \\
+\midrule
+FX-21 & Recommandation produits       & Bloc « Vous pourriez aimer » sur fiche produit (algo simple co-achats). & C & 1.1 \\
+\rowcolor{cnIce}
+FX-22 & Mode sombre du portail        & Thème sombre auto selon préférence système, switch manuel persistant. & C & 1.1 \\
+FX-23 & Paiement en ligne CB / SEPA   & \textit{Hors périmètre 2026 --- replanifié en phase 2 (2027), projet dédié.} & W & --- \\
+\rowcolor{cnIce}
+FX-24 & Application mobile native     & \textit{Hors périmètre --- projets dédiés iOS / Android du portefeuille (cf.\ Note de cadrage P1-02 \S Out).} & W & --- \\
+FX-25 & Chatbot IA support client     & \textit{Hors périmètre 2026 --- arbitré en COPIL d'avril 2026 (manque de jeu de données qualifié).} & W & --- \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+{\footnotesize Priorité MoSCoW : \textbf{M} = Must (indispensable au Go-Live), \textbf{S} = Should (important, traité si capacité), \textbf{C} = Could (souhaitable, embarqué si reste à faire $<$ 10\,\% du budget), \textbf{W} = Won't (hors lot, documenté pour traçabilité). Bilan : 16 M, 3 S, 3 C, 3 W.}
+
+\section*{5 --- Exigences non fonctionnelles (NFX)}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{C{1.2cm} L{2.8cm} Y C{3cm}}
+\toprule
+\rowcolor{cnNavy}\th{ID} & \th{Axe} & \th{Exigence et mesure} & \th{Cible} \\
+\midrule
+NFX-01 & Performance       & LCP (Largest Contentful Paint) p95 sur pages publiques (mesure outil APM Datadog). & $\leq 2\,$s \\
+\rowcolor{cnIce}
+NFX-02 & Performance       & Score Lighthouse Performance (mobile) sur 5 pages clés. & $\geq 90$ \\
+NFX-03 & Accessibilité     & RGAA 4.1 niveau AA --- audit externe. & $\geq 95\,\%$ conformes \\
+\rowcolor{cnIce}
+NFX-04 & Sécurité          & OWASP ASVS niveau 2 --- pentest pré go-live. & 0 vuln. critique \\
+NFX-05 & Disponibilité     & SLA prod (24/7, hors fenêtres de maintenance planifiées). & $\geq 99,5\,\%$ /an \\
+\rowcolor{cnIce}
+NFX-06 & Volumétrie        & Cible 50\,000 visiteurs uniques / mois à M+3, pic 1\,500 req/min. & Supporté sans dégradation \\
+NFX-07 & Compatibilité     & Navigateurs : Edge $\geq$ 110, Chrome $\geq$ 110, Firefox $\geq$ 110, Safari $\geq$ 16. Mobile : iOS 15+, Android 11+. & 100\,\% des fonctions \\
+\rowcolor{cnIce}
+NFX-08 & Conformité RGPD   & Registre des traitements, mentions, DPIA si nécessaire, anonymisation J+1825. & Conforme CNIL \\
+NFX-09 & Maintenabilité    & Couverture tests unitaires sur back-end + tests E2E sur parcours critiques. & $\geq 80\,\%$ \\
+\rowcolor{cnIce}
+NFX-10 & Observabilité     & Logs structurés JSON, métriques APM, alerting (5xx, latence p95, erreurs métier). & Couverture 100\,\% des services \\
+\bottomrule
+\end{tabularx}
+
+\section*{6 --- Contraintes}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{3cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Type} & \th{Description} \\
+\midrule
+Délai          & Go-Live impératif au 30/09/2026 --- aligné avec la campagne nationale Q4 2026. \\
+\rowcolor{cnIce}
+Budget         & Enveloppe ferme 300 K€ HT (cf.\ P2-08), dont 200 K€ forfait Sopra Steria. \\
+Réglementaire  & RGPD (CNIL), RGAA 4.1 AA, conformité loi du 7 octobre 2016 (République numérique). \\
+\rowcolor{cnIce}
+Technique      & Stack imposée : Next.js + Node.js + PostgreSQL + Strapi + Azure West Europe. \\
+Dépendance     & API CRM v1 disponibles au J3 (31/08/2026) --- portée par le projet CRM. \\
+\rowcolor{cnIce}
+Dépendance     & SSO Office 365 disponible au J2 --- portée par le projet Office 365. \\
+\bottomrule
+\end{tabularx}
+
+\section*{7 --- Critères de recette}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{4cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Type de recette} & \th{Modalités} \\
+\midrule
+Recette fonctionnelle (P5-19) & Tests d'acceptation MOA sur les 20 exigences FX, taux $\geq 95\,\%$ de passage. \\
+\rowcolor{cnIce}
+Recette technique (P5-20)     & Tests de performance (k6), tests de charge ($\geq 1\,500$ req/min), pentest OWASP. \\
+Audit RGAA externe            & Bureau certifié, livrable : déclaration de conformité publique. \\
+\rowcolor{cnIce}
+Audit sécurité                & Pentest pré go-live, 0 vuln.\ critique, $\leq 3$ vuln.\ majeures. \\
+Recette CMS                   & 4 contributeurs marketing forment et publient 1 page chacun sans assistance. \\
+\bottomrule
+\end{tabularx}
+
+\section*{8 --- Planning de référence (jalons baseline)}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{C{1cm} L{4.5cm} C{2.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Jalon} & \th{Livrable} & \th{Date cible} & \th{Critère de passage} \\
+\midrule
+J0 & Kick-off projet              & 22/04/2026 & PMP signé, équipe constituée \\
+\rowcolor{cnIce}
+J1 & Maquettes UX validées        & 31/05/2026 & PV validation MOA \\
+J2 & Socle technique + env.\ dev  & 30/06/2026 & Déploiement staging réussi, SSO O365 opérationnel \\
+\rowcolor{cnIce}
+J3 & MVP portail public + espace client & 31/07/2026 & Démo de fin de sprint 6 acceptée \\
+J4 & Intégration CRM + espace fournisseur & 31/08/2026 & Tests de contrat API verts \\
+\rowcolor{cnIce}
+J5 & PV de recette + pentest      & 15/09/2026 & 0 vuln.\ critique, $\geq 95\,\%$ FX validées \\
+Jn & Go-Live + PV transfert       & 30/09/2026 & Mise en production effective \\
+\bottomrule
+\end{tabularx}
+
+\section*{9 --- Modalités contractuelles}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{4cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Élément} & \th{Modalité} \\
+\midrule
+Type de contrat         & Forfait global 200 K€ HT sur 400 j.h --- Sopra Steria (BC-2026-0142). \\
+\rowcolor{cnIce}
+Jalons de facturation   & 20\,\% J0, 20\,\% J1, 20\,\% J2, 25\,\% J4, 15\,\% J5. \\
+Pénalités de retard     & 1\,\% du jalon par semaine de retard, plafonnées à 10\,\% du montant total. \\
+\rowcolor{cnIce}
+Propriété intellectuelle & Cession exclusive des droits patrimoniaux à Time'Eats, code source livré sur GitLab interne. \\
+Garantie                & 6 mois post Go-Live --- correctifs de défauts gratuits, hors évolutions fonctionnelles. \\
+\rowcolor{cnIce}
+Réversibilité           & Documentation d'exploitation et de déploiement livrée à Jn, formation 2 j.h pour l'équipe Run interne. \\
+Confidentialité \& RGPD & Sopra Steria désigné sous-traitant au sens RGPD --- avenant de traitement signé. \\
+\bottomrule
+\end{tabularx}
+
+\begin{reco}
+\textbf{Validation et évolutions :} ce CDC est validé en COPIL d'avril 2026 et constitue la \textbf{baseline scope} du projet. Toute évolution (ajout / modification d'exigence FX ou NFX) impactant le triplet coût / délai / qualité passe par une demande de changement formelle (P3-14) et son arbitrage en COPIL mensuel.
+\end{reco}
+
+\end{document}

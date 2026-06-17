@@ -1,0 +1,130 @@
+% ============================================================
+%  NOTE DE CADRAGE — Phase 1 : Démarrage
+%  Time'Eats — Cellule PMO
+%  Projet : Refonte Web
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../../style/consulting}
+\hypersetup{pdftitle={Note de Cadrage — Refonte Web — Time'Eats PMO}}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\begin{tikzpicture}[remember picture,overlay]
+  \draw[cnNavy,line width=0.5pt](0,0)--(\textwidth,0);
+\end{tikzpicture}\vspace{2pt}\timeeatslogo\hspace{4pt}\small\textcolor{cnSlate}{Time'Eats \textbf{·} Note de Cadrage — \textit{Refonte Web}}}
+\fancyhead[R]{\small\textcolor{cnSlate}{\thepage}}
+\fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel — Cellule PMO — CESI MAALSI 2026}}
+\begin{document}\small
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Note de Cadrage}\\[4pt]
+\textcolor{cnOrange}{\rule{10cm}{1pt}}\\[4pt]
+{\large\color{cnSlate} Phase 1 — Démarrage \quad|\quad Projet : \textbf{Refonte Web}}
+\end{center}
+
+\vspace{6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{L{3.5cm} Y L{3.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Projet} & \th{} & \th{Date} & \th{} \\
+\midrule
+Nom & Refonte Web & Rédacteur & M. X \\
+\rowcolor{cnIce}
+Code & REF-WEB-2026 & Version & 1.0 — 15/04/2026 \\
+\bottomrule
+\end{tabularx}
+
+\section*{1 — Contexte}
+Time'Eats est en phase d'\textbf{accélération nationale} : objectif d'1\,M de nouveaux clients fin 2027, présence sur 10\,000 points de restauration partenaires, et conquête de 25\,\% de part de marché. Le site \texttt{timeats.fr} est aujourd'hui :
+\begin{itemize}
+  \item \textbf{Daté visuellement} (charte 2019, dissonant avec la nouvelle identité de marque) ;
+  \item \textbf{Faiblement responsive} (taux de rebond mobile $>$ 65\,\%) ;
+  \item \textbf{Non interfaçable} avec le futur CRM ni les applications mobiles (architecture monolithique sans API) ;
+  \item \textbf{Non conforme RGAA 4.1} (score Lighthouse Accessibility $<$ 60) ;
+  \item \textbf{Limité côté SEO} (Core Web Vitals dégradés, balisage incomplet).
+\end{itemize}
+La refonte est demandée par le \textbf{Comité Stratégique DSI} (mars 2026) et inscrite au portefeuille de l'année comme projet prioritaire (score 3{,}80 / 5{,}00 — RAG Vert).
+
+\section*{2 — Problématique}
+\begin{alert}
+Le site actuel \textbf{freine la croissance commerciale} (conversion $<$ 1\,\% vs benchmark sectoriel 2{,}5\,\%), \textbf{interdit l'industrialisation de la marque} (publication manuelle des contenus par la DSI, délai moyen 5 jours par mise en ligne), et \textbf{bloque l'écosystème digital cible} (CRM, apps mobiles, espace client). Sans refonte, Time'Eats sacrifie au minimum 30\,\% de son potentiel de leads digitaux 2026.
+\end{alert}
+
+\section*{3 — Objectifs et résultats attendus}
+\begin{itemize}
+  \item \textbf{Trafic organique : +30\,\%} à M+6 post Go-Live (référence T1 2026 — 180\,k visites / mois).
+  \item \textbf{Taux de conversion : +1{,}2 pt} (passage de 1{,}0\,\% à 2{,}2\,\%) à M+9.
+  \item \textbf{Performance : Lighthouse Performance et A11y $\geq$ 90} sur les 10 parcours principaux.
+  \item \textbf{Temps de mise en ligne d'un contenu : $<$ 30 min} (vs 5 jours actuels) via le CMS contributeur.
+  \item \textbf{API REST v1} livrée, documentée (OpenAPI 3) et consommable par CRM et applications mobiles.
+  \item \textbf{TCO : -25\,\%} à 12 mois (hébergement, licences, maintenance corrective).
+\end{itemize}
+
+\section*{4 — Périmètre fonctionnel}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{1.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{} & \th{} \\
+\midrule
+\cellcolor{cnGreen!20}\textbf{Inclus} & Refonte UX/UI du site corporate (10 templates de page) ; CMS contributeur (gestion contenus, médias, SEO) ; espace client (compte, historique commandes, factures, préférences) ; API REST v1 (catalogue produits, recherche, contact, comptes) ; SEO technique ; conformité RGAA 4.1 AA + RGPD ; CI/CD multi-environnement ; monitoring applicatif (APM) ; SSO Office 365 ou IdP local. \\
+\rowcolor{cnIce}
+\cellcolor{cnRed!20}\textbf{Exclu} & Refonte CRM (projet dédié) ; applications mobiles ; tunnel de commande B2B avancé ; back-office logistique ; migration des contenus legacy antérieurs à 2024 ; refonte de l'intranet collaborateur. \\
+\bottomrule
+\end{tabularx}
+
+\section*{5 — Contraintes}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{3cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Type} & \th{Description} \\
+\midrule
+Délai & Go-Live impératif le \textbf{30/09/2026} (préparation campagne marketing Q4 2026). \\
+\rowcolor{cnIce}
+Budget & Enveloppe ferme \textbf{300 K€} (dont 200 K€ forfait Sopra Steria, 80 K€ interne valorisé, 20 K€ licences/audits/cloud). \\
+Technique & Hébergement Azure West Europe (Paris) — exigence souveraineté ; SSO Office 365 (projet dépendant) ; pile front Next.js, back Node/.NET au choix de l'architecte tech. \\
+\rowcolor{cnIce}
+Réglementaire & RGPD (consentements, registre traitements, droits d'accès) ; RGAA 4.1 niveau AA ; OWASP ASVS niveau 2 ; loi française accessibilité numérique. \\
+Organisationnelle & Validation des contenus par Marketing : créneaux hebdomadaires fixes (mardis 14h-17h). \\
+\bottomrule
+\end{tabularx}
+
+\section*{6 — Parties prenantes identifiées}
+
+\begin{itemize}
+  \item \textbf{Maîtrise d'ouvrage (MOA) :} Direction Marketing (Mme F) et Direction Commerce (référent à désigner avant J1).
+  \item \textbf{Maîtrise d'œuvre (MOE) :} DSI Time'Eats (équipe interne 4{,}5 ETP cumulés) + Sopra Steria (400 j/h forfait).
+  \item \textbf{Sponsor :} Mme Y (DSI), validation budgétaire et arbitrages COPIL.
+  \item \textbf{Utilisateurs finaux :} visiteurs prospects, clients particuliers (espace client), contributeurs Marketing/Communication (CMS), équipes Commerce (lecture API).
+  \item \textbf{Autres :} DG (M. Z) — autorité ultime ; DPO interne — conformité RGPD ; RSSI (Mme E) — sécurité ; Service Client — formation Niveau 1.
+\end{itemize}
+
+\section*{7 — Options étudiées}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{3cm} Y L{3cm}}
+\toprule
+\rowcolor{cnNavy}\th{Option} & \th{Description} & \th{Recommandation} \\
+\midrule
+Option A — Refonte complète & Nouveau site \emph{from scratch} sur stack moderne (Next.js + Headless CMS + API), design system créé pour l'occasion, hébergement Azure. Effort 400 j/h ESN + 80 K€ interne. & \textbf{Retenu} \\
+\rowcolor{cnIce}
+Option B — Upgrade incrémental & Conserver le CMS Drupal actuel, refresh visuel, mise en conformité RGAA progressive, ajout API. Effort 200 j/h. Coût 150 K€. & Écarté — n'adresse pas l'industrialisation ni la modernité technique \\
+Option C — SaaS clé en main & Plateforme e-commerce SaaS (Shopify Plus, Salesforce Commerce). Coût annuel 60 K€ + intégration 100 K€. & Écarté — verrouillage éditeur, faible adaptation au modèle B2B Time'Eats \\
+\bottomrule
+\end{tabularx}
+
+\begin{reco}
+\textbf{Option A retenue} : seule à porter à la fois la promesse de marque (design, marque), l'industrialisation (CMS, CI/CD, design system), et la stratégie d'écosystème (API publique réutilisable par CRM et apps mobiles). Le surcoût initial est compensé en 18 mois par la baisse du TCO et la suppression du Drupal hérité.
+\end{reco}
+
+\section*{8 — Suite recommandée}
+
+\begin{enumerate}
+  \item Validation de cette note par le DSI et la DG --- \textbf{18/04/2026}.
+  \item Rédaction de la \textbf{Charte projet} (P1-01) et nomination officielle du CP --- \textbf{20/04/2026}.
+  \item Kick-off projet J0 --- \textbf{22/04/2026}.
+  \item Lancement de la phase de planification : PMP (P2-05), WBS (P2-06), Gantt (P2-07), budget (P2-08), risques (P2-09).
+  \item COPIL d'inception : validation des baselines --- \textbf{20/05/2026}.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,101 @@
+@startuml
+skinparam dpi 300
+skinparam defaultFontSize 11
+skinparam defaultFontName Arial
+skinparam componentStyle rectangle
+skinparam ArrowThickness 1.5
+skinparam ArrowFontSize 9
+skinparam ArrowFontStyle italic
+
+skinparam component {
+  BackgroundColor<<socle>>    #DDEEFF
+  BorderColor<<socle>>        #3366AA
+  FontColor<<socle>>          #1A3A6A
+
+  BackgroundColor<<dsi>>      #E8F5E9
+  BorderColor<<dsi>>          #2E7D32
+  FontColor<<dsi>>            #1B5E20
+
+  BackgroundColor<<metier>>   #FFF8E1
+  BorderColor<<metier>>       #F57F17
+  FontColor<<metier>>         #4E342E
+
+  BackgroundColor<<rh>>       #FCE4EC
+  BorderColor<<rh>>           #C62828
+  FontColor<<rh>>             #880E4F
+}
+
+skinparam package {
+  BackgroundColor<<socle>>    #EEF6FF
+  BorderColor<<socle>>        #3366AA
+  FontColor<<socle>>          #1A3A6A
+  FontStyle<<socle>>          bold
+
+  BackgroundColor<<dsi>>      #F1F8E9
+  BorderColor<<dsi>>          #2E7D32
+  FontColor<<dsi>>            #1B5E20
+  FontStyle<<dsi>>            bold
+
+  BackgroundColor<<metier>>   #FFFDE7
+  BorderColor<<metier>>       #F57F17
+  FontColor<<metier>>         #4E342E
+  FontStyle<<metier>>         bold
+
+  BackgroundColor<<rh>>       #FFF0F3
+  BorderColor<<rh>>           #C62828
+  FontColor<<rh>>             #880E4F
+  FontStyle<<rh>>             bold
+}
+
+package "Socle Technique, Sécurité & Data" <<socle>> {
+  [Office 365] as O365 <<socle>>
+  [MFA] as MFA <<socle>>
+  [Stockage & Fichiers] as Stockage <<socle>>
+  [Sauvegarde Cloud] as Backup <<socle>>
+  [Migration Azure] as Azure <<socle>>
+}
+
+package "Outillage DSI" <<dsi>> {
+  [Livraison Continue (CI/CD)] as CICD <<dsi>>
+}
+
+package "Applications Métiers & Croissance" <<metier>> {
+  [Refonte Web] as Web <<metier>>
+  [CRM] as CRM <<metier>>
+  [App Mobile Clients] as AppClient <<metier>>
+  [App Mobile Fournisseurs] as AppFourn <<metier>>
+}
+
+package "RH & Conformité" <<rh>> {
+  [MAJ Outils de Paie] as Paie <<rh>>
+}
+
+' --- Dépendances métiers (orange foncé) ---
+O365 -[#E65100,thickness=2]down-> CRM       : prérequis
+O365 -[#E65100,thickness=2]down-> AppClient : prérequis
+O365 -[#E65100,thickness=2]down-> AppFourn  : prérequis
+
+CRM  -[#BF360C,thickness=2]down-> AppClient  : données clients
+CRM  -[#BF360C,thickness=2]down-> AppFourn   : données fournisseurs
+Web  -[#BF360C,thickness=2]right-> CRM        : s'interface avec
+Web  -[#BF360C,thickness=2]down-> AppClient   : requis
+
+' --- Dépendances techniques (bleu) ---
+CICD .[#1565C0].> Web       : déploiement
+CICD .[#1565C0].> AppClient : déploiement
+CICD .[#1565C0].> AppFourn  : déploiement
+
+MFA   .[#6A1A8A].> Web : sécurise
+Azure .[#2E7D32].> Web : hébergement
+
+' --- Légende ---
+legend right
+  <b>Légende</b>
+  <color:#E65100>——</color> Prérequis fonctionnel
+  <color:#BF360C>——</color> Dépendance métier forte
+  <color:#1565C0>- -</color> Dépendance technique
+  <color:#6A1A8A>- -</color> Sécurité
+  <color:#2E7D32>- -</color> Infrastructure
+endlegend
+
+@enduml

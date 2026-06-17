@@ -1,0 +1,26 @@
+@startgantt
+printscale monthly
+skinparam defaultFontSize 10
+skinparam ganttArrowColor black
+skinparam dpi 300
+
+Project starts 2026-04-01
+
+[Office 365] starts 2026-04-01 and lasts 90 days
+[Refonte Web] starts 2026-04-01 and lasts 180 days
+[CI/CD] starts 2026-04-01 and lasts 90 days
+
+[App mobile clients] starts 2026-05-01 and lasts 240 days
+[App mobile fourn.] starts 2026-05-01 and lasts 240 days
+
+[CRM] starts 2026-06-01 and lasts 180 days
+
+[MFA] starts 2026-07-01 and lasts 120 days
+
+[Migration Azure] starts 2026-08-01 and lasts 150 days
+
+[MAJ outils paie] starts 2026-09-01 and lasts 90 days
+
+[Stockage fichiers] starts 2026-10-01 and lasts 90 days
+[Sauvegarde Cloud] starts 2026-10-01 and lasts 120 days
+@endgantt
