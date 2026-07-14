@@ -1,0 +1,10 @@
+# Contexte de build minimal — on n'embarque que cockpit_dsi/ + les PDF 01/03/04
+.git
+**/node_modules
+sources_latex
+img
+*.tex
+cockpit_dsi/screenshot.js
+Consignes*.pdf
+contexte_timeEat.pdf
+*.xlsx

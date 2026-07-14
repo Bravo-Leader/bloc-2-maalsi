@@ -1,12 +1,44 @@
 const express = require('express');
 const path    = require('path');
+const fs      = require('fs');
 const db      = require('./db');
 
 const app  = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// ── LIVRABLES (documents PDF téléchargeables) ──────────────────────────────────
+const LIV_DIR = path.join(__dirname, 'livrables');
+
+// Fichiers servis en téléchargement direct
+app.use('/livrables', express.static(LIV_DIR));
+
+// Arborescence du rendu (dossiers + PDF) exposée en JSON pour la page livrables
+function walk(dir, rel = '') {
+  let entries;
+  try { entries = fs.readdirSync(dir, { withFileTypes: true }); }
+  catch { return []; }
+  return entries
+    .filter(e => !e.name.startsWith('.'))
+    .sort((a, b) => {
+      if (a.isDirectory() !== b.isDirectory()) return a.isDirectory() ? -1 : 1;
+      return a.name.localeCompare(b.name, 'fr');
+    })
+    .map(e => {
+      const abs = path.join(dir, e.name);
+      const relPath = rel ? `${rel}/${e.name}` : e.name;
+      if (e.isDirectory()) {
+        return { name: e.name, type: 'dir', path: relPath, children: walk(abs, relPath) };
+      }
+      let size = 0;
+      try { size = fs.statSync(abs).size; } catch {}
+      return { name: e.name, type: 'file', path: relPath, size };
+    });
+}
+
+app.get('/api/tree', (req, res) => res.json(walk(LIV_DIR)));
 
 // ── PROJECTS ──────────────────────────────────────────────────────────────────
 app.get('/api/projects', (req, res) => res.json(db.getAll('projects')));

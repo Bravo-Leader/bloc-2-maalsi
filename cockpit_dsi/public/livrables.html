@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Livrables — Time'Eats · Bloc 2 MAALSI</title>
+  <style>
+    :root{
+      --bg:#0f1117;--s1:#1a1d27;--s2:#22263a;--bd:#2e3350;
+      --acc:#3b6fff;--txt:#e2e8f0;--mut:#8892b0;--r:12px;
+      --green:#22c55e;--ambre:#f59e0b;--rouge:#ef4444;--bleu:#3b82f6;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--txt);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh}
+    a{color:inherit}
+
+    header{background:var(--s1);border-bottom:1px solid var(--bd);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:200}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:.95rem}
+    .logo-b{background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;padding:3px 8px;border-radius:5px;font-size:.76rem;font-weight:800}
+    .hdr-r{display:flex;align-items:center;gap:10px}
+    .hdr-link{padding:5px 12px;border-radius:7px;font-size:.8rem;font-weight:600;text-decoration:none;background:var(--s2);color:var(--txt);border:1px solid var(--bd);transition:all .18s;white-space:nowrap}
+    .hdr-link:hover{background:var(--acc);color:#fff;border-color:var(--acc)}
+
+    main{max-width:960px;margin:0 auto;padding:26px 24px 60px}
+    .view-title{font-size:1.35rem;font-weight:700;margin-bottom:4px}
+    .view-sub{color:var(--mut);font-size:.85rem;margin-bottom:22px}
+
+    .stat-row{display:flex;gap:12px;margin-bottom:22px;flex-wrap:wrap}
+    .sc{flex:1;min-width:150px;background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:13px 16px}
+    .sc-lbl{font-size:.68rem;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+    .sc-val{font-size:1.5rem;font-weight:700;line-height:1.2;margin-top:3px}
+
+    .card{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:8px 6px}
+
+    /* Arbre */
+    .tree li{list-style:none}
+    .tree ul{list-style:none;margin-left:20px;border-left:1px solid var(--bd);padding-left:6px}
+    .tree>ul{margin-left:0;border-left:none;padding-left:0}
+    .node{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:8px;transition:background .15s}
+    .node:hover{background:var(--s2)}
+    .dir-row{cursor:pointer;user-select:none;font-weight:600}
+    .caret{width:14px;display:inline-block;color:var(--mut);transition:transform .15s}
+    .collapsed>.dir-row .caret{transform:rotate(-90deg)}
+    .collapsed>ul{display:none}
+    .ico{font-size:1.05rem;line-height:1}
+    .nm{flex:1;font-size:.86rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .badge{font-size:.68rem;color:var(--mut);background:var(--s2);border:1px solid var(--bd);border-radius:20px;padding:1px 9px;white-space:nowrap}
+    a.file{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--txt);flex:1;min-width:0}
+    a.file:hover .nm{color:var(--acc)}
+    .size{font-size:.72rem;color:var(--mut);white-space:nowrap}
+    .dl{font-size:.72rem;color:var(--acc);border:1px solid var(--bd);border-radius:7px;padding:3px 9px;text-decoration:none;white-space:nowrap}
+    .dl:hover{background:var(--acc);color:#fff;border-color:var(--acc)}
+    .loading{color:var(--mut);padding:24px;text-align:center}
+    footer{color:var(--mut);font-size:.75rem;text-align:center;margin-top:26px}
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo"><span class="logo-b">Time'EATS</span> Livrables — Bloc 2 MAALSI</div>
+  <div class="hdr-r">
+    <a class="hdr-link" href="/">← Cockpit DSI</a>
+    <a class="hdr-link" href="https://times-eat.rookit.fr/" target="_blank" rel="noopener">🎦 Présentation</a>
+  </div>
+</header>
+
+<main>
+  <div class="view-title">📁 Arborescence du rendu</div>
+  <div class="view-sub">Livrable principal, dossier PMP « Refonte Web » et référentiel documentaire — cliquez pour télécharger.</div>
+
+  <div class="stat-row" id="stats"></div>
+
+  <div class="card">
+    <div class="tree" id="tree"><div class="loading">Chargement de l'arborescence…</div></div>
+  </div>
+
+  <footer>Time'Eats · Cellule PMO — Projet collaboratif 2 · CESI MAALSI 2025-2026</footer>
+</main>
+
+<script>
+  const LABELS = {
+    '01_livrable_principal.pdf': 'Livrable principal',
+    '03_dossier_pmp_refonte_web': 'Dossier PMP — Refonte Web',
+    '04_referentiel_templates_vides': 'Référentiel documentaire (templates vides)'
+  };
+  const fmtSize = b => b >= 1048576 ? (b/1048576).toFixed(1)+' Mo' : Math.max(1,Math.round(b/1024))+' Ko';
+
+  let fileCount = 0, totalSize = 0;
+
+  function countFiles(nodes){ nodes.forEach(n => n.type==='file' ? (fileCount++, totalSize+=n.size) : countFiles(n.children||[])); }
+
+  function render(nodes){
+    const ul = document.createElement('ul');
+    ul.className = 'tree-sub';
+    nodes.forEach(n => {
+      const li = document.createElement('li');
+      if (n.type === 'dir') {
+        const nb = (n.children||[]).length;
+        li.className = 'dir';
+        li.innerHTML = `<div class="node dir-row">
+            <span class="caret">▾</span><span class="ico">📁</span>
+            <span class="nm">${LABELS[n.name] || n.name}</span>
+            <span class="badge">${nb} élément${nb>1?'s':''}</span></div>`;
+        li.appendChild(render(n.children || []));
+        li.querySelector('.dir-row').addEventListener('click', () => li.classList.toggle('collapsed'));
+      } else {
+        const url = '/livrables/' + n.path.split('/').map(encodeURIComponent).join('/');
+        li.innerHTML = `<div class="node">
+            <a class="file" href="${url}" target="_blank" rel="noopener">
+              <span class="ico">📄</span><span class="nm">${LABELS[n.name] || n.name}</span>
+              <span class="size">${fmtSize(n.size)}</span>
+            </a>
+            <a class="dl" href="${url}" download>⬇ Télécharger</a></div>`;
+      }
+      ul.appendChild(li);
+    });
+    return ul;
+  }
+
+  fetch('/api/tree')
+    .then(r => r.json())
+    .then(tree => {
+      countFiles(tree);
+      document.getElementById('stats').innerHTML =
+        `<div class="sc"><div class="sc-lbl">Documents</div><div class="sc-val">${fileCount}</div></div>
+         <div class="sc"><div class="sc-lbl">Taille totale</div><div class="sc-val">${fmtSize(totalSize)}</div></div>
+         <div class="sc"><div class="sc-lbl">Ensembles</div><div class="sc-val">${tree.length}</div></div>`;
+      const host = document.getElementById('tree');
+      host.innerHTML = '';
+      host.appendChild(render(tree));
+    })
+    .catch(() => {
+      document.getElementById('tree').innerHTML =
+        '<div class="loading">Impossible de charger l\'arborescence.</div>';
+    });
+</script>
+</body>
+</html>

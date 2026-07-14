@@ -22,8 +22,10 @@
     .nav-tab{padding:5px 13px;border-radius:7px;border:none;cursor:pointer;font-size:.81rem;font-weight:500;background:transparent;color:var(--mut);transition:all .18s}
     .nav-tab:hover{background:var(--s2);color:var(--txt)}
     .nav-tab.active{background:var(--acc);color:#fff}
-    .hdr-r{font-size:.76rem;color:var(--mut)}
+    .hdr-r{font-size:.76rem;color:var(--mut);display:flex;align-items:center;gap:12px}
     .hdr-r strong{color:var(--txt)}
+    .hdr-link{padding:5px 12px;border-radius:7px;font-size:.8rem;font-weight:600;text-decoration:none;background:var(--s2);color:var(--txt);border:1px solid var(--bd);transition:all .18s;white-space:nowrap}
+    .hdr-link:hover{background:var(--acc);color:#fff;border-color:var(--acc)}
 
     /* ── VIEWS ── */
     .view{display:none;padding:22px 24px;animation:fi .2s}
@@ -188,7 +190,11 @@
     <button class="nav-tab" onclick="nav('ops',this)">Ops & Risques</button>
     <button class="nav-tab" onclick="nav('esn',this)">ESN</button>
   </nav>
-  <div class="hdr-r">20 avr. 2026 · DSI <strong>21 pers.</strong> · 11 projets · 1 700 K€</div>
+  <div class="hdr-r">
+    <a class="hdr-link" href="livrables.html">📁 Livrables</a>
+    <a class="hdr-link" href="https://times-eat.rookit.fr/" target="_blank" rel="noopener">🎦 Présentation</a>
+    <span>20 avr. 2026 · DSI <strong>21 pers.</strong> · 11 projets · 1 700 K€</span>
+  </div>
 </header>
 
 <!-- ═══ PORTEFEUILLE ═══ -->
