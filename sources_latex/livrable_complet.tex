@@ -22,12 +22,13 @@
 \renewcommand{\headrulewidth}{0pt}
 \fancyhead[L]{%
   \begin{tikzpicture}[remember picture, overlay]
-    \draw[cnNavy, line width=0.5pt] (0,0) -- (\textwidth,0);
+    \draw[cnNavy, line width=0.5pt] (0,-0.42cm) -- (\textwidth,-0.42cm);
   \end{tikzpicture}%
   \vspace{2pt}\timeeatslogo\hspace{4pt}\small\textcolor{cnSlate}{Time'Eats \textbf{·} PMO --- Portefeuille \& Refonte Web}%
 }
-\fancyhead[R]{\small\textcolor{cnSlate}{\thepage}}
+\fancyhead[R]{}
 \fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel --- Cellule PMO --- CESI MAALSI 2026}}
+\fancyfoot[R]{\small\textcolor{cnSlate}{\thepage}}
 
 % Commandes RAG
 \newcommand{\ragV}{\cellcolor{cnGreen!20}\textbf{\textcolor{cnGreen}{Vert}}}
@@ -86,14 +87,14 @@
 \textbf{Trois objectifs structurent ce référentiel :}
 \begin{enumerate}
   \item \textbf{Professionnaliser la gestion de projet} via une méthodologie hybride explicite (PMBOK 7\textsuperscript{e} édition + Scrum), organisée en 4 piliers (gouvernance, exécution bimodale, capacitaire \& ESN, standardisation du suivi) --- Ch.\ 2.
-  \item \textbf{Uniformiser les documents} internes et externes via un \textbf{référentiel de 25 templates LaTeX versionnés}, couvrant les 5 phases PMBOK et applicables à tous les projets du portefeuille --- Ch.\ 3.
+  \item \textbf{Uniformiser les documents} internes et externes via un \textbf{référentiel de 26 templates LaTeX versionnés}, couvrant les 5 phases PMBOK et applicables à tous les projets du portefeuille --- Ch.\ 3.
   \item \textbf{Alimenter une plateforme live de KPI} : chaque indicateur projet remonte automatiquement vers le \textbf{Cockpit DSI}, consultable en temps réel par les CP (vue micro) et la direction (vue macro) --- Ch.\ 3 et 4.
 \end{enumerate}
 
 \textbf{Ce livrable est structuré en deux parties complémentaires :}
 
 \begin{itemize}
-  \item \textbf{Partie I --- Gestion du portefeuille} (Ch.\ 1--4). Présente la \emph{méthodologie partagée par tous les projets} : enjeux et gouvernance du portefeuille, méthodologie hybride à 4 piliers, référentiel documentaire commun (25 templates LaTeX avec chemins), référentiel d'indicateurs en cascade, et tableau de bord de supervision (Cockpit DSI).
+  \item \textbf{Partie I --- Gestion du portefeuille} (Ch.\ 1--4). Présente la \emph{méthodologie partagée par tous les projets} : enjeux et gouvernance du portefeuille, méthodologie hybride à 4 piliers, référentiel documentaire commun (26 templates LaTeX avec chemins), référentiel d'indicateurs en cascade, et tableau de bord de supervision (Cockpit DSI).
   \item \textbf{Partie II --- Application au projet Refonte Web} (Ch.\ 5--7). Démontre l'\emph{instanciation concrète} de la méthodologie sur un projet du portefeuille (Refonte Web --- 300~K€ --- ESN Sopra Steria --- Go-Live 30/09/2026). Renvoie au \textbf{dossier compagnon PMP Refonte Web} qui rassemble les documents instanciés à partir des templates du référentiel.
 \end{itemize}
 
@@ -494,7 +495,7 @@ Sans baseline, aucune comparaison ne sera crédible. La \textbf{première priori
 \chapter{Référentiel documentaire commun}
 
 \begin{finding}
-Le référentiel documentaire est l'instrument central de \textbf{professionnalisation du PMO} : il garantit l'homogénéité des pratiques et la traçabilité. Chaque chef de projet dispose d'un catalogue de \textbf{25 documents-types} hébergés sur SharePoint Online (projet Office 365 en déploiement) et matérialisés dans le présent dépôt par autant de templates LaTeX. Aucun coût additionnel.
+Le référentiel documentaire est l'instrument central de \textbf{professionnalisation du PMO} : il garantit l'homogénéité des pratiques et la traçabilité. Chaque chef de projet dispose d'un catalogue de \textbf{26 documents-types} hébergés sur SharePoint Online (projet Office 365 en déploiement) et matérialisés dans le présent dépôt par autant de templates LaTeX. Aucun coût additionnel.
 \end{finding}
 
 \section{Principe du référentiel}
@@ -506,7 +507,7 @@ Le référentiel documentaire est l'instrument central de \textbf{professionnali
   \item \textbf{Granularité d'usage} : certains documents sont produits \emph{une fois} (charte, PMP, baselines), d'autres sont \emph{vivants} (registre risques, rapport mensuel), d'autres sont \emph{récurrents} (CR de réunion).
 \end{itemize}
 
-\section{Catalogue des 25 templates --- chemins et fréquence}
+\section{Catalogue des 26 templates --- chemins et fréquence}
 
 \noindent\textit{Tous les chemins sont relatifs à la racine du dépôt. Préfixe source : \texttt{referentiel/} ; préfixe sortie : \texttt{referentiel/pdf/}.}
 
@@ -557,31 +558,35 @@ P3-12 & CR de réunion (hebdo/sprint) & Hebdomadaire & \pth{P3-12\_cr\_reunion.t
 P3-13 & Rapport d'avancement mensuel & Mensuel & \pth{P3-13\_rapport\_avancement.tex}             & \pth{P3-13\_rapport\_avancement.pdf} \\
 \rowcolor{cnIce}
 P3-14 & Demande de changement      & À l'occurrence & \pth{P3-14\_demande\_changement.tex} & \pth{P3-14\_demande\_changement.pdf} \\
+P3-15 & Log des anomalies          & Vivant & \pth{P3-15\_log\_anomalies.tex}              & \pth{P3-15\_log\_anomalies.pdf} \\
 \midrule
 
 \multicolumn{5}{l}{\cellcolor{cnNavy!15}\textbf{\textcolor{cnNavy}{Phase 4 --- Maîtrise}}} \\
 \midrule
-P4-15 & Tableau de bord projet     & Mensuel & \pth{P4-15\_tableau\_de\_bord\_projet.tex}  & \pth{P4-15\_tableau\_de\_bord\_projet.pdf} \\
 \rowcolor{cnIce}
-P4-16 & Rapport d'écarts           & En cas d'écart & \pth{P4-16\_rapport\_ecarts.tex}     & \pth{P4-16\_rapport\_ecarts.pdf} \\
-P4-17 & Slides COPIL               & Mensuel & \pth{P4-17\_slides\_copil.tex}              & \pth{P4-17\_slides\_copil.pdf} \\
+P4-16 & Tableau de bord projet     & Mensuel & \pth{P4-16\_tableau\_bord\_projet.tex}      & \pth{P4-16\_tableau\_bord\_projet.pdf} \\
+P4-17 & Rapport d'écarts           & En cas d'écart & \pth{P4-17\_rapport\_ecarts.tex}     & \pth{P4-17\_rapport\_ecarts.pdf} \\
+\rowcolor{cnIce}
+P4-18 & CR / Slides COPIL          & Mensuel & \pth{P4-18\_cr\_copil.tex}                  & \pth{P4-18\_cr\_copil.pdf} \\
 \midrule
 
 \multicolumn{5}{l}{\cellcolor{cnNavy!15}\textbf{\textcolor{cnNavy}{Phase 5 --- Clôture}}} \\
 \midrule
+P5-19 & PV de recette fonctionnelle & Une fois & \pth{P5-19\_pv\_recette\_fonctionnelle.tex} & \pth{P5-19\_pv\_recette\_fonctionnelle.pdf} \\
 \rowcolor{cnIce}
-P5-18 & PV de recette fonctionnelle & Une fois & \pth{P5-18\_pv\_recette\_fonctionnelle.tex} & \pth{P5-18\_pv\_recette\_fonctionnelle.pdf} \\
-P5-19 & PV de recette technique    & Une fois & \pth{P5-19\_pv\_recette\_technique.tex}     & \pth{P5-19\_pv\_recette\_technique.pdf} \\
+P5-20 & PV de recette technique    & Une fois & \pth{P5-20\_pv\_recette\_technique.tex}     & \pth{P5-20\_pv\_recette\_technique.pdf} \\
+P5-21 & Rapport de clôture         & Une fois & \pth{P5-21\_rapport\_cloture.tex}           & \pth{P5-21\_rapport\_cloture.pdf} \\
 \rowcolor{cnIce}
-P5-20 & PV transfert exploitation  & Une fois & \pth{P5-20\_pv\_transfert\_exploitation.tex} & \pth{P5-20\_pv\_transfert\_exploitation.pdf} \\
-P5-21 & Lettre fin mission ESN     & Une fois & \pth{P5-21\_lettre\_fin\_mission\_esn.tex}  & \pth{P5-21\_lettre\_fin\_mission\_esn.pdf} \\
-\rowcolor{cnIce}
-P5-22 & Bilan de clôture           & Une fois & \pth{P5-22\_bilan\_cloture.tex}             & \pth{P5-22\_bilan\_cloture.pdf} \\
+P5-22 & PV transfert exploitation  & Une fois & \pth{P5-22\_pv\_transfert\_exploitation.tex} & \pth{P5-22\_pv\_transfert\_exploitation.pdf} \\
 P5-23 & Fiche REX                  & Une fois & \pth{P5-23\_fiche\_rex.tex}                 & \pth{P5-23\_fiche\_rex.pdf} \\
+\rowcolor{cnIce}
+P5-24 & Lettre de fin de mission ESN & Une fois & \pth{P5-24\_lettre\_fin\_mission\_esn.tex} & \pth{P5-24\_lettre\_fin\_mission\_esn.pdf} \\
 \end{longtable}
 
 \begin{reco}
-Le \textbf{dossier compagnon PMP Refonte Web} (cf.\ Ch.\ 7) démontre l'instanciation de \textbf{13 de ces 23 templates} sur le projet Refonte Web. Les 10 templates restants (P3-14, P4-15--17, P5-18--23) seront instanciés au fil de l'avancement du projet.
+Le \textbf{dossier compagnon PMP Refonte Web} (cf.\ Ch.\ 7) démontre l'instanciation de \textbf{15 de ces 26 templates} sur le projet Refonte Web. Les 11 templates restants (P3-14, P3-15, P4-16--18, P5-19--24) seront instanciés au fil de l'avancement du projet.
+
+\textbf{Documents contractuels de clôture (Phase 5).} Ils couvrent les deux périmètres exigés : \textbf{en interne} --- PV de recette fonctionnelle (P5-19) et technique (P5-20), rapport de clôture (P5-21), fiche REX (P5-23) ; \textbf{côté prestataires (ESN)} --- PV de transfert d'exploitation (P5-22) et \textbf{lettre de fin de mission ESN} (P5-24, solde du forfait, levée des réserves et décharge contractuelle). Le template de PV de recette est fourni (P5-19/P5-20).
 \end{reco}
 
 \newpage
@@ -1087,18 +1092,18 @@ Anomalies bloquantes    & 0         & 0               & \ragV & Aucune ouverte \
 \chapter{Dossier PMP Refonte Web --- documents instanciés}
 
 \begin{finding}
-Le pilotage opérationnel de la Refonte Web s'appuie sur un \textbf{dossier compagnon} (\texttt{pmp\_refonte\_web.pdf}) qui rassemble les \textbf{13 documents instanciés} à partir des templates du référentiel (Ch.\ 3). Chaque document est compilé en PDF autonome dans \texttt{projets/refonte\_web/pdf/}. Le présent chapitre fait office d'\textbf{index navigationnel}.
+Le pilotage opérationnel de la Refonte Web s'appuie sur un \textbf{dossier compagnon} (\texttt{pmp\_refonte\_web.pdf}) qui rassemble les \textbf{15 documents instanciés} à partir des templates du référentiel (Ch.\ 3). Chaque document est compilé en PDF autonome dans \texttt{projets/refonte\_web/pdf/}. Le présent chapitre fait office d'\textbf{index navigationnel}.
 \end{finding}
 
 \section{Architecture du dossier compagnon}
 
 \begin{itemize}
-  \item \textbf{Document maître} : \texttt{pmp\_refonte\_web.pdf} --- index, carte d'identité, table des 13 documents, engagements contractuels.
+  \item \textbf{Document maître} : \texttt{pmp\_refonte\_web.pdf} --- index, carte d'identité, table des documents instanciés, engagements contractuels.
   \item \textbf{Document pivot} : \texttt{P2-05\_plan\_management\_projet.pdf} --- Plan de Management Projet en 11 sections (PMBOK 7\textsuperscript{e} + PRINCE2 + ADKAR).
-  \item \textbf{12 documents annexes} --- charte, RACI, note de cadrage, WBS, Gantt, budget, risques, communication, conduite du changement, fiche d'identification, CR de réunion (kick-off), rapport d'avancement (M+1).
+  \item \textbf{14 documents annexes} --- charte, note de cadrage, PBS, CDC, fiche d'identification, RACI, WBS, Gantt, budget, risques, communication, conduite du changement, CR de réunion (kick-off), rapport d'avancement (M+1).
 \end{itemize}
 
-\section{Index des 13 documents instanciés}
+\section{Index des 15 documents instanciés}
 
 \noindent\textit{Tous les chemins sont préfixés par \texttt{projets/refonte\_web/pdf/} et le fichier source équivalent se trouve dans \texttt{projets/refonte\_web/}.}
 
@@ -1120,6 +1125,9 @@ Le pilotage opérationnel de la Refonte Web s'appuie sur un \textbf{dossier comp
 P1-01 & Charte projet                  & Démarrage     & \pthi{P1-01\_charte\_projet.pdf}         & \ragV \\
 \rowcolor{cnIce}
 P1-02 & Note de cadrage                & Démarrage     & \pthi{P1-02\_note\_de\_cadrage.pdf}      & \ragV \\
+P1-02bis & Product Breakdown Structure (PBS) & Démarrage & \pthi{P1-02bis\_pbs.pdf}              & \ragV \\
+\rowcolor{cnIce}
+P1-02ter & Cahier des charges (CDC)    & Démarrage     & \pthi{P1-02ter\_cdc.pdf}                 & \ragV \\
 P1-03 & Fiche d'identification         & Démarrage     & \pthi{P1-03\_fiche\_identification.pdf}  & \ragV \\
 \rowcolor{cnIce}
 P1-04 & Matrice RACI                   & Démarrage     & \pthi{P1-04\_matrice\_raci.pdf}          & \ragV \\
@@ -1149,7 +1157,7 @@ P3-13 & Rapport d'avancement (mai 2026)& Exécution     & \pthi{P3-13\_rapport\_
 \section{Documents à produire au fil de l'avancement}
 
 \begin{finding}
-Au-delà des 13 documents déjà instanciés, le pilotage Phase 3--5 génère les livrables suivants à produire au fil de l'eau à partir des templates du référentiel.
+Au-delà des 15 documents déjà instanciés, le pilotage Phase 3--5 génère les livrables suivants à produire au fil de l'eau à partir des templates du référentiel.
 \end{finding}
 
 \renewcommand{\arraystretch}{1.3}
@@ -1162,17 +1170,20 @@ P3-12 (suite) & CR de réunion sprint / COPIL & Tous les 15 j / Mensuel & Sprint
 P3-13 (suite) & Rapport d'avancement mensuel & Mensuel             & Juin 2026 (diffusé 05/07) \\
 P3-14         & Demande de changement        & Sur événement       & À anticiper en juillet \\
 \rowcolor{cnIce}
-P4-15         & Tableau de bord projet       & Mensuel             & Mai 2026 (intégré cockpit) \\
-P4-16         & Rapport d'écarts             & Sur seuil dépassé   & Si IPC ou IPD $<$ 0{,}90 \\
+P3-15         & Log des anomalies            & Vivant              & Dès la recette (août 2026) \\
+P4-16         & Tableau de bord projet       & Mensuel             & Mai 2026 (intégré cockpit) \\
 \rowcolor{cnIce}
-P4-17         & Slides COPIL                 & Mensuel             & COPIL inception 20/05/2026 \\
-P5-18         & PV de recette fonctionnelle  & 1 fois              & 31/08/2026 (J4) \\
+P4-17         & Rapport d'écarts             & Sur seuil dépassé   & Si IPC ou IPD $<$ 0{,}90 \\
+P4-18         & CR / Slides COPIL            & Mensuel             & COPIL inception 20/05/2026 \\
 \rowcolor{cnIce}
-P5-19         & PV de recette technique      & 1 fois              & 31/08/2026 (J4) \\
-P5-20         & PV transfert exploitation    & 1 fois              & 30/09/2026 (J5) \\
+P5-19         & PV de recette fonctionnelle  & 1 fois              & 31/08/2026 (J4) \\
+P5-20         & PV de recette technique      & 1 fois              & 31/08/2026 (J4) \\
 \rowcolor{cnIce}
-P5-22         & Bilan de clôture             & 1 fois              & 30/09/2026 (J5) \\
+P5-21         & Rapport de clôture           & 1 fois              & 30/09/2026 (J5) \\
+P5-22         & PV transfert exploitation    & 1 fois              & 30/09/2026 (J5) \\
+\rowcolor{cnIce}
 P5-23         & Fiche REX                    & 1 fois              & 15/10/2026 (J5+15) \\
+P5-24         & Lettre de fin de mission ESN & 1 fois              & 30/09/2026 (solde Sopra Steria) \\
 \bottomrule
 \end{tabularx}
 
@@ -1189,52 +1200,6 @@ P5-23         & Fiche REX                    & 1 fois              & 15/10/2026 
 \begin{alert}
 \textbf{Document maître} : en cas de divergence entre ce livrable principal et le dossier compagnon \texttt{pmp\_refonte\_web.pdf}, c'est le \textbf{dossier compagnon} qui fait \textbf{foi pour le projet Refonte Web} (granularité plus fine, données à jour). Le présent livrable sert de référence \textbf{méthodologique} pour l'ensemble du portefeuille.
 \end{alert}
-
-\newpage
-
-% ============================================================
-% ANNEXE — CHECKLIST DE LA GRILLE D'ÉVALUATION
-% ============================================================
-\chapter*{Annexe --- Checklist grille d'évaluation}
-\addcontentsline{toc}{chapter}{Annexe --- Checklist grille d'évaluation}
-
-\begin{center}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabularx}{\textwidth}{C{0.5cm} L{6.5cm} C{2cm} C{1.8cm} C{3.5cm}}
-\toprule
-\rowcolor{cnNavy}
-\th{\#} & \th{Critère de la grille} & \th{Points} & \th{Couvert} & \th{Référence} \\
-\midrule
-\multicolumn{5}{l}{\cellcolor{cnNavy!15}\textbf{\textcolor{cnNavy}{Axe 1 --- Définir, prioriser et faire vivre le portefeuille (8 pts)}}} \\
-\midrule
-1 & Processus de management basé sur standards & 2 pts & \cellcolor{cnGreen!25}Oui & Partie I --- Ch.\ 2 \\
-\rowcolor{cnIce}
-2 & Plan du référentiel documentaire (avec chemins) & 3 pts & \cellcolor{cnGreen!25}Oui & Partie I --- Ch.\ 3 \\
-3 & Template tableau de bord supervision & 3 pts & \cellcolor{cnGreen!25}Oui & Partie I --- Ch.\ 4 \\
-\midrule
-\multicolumn{5}{l}{\cellcolor{cnNavy!15}\textbf{\textcolor{cnNavy}{Axe 2 --- Superviser et conduire les projets IT (5 pts)}}} \\
-\midrule
-\rowcolor{cnIce}
-4 & Plan de management complet (Refonte Web) & 3 pts & \cellcolor{cnGreen!25}Oui & Partie II --- Ch.\ 5 + \texttt{pmp\_refonte\_web.pdf} + P2-05 instancié \\
-5 & Tableau de bord de suivi projet & 2 pts & \cellcolor{cnGreen!25}Oui & Partie II --- Ch.\ 6 + P3-13 instancié \\
-\midrule
-\multicolumn{5}{l}{\cellcolor{cnNavy!15}\textbf{\textcolor{cnNavy}{Axe 3 --- Clore les projets et capitaliser (5 pts)}}} \\
-\midrule
-\rowcolor{cnIce}
-6 & Documents contractuels de clôture (référentiel) & 2 pts & \cellcolor{cnGreen!25}Oui & Ch.\ 3 (P5-18 à P5-23) \\
-7 & Processus d'amélioration continue + PDCA & 3 pts & \cellcolor{cnGreen!25}Oui & Partie I --- Ch.\ 4 §4.4 \\
-\midrule
-\multicolumn{5}{l}{\cellcolor{cnNavy!15}\textbf{\textcolor{cnNavy}{Axe 4 --- Application au projet (Partie II --- bonus contextuel)}}} \\
-\midrule
-8 & WBS graphique (PNG PlantUML) & --- & \cellcolor{cnGreen!25}Oui & Ch.\ 6 §6.3 + \texttt{wbs\_refonte\_web.png} \\
-\rowcolor{cnIce}
-9 & Dossier PMP compagnon (13 PDFs) & --- & \cellcolor{cnGreen!25}Oui & Ch.\ 7 + \texttt{pmp\_refonte\_web.pdf} \\
-\midrule
-\rowcolor{cnNavy!15}
-\textbf{} & \textbf{TOTAL} & \textbf{20 pts} & \textbf{\textcolor{cnGreen}{100\,\%}} & \\
-\bottomrule
-\end{tabularx}
-\end{center}
 
 \vfill
 \begin{center}

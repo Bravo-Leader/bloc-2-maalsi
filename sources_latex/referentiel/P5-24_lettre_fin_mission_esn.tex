@@ -1,0 +1,104 @@
+% ============================================================
+%  LETTRE DE FIN DE MISSION ESN — Phase 5 : Clôture
+%  Time'Eats — Cellule PMO
+% ============================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage{../style/consulting}
+\hypersetup{pdftitle={Lettre de fin de mission ESN — Time'Eats PMO}}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\begin{tikzpicture}[remember picture,overlay]
+  \draw[cnNavy,line width=0.5pt](0,-0.42cm)--(\textwidth,-0.42cm);
+\end{tikzpicture}\vspace{2pt}\timeeatslogo\hspace{4pt}\small\textcolor{cnSlate}{Time'Eats \textbf{·} Lettre de fin de mission ESN — \textit{[Nom projet]}}}
+\fancyfoot[C]{\tiny\textcolor{cnSlate}{Document confidentiel — Cellule PMO — CESI MAALSI 2026}}
+\fancyfoot[R]{\small\textcolor{cnSlate}{\thepage}}
+\begin{document}\small
+
+\begin{center}
+{\LARGE\bfseries\color{cnNavy} Lettre de fin de mission --- Prestataire ESN}\\[4pt]
+\textcolor{cnOrange}{\rule{10cm}{1pt}}\\[4pt]
+{\large\color{cnSlate} Phase 5 --- Clôture \quad|\quad Projet : \textit{[Nom du projet]}}
+\end{center}
+
+\vspace{4pt}
+\begin{decision}
+Ce document \textbf{contractuel} entérine la fin de la prestation de l'ESN. Il conditionne le \textbf{solde du forfait} et la \textbf{décharge de responsabilité}. Il est cosigné par le chef de projet Time'Eats et le responsable de mission ESN, puis archivé au dossier projet et transmis aux Achats.
+\end{decision}
+
+\vspace{4pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{L{3.5cm} Y L{3.5cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Champ} & \th{Valeur} & \th{Champ} & \th{Valeur} \\
+\midrule
+Projet            & \textit{[Nom]}              & Prestataire (ESN) & \textit{[Raison sociale]} \\
+\rowcolor{cnIce}
+N° de contrat     & \textit{[Réf. contrat]}     & Type d'engagement & \textit{[Forfait / Régie]} \\
+Responsable ESN   & \textit{[Prénom NOM]}       & Chef de projet    & \textit{[Prénom NOM]} \\
+\rowcolor{cnIce}
+Début de mission  & \textit{[JJ/MM/AAAA]}       & Fin de mission    & \textit{[JJ/MM/AAAA]} \\
+\bottomrule
+\end{tabularx}
+
+\section*{1 — Périmètre réalisé et livrables acceptés}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{C{0.6cm} L{5cm} Y C{3cm}}
+\toprule
+\rowcolor{cnNavy}\th{\#} & \th{Livrable contractuel} & \th{PV de référence} & \th{Statut} \\
+\midrule
+1 & \textit{[ex. Application web v1]}       & \textit{[PV recette fonctionnelle P5-19]} & \cellcolor{cnGreen!20}Accepté \\
+\rowcolor{cnIce}
+2 & \textit{[ex. API REST documentée]}      & \textit{[PV recette technique P5-20]}     & \cellcolor{cnGreen!20}Accepté \\
+3 & \textit{[ex. Transfert d'exploitation]} & \textit{[PV transfert P5-22]}             & \cellcolor{cnGreen!20}Accepté \\
+\bottomrule
+\end{tabularx}
+
+\section*{2 — Levée des réserves}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{C{0.6cm} Y C{3cm} C{3cm}}
+\toprule
+\rowcolor{cnNavy}\th{\#} & \th{Réserve émise en recette} & \th{Date de levée} & \th{Statut} \\
+\midrule
+1 & \textit{[Description de la réserve]} & \textit{[JJ/MM/AAAA]} & \cellcolor{cnGreen!20}Levée \\
+\rowcolor{cnIce}
+2 & \textit{[Description de la réserve]} & \textit{[JJ/MM/AAAA]} & \cellcolor{cnGreen!20}Levée \\
+\multicolumn{4}{l}{\footnotesize \textit{Aucune réserve bloquante ouverte à la date de signature.}} \\
+\bottomrule
+\end{tabularx}
+
+\section*{3 — Solde financier et clôture contractuelle}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{L{6cm} C{3cm} Y}
+\toprule
+\rowcolor{cnNavy}\th{Élément} & \th{Montant} & \th{Commentaire} \\
+\midrule
+Montant du forfait contractualisé & \textit{[XXX K€]} & \\
+\rowcolor{cnIce}
+Déjà facturé / réglé              & \textit{[XXX K€]} & \\
+Solde à facturer (dernier jalon)  & \textit{[XX K€]}  & À réception de la présente lettre signée \\
+\rowcolor{cnIce}
+Pénalités éventuelles             & \textit{[0 / XX K€]} & \textit{[Retard, SLA non tenu, etc.]} \\
+\bottomrule
+\end{tabularx}
+
+\vspace{6pt}
+\begin{reco}
+\textbf{Décharge.} Sous réserve du bon paiement du solde, les parties conviennent que la mission est \textbf{achevée}. La \textbf{garantie contractuelle} (correction des anomalies) court jusqu'au \textit{[JJ/MM/AAAA]}. Les engagements de \textbf{confidentialité} et de \textbf{réversibilité} survivent à la fin de la mission.
+\end{reco}
+
+\vspace{8pt}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\textwidth}{L{5cm} Y Y}
+\toprule
+\rowcolor{cnNavy}\th{} & \th{Pour Time'Eats (CP / PMO)} & \th{Pour l'ESN (Resp. mission)} \\
+\midrule
+Nom \& fonction & \textit{[Prénom NOM]} & \textit{[Prénom NOM]} \\
+Date           & \textit{[JJ/MM/AAAA]} & \textit{[JJ/MM/AAAA]} \\
+Signature      &                       & \\
+\bottomrule
+\end{tabularx}
+
+\end{document}
